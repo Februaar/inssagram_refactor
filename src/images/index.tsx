@@ -22,6 +22,7 @@ import moreHoriz from "./icon/more-horiz-icon.svg";
 import brokenImage from "./icon/broken-image-icon.svg";
 
 import noProfile from "./no-profile.jpg";
+import kakaoTalk from "./kakaotalk.png";
 
 export {
   menu,
@@ -47,4 +48,5 @@ export {
   moreHoriz,
   brokenImage,
   noProfile,
+  kakaoTalk,
 };

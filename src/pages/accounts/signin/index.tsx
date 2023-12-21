@@ -5,13 +5,11 @@ const SigninPage = () => {
   return (
     <>
       <SC.Container>
-        <SC.ContentArea>
-          <SC.Title>💼</SC.Title>
-          <SC.Logo>Inssagram</SC.Logo>
-          <SC.Content>
-            <SigninInput />
-          </SC.Content>
-        </SC.ContentArea>
+        <SC.Title>💼</SC.Title>
+        <SC.Logo>Inssagram</SC.Logo>
+        <SC.PageContent>
+          <SigninInput />
+        </SC.PageContent>
       </SC.Container>
     </>
   );

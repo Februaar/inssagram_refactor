@@ -1,99 +1,71 @@
-import styled from "styled-components";
+import axios from "axios";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import * as SC from "@/styles/styled/inputs_signin";
 import SocialLogin from "@/components/Buttons/SocialLogin";
 
 const SigninInput = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(`${process.env.SERVER_URL}/signin`, {
+        email: email,
+        password: password,
+      });
+
+      if (res.status === 200) {
+        const token = res.headers.authorization;
+        sessionStorage.setItem("token", token);
+
+        // const userInfo = res.data.data;
+        // dispatch(loginUser(userInfo));
+        console.log("login token:", token);
+        router.push("/main");
+      } else {
+        console.log("로그인 실패:", res.data.error);
+      }
+    } catch (error) {
+      console.error("로그인 중 오류 발생:", error);
+    }
+  };
+
   return (
-    <LoginForm>
-      <Signin>
-        <Input>
-          <Id placeholder="이메일을 입력하세요" />
-        </Input>
-        <Input>
-          <Password placeholder="비밀번호를 입력하세요" />
-        </Input>
-        <Login>
-          <LoginBtn>로그인</LoginBtn>
-        </Login>
-      </Signin>
-      <Signup>
-        <Text>계정이 없으신가요?</Text>
-        <SignupBtn>가입하기</SignupBtn>
-      </Signup>
+    <SC.FormContainer>
       <SocialLogin />
-    </LoginForm>
+      <SC.Or>또는</SC.Or>
+      <SC.SigninArea>
+        <SC.InputItem>
+          <SC.Input
+            alt="email"
+            placeholder="이메일을 입력하세요"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </SC.InputItem>
+        <SC.InputItem>
+          <SC.Input
+            alt="password"
+            placeholder="비밀번호를 입력하세요"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </SC.InputItem>
+        <SC.SigninBtn>
+          <SC.Btn onClick={handleLogin}>로그인</SC.Btn>
+        </SC.SigninBtn>
+      </SC.SigninArea>
+      <SC.SignupArea>
+        <SC.Explan>계정이 없으신가요?</SC.Explan>
+        <Link href="/accounts/signup/email">
+          <SC.SignupBtn>가입하기</SC.SignupBtn>
+        </Link>
+      </SC.SignupArea>
+    </SC.FormContainer>
   );
 };
 
 export default SigninInput;
-
-const LoginForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 270px;
-`;
-
-const Signin = styled.div`
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  width: 100%;
-`;
-
-const Input = styled.div`
-  width: 100%;
-  margin: 0 40px 6px;
-`;
-
-const Id = styled.input`
-  width: 100%;
-  height: 37px;
-  padding: 9px 0 7px 8px;
-  border: 1px solid #dbdbdb;
-  border-radius: 3px;
-  background-color: #fafafa;
-`;
-
-const Password = styled.input`
-  width: 100%;
-  height: 37px;
-  padding: 9px 0 7px 8px;
-  border: 1px solid #dbdbdb;
-  border-radius: 3px;
-  background-color: #fafafa;
-`;
-
-const Login = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 15px 40px 8px;
-width: 100%;
-  height: 33px;
-  border-radius: 8px;
-  background-color: #0095f6;
-`;
-
-const LoginBtn = styled.button`
-  color: #ffffff;
-`;
-
-const Signup = styled.div`
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 39px;
-`;
-
-const Text = styled.span`
-  color: #737373;
-`;
-
-const SignupBtn = styled.button`
-  margin-left: 5px;
-  color: #0095f6;
-`;
