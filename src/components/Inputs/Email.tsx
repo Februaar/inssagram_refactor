@@ -1,15 +1,23 @@
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
+import { useSignUp } from "@/context/SignUp";
 import * as SC from "@/styles/styled/inputs_email";
 import AddressButton from "@/components/Buttons/Address";
+import { validateEmail } from "@/utils/authValidation";
 
 const EmailInput = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [isDisabled, isSetDisabled] = useState(false);
+  const { dispatch, state } = useSignUp();
+  const [email, setEmail] = useState<string>("");
+  const [isDisabled, isSetDisabled] = useState<boolean>(false);
 
   const handleSubmit = async () => {
+    if (!validateEmail(email)) {
+      alert("올바른 이메일 형식이 아닙니다.");
+      return;
+    }
+
     try {
       const res = await axios.post(
         `${process.env.SERVER_URL}/signup/check/email`,
@@ -18,12 +26,18 @@ const EmailInput = () => {
 
       if (res.status === 200) {
         alert(res.data.message);
-        console.log(res);
+
+        dispatch({ type: "SET_SIGNUP_DATA", payload: { emailData: email } });
+        console.log("Updated state:", state);
+
+        // 비동기적으로 동작하려면 await 추가하면 됨
+        axios.post(`${process.env.SERVER_URL}/signup/auth`, {
+          email: email,
+        });
         router.push("/accounts/signup/email/emailConfirmation");
       } else {
         console.error("Unexpected response status:", res.status);
       }
-      
     } catch (error: any) {
       if (error.response && error.response.status === 409) {
         alert(error.response.data.message);
@@ -40,7 +54,8 @@ const EmailInput = () => {
         <SC.EmailInfo>
           <SC.Email
             alt="email"
-            placeholder="이메일을 입력하세요"
+            placeholder="이메일 주소를 정확히 입력해주세요."
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <SC.AddressType>

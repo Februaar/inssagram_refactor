@@ -1,23 +1,27 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useSignUp } from "@/context/SignUp";
 import * as SC from "@/styles/styled/inputs_job";
 
 const JobInput = () => {
   const router = useRouter();
+  const { dispatch, state } = useSignUp();
   const [job, setJob] = useState("");
 
   const handleSubmit = async () => {
     try {
       const res = await axios.post(`${process.env.SERVER_URL}/signup`, {
-        email: email,
-        password: password,
-        nickname: nickname,
-        job: job,
+        email: state.emailData,
+        nickname: state.nicknameData,
+        password: state.passwordData,
+        job: state.jobData,
       });
 
       if (res.status === 200) {
         alert(res.data.message);
+
+        dispatch({ type: "SET_SIGNUP_DATA", payload: { jobData: job } });
         router.push("/accounts/signin");
       } else {
         console.error("Unexpected response status:", res.status);

@@ -1,14 +1,22 @@
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
+import { useSignUp } from "@/context/SignUp";
 import * as SC from "@/styles/styled/inputs_detail";
+import { validatePassword } from "@/utils/authValidation";
 
 const DetailInput = () => {
   const router = useRouter();
+  const { dispatch } = useSignUp();
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
+    if (!validatePassword(password)) {
+      alert("올바른 비밀번호 형식이 아닙니다.");
+      return;
+    }
+
     try {
       const res = await axios.post(
         `${process.env.SERVER_URL}/signup/check/nickname`,
@@ -17,6 +25,12 @@ const DetailInput = () => {
 
       if (res.status === 200) {
         alert(res.data.message);
+
+        dispatch({
+          type: "SET_SIGNUP_DATA",
+          payload: { nicknameData: nickname, passwordData: password },
+        });
+
         router.push("/accounts/signup/job");
       } else {
         console.error("Unexpected response status:", res.status);
@@ -42,11 +56,13 @@ const DetailInput = () => {
             <SC.Detail
               alt="nickname"
               placeholder="닉네임"
+              value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
             <SC.Detail
               alt="password"
-              placeholder="비밀번호"
+              placeholder="영문, 숫자, 특수문자 조합 (6-10자)"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </SC.DetailArea>

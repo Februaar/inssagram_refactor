@@ -1,17 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useSignUp } from "@/context/SignUp";
 import * as SC from "@/styles/styled/inputs_code";
 
 const CodeInput = () => {
   const router = useRouter();
+  const { state } = useSignUp();
   const [code, setCode] = useState("");
 
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
         `${process.env.SERVER_URL}/signup/check/code`,
-        { email: email, code: code }
+        { email: state.emailData, code: code }
       );
 
       if (res.status === 200) {

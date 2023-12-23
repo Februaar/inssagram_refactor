@@ -1,27 +1,16 @@
 export const validateEmail = (inputValue) => {
-  if (!inputValue) {
-    return false;
-  }
-
-  const atIndex = inputValue.indexOf("@");
-  const lastDotIndex = inputValue.lastIndexOf(".");
-
-  if (
-    atIndex !== -1 &&
-    atIndex < lastDotIndex &&
-    lastDotIndex < inputValue.length - 1
-  ) {
-    return true;
-  }
-
-  return false;
+  const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return emailPattern.test(inputValue);
 };
 
 export const validatePassword = (inputValue) => {
-  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$/;
-  return passwordRegex.test(inputValue);
+  const passwordPattern =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+  return passwordPattern.test(inputValue);
 };
 
 export const validateNickname = (inputValue) => {
-  return inputValue.length >= 3;
+  const nicknamePattern = /^[a-zA-Z0-9_.]{3,15}$/;
+
+  return nicknamePattern.test(inputValue);
 };
