@@ -4,6 +4,7 @@ import { noProfile, moreHoriz } from "@/images/index";
 import * as SC from "@/styles/styled/atoms_top";
 
 const PostTop = () => {
+  
   return (
     <>
       <SC.Container>

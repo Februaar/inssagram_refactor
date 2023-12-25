@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
@@ -28,7 +28,6 @@ const EmailInput = () => {
         alert(res.data.message);
 
         dispatch({ type: "SET_SIGNUP_DATA", payload: { emailData: email } });
-        console.log("Updated state:", state);
 
         // 비동기적으로 동작하려면 await 추가하면 됨
         axios.post(`${process.env.SERVER_URL}/signup/auth`, {

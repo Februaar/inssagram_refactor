@@ -12,6 +12,10 @@ interface SignUpAction {
   payload: Partial<SignUpState>;
 }
 
+interface SignUpProviderProps {
+  children: React.ReactNode;
+}
+
 interface SignUpContextType {
   state: SignUpState;
   dispatch: Dispatch<SignUpAction>;
@@ -35,7 +39,7 @@ const signUpReducer = (state: SignUpState, action: SignUpAction): SignUpState =>
   }
 };
 
-const SignUpProvider: React.FC = ({ children }) => {
+const SignUpProvider: React.FC<SignUpProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(signUpReducer, initialState);
 
   return (
