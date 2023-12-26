@@ -10,7 +10,7 @@ const EmailInput = () => {
   const router = useRouter();
   const { dispatch, state } = useSignUp();
   const [email, setEmail] = useState<string>("");
-  const [isDisabled, isSetDisabled] = useState<boolean>(false);
+  // const [isDisabled, isSetDisabled] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     if (!validateEmail(email)) {
