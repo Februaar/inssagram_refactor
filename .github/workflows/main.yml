@@ -10,9 +10,9 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [10.x, 12.x]
         
     runs-on: ubuntu-latest
     steps:
@@ -21,11 +21,11 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
-      # node.js 버전 12
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: "12"
+      # node.js 버전 14
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
       # yarn 설치
       - name: Install Dependencies
