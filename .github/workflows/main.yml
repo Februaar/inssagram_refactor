@@ -1,0 +1,32 @@
+name: Build and Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      # 레파지토리 check out
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      # node.js 버전 12
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+
+      # yarn 설치
+      - name: Install Dependencies
+        run: yarn install
+
+      # 빌드
+      - name: Build
+        run: yarn build
