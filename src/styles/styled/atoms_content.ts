@@ -26,12 +26,12 @@ export const CommentContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
-  min-height: 0;
   overflow: auto;
 `;
 
 export const OriginalComment = styled.div`
-  margin-bottom: 4px;
+  min-height: 14px;
+  margin-bottom: 6px;
 `;
 
 export const MoreComments = styled.div`

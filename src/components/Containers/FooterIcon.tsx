@@ -9,7 +9,6 @@ import { home, search, direct, film, noProfile } from "@/images/index";
 const FooterIconContainer = () => {
   const user: UserState = useSelector((state: RootState) => state.user);
   const id = user.member_id;
-  console.log(id);
 
   return (
     <>
@@ -35,7 +34,7 @@ const FooterIconContainer = () => {
           </Link>
         </SC.Icon>
         <SC.Icon>
-          <Link href="/[id]" as={`/${id}`}>
+          <Link href={`/${id}`}>
             <Image src={noProfile} alt="user-page" width={24} height={24} />
           </Link>
         </SC.Icon>

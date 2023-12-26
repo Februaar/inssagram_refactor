@@ -1,26 +1,37 @@
+import { UserPageData } from "@/types/UserTypes";
+
 import styled from "styled-components";
 
-const UserNavigation = () => {
+interface UserNavProps {
+  user_id: any;
+  user: UserPageData | undefined;
+}
+
+const UserNavigation: React.FC<UserNavProps> = ({ user_id, user }) => {
   return (
     <>
-      <Container>
-        <Nav>
-          <Title>게시물</Title>
-          <span>6</span>
-        </Nav>
-        <Nav>
-          <Link href="/[nickname]/followers">
-            <Title>팔로워</Title>
-            <span>155</span>
-          </Link>
-        </Nav>
-        <Nav>
-          <Link href="/[nickname]/following">
-            <Title>팔로우</Title>
-            <span>158</span>
-          </Link>
-        </Nav>
-      </Container>
+      {user ? (
+        <Container>
+          <Nav>
+            <Title>게시물</Title>
+            <span>{user.posts}</span>
+          </Nav>
+          <Nav>
+            <Link href={`/${user_id}/followers`}>
+              <Title>팔로워</Title>
+              <span>{user.followers.length}</span>
+            </Link>
+          </Nav>
+          <Nav>
+            <Link href={`/${user_id}/following`}>
+              <Title>팔로우</Title>
+              <span>{user.following.length}</span>
+            </Link>
+          </Nav>
+        </Container>
+      ) : (
+        ""
+      )}
     </>
   );
 };

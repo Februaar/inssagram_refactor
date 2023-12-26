@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserPageData } from "@/types/UserTypes";
+import { PostContentData } from "@/types/PostTypes";
 import getUserDetail from "@/services/userInfo/getUserDetail";
 import Footer from "@/components/Footer";
 import UserHeader from "@/components/atoms/User";
@@ -12,9 +13,13 @@ import PostNavigation from "@/components/Containers/PostNav";
 import PostContainer from "@/components/Containers/Post";
 
 const UserPage = () => {
+  const user = useSelector((state: RootState) => state.user);
   const router = useRouter();
   const { id } = router.query;
   const [userInfo, setUserInfo] = useState<UserPageData | undefined>();
+  const [postInfo, setPostInfo] = useState<PostContentData[] | undefined>();
+
+  const isCurrentUser = user.member_id.toString() === id;
 
   useEffect(() => {
     if (id) {
@@ -26,6 +31,7 @@ const UserPage = () => {
     try {
       const res = await getUserDetail(id);
       setUserInfo(res.data);
+      setPostInfo(res.data.posts);
     } catch (err) {
       console.error("error fetching member detail:", err);
     }
@@ -34,11 +40,15 @@ const UserPage = () => {
   return (
     <>
       <section>
-        <UserHeader user={userInfo} />
-        <ProfileCard user={userInfo}/>
-        <UserNavigation />
-        <PostNavigation />
-        <PostContainer />
+        <UserHeader user={userInfo} isLoggined={isCurrentUser} />
+        <ProfileCard user={userInfo} isLoggined={isCurrentUser} />
+        <UserNavigation user_id={id} user={userInfo} />
+        <PostNavigation
+          user_id={id}
+          post={postInfo}
+          isLoggined={isCurrentUser}
+        />
+        <PostContainer user_id={id} />
       </section>
       <Footer />
     </>

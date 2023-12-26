@@ -12,13 +12,13 @@ import SocialLogin from "@/components/Buttons/SocialLogin";
 const SigninInput = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const user: UserState = useSelector((state: RootState) => state.user);
+  // const user: UserState = useSelector((state: RootState) => state.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    console.log("Redux Store State:", user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log("Redux Store State:", user);
+  // }, [user]);
 
   const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -34,7 +34,6 @@ const SigninInput = () => {
         sessionStorage.setItem("token", token);
 
         const userInfo = res.data.data;
-        console.log(userInfo);
 
         dispatch(loginUser(userInfo));
 
