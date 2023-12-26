@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from "axios";
+import { useRouter } from "next/router";
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.SERVER_URL,
@@ -23,8 +24,13 @@ axiosInstance.interceptors.response.use(
     const res = response.data;
     return res;
   },
-  (error) => {
-    return Promise.reject(error);
+  (err) => {
+    // if (err.response) {
+    //   if (err.response.status === 400) {
+    //     alert("로그인이 필요합니다.");
+    //   }
+    // }
+    return Promise.reject(err);
   }
 );
 

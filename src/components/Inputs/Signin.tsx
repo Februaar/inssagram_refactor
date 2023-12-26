@@ -1,14 +1,24 @@
 import axios from "axios";
+import { UserState } from "@/types/UserTypes";
+import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "@/redux/userSlice";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as SC from "@/styles/styled/inputs_signin";
 import SocialLogin from "@/components/Buttons/SocialLogin";
 
 const SigninInput = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  // const user: UserState = useSelector((state: RootState) => state.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // useEffect(() => {
+  //   console.log("Redux Store State:", user);
+  // }, [user]);
 
   const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -23,15 +33,17 @@ const SigninInput = () => {
         const token = res.headers.authorization;
         sessionStorage.setItem("token", token);
 
-        // const userInfo = res.data.data;
-        // dispatch(loginUser(userInfo));
+        const userInfo = res.data.data;
+
+        dispatch(loginUser(userInfo));
+
         console.log("login token:", token);
         router.push("/main");
       } else {
-        console.log("로그인 실패:", res.data.error);
+        console.log("login failed:", res.data.error);
       }
     } catch (error) {
-      console.error("로그인 중 오류 발생:", error);
+      console.error("login error:", error);
     }
   };
 

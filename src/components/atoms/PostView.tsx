@@ -1,12 +1,22 @@
+import { PostContentData } from "@/types/PostTypes";
 import Image from "next/image";
 import styled from "styled-components";
 import { brokenImage } from "@/images/index";
 
-const PostView = () => {
+interface PostContainerProps {
+  post: PostContentData | undefined;
+}
+
+const PostView: React.FC<PostContainerProps> = ({ post }) => {
   return (
     <>
       <PreView>
-        <Image src={brokenImage} alt="broken-image" />
+        {post && (
+          <Image
+            src={post.image ? post.image : brokenImage}
+            alt="broken-image"
+          />
+        )}
       </PreView>
     </>
   );
