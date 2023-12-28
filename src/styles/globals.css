@@ -47,9 +47,9 @@ button {
 }
 
 input {
+  border: none;
   outline: none;
-  border-style: none;
-  border-bottom: 2px solid #efefef;
+  /* border-bottom: 2px solid #efefef; */
 }
 
 ul,

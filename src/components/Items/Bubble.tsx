@@ -2,7 +2,6 @@ const NotiBubble = () => {
   return (
     <>
       <div>
-        <p></p>
       </div>
     </>
   );

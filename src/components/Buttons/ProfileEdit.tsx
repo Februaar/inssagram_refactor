@@ -18,10 +18,10 @@ export default ProfileEdit;
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  border-radius: 5px;
-  background-color: #efefef;
   width: 250px;
   height: 32px;
+  border-radius: 8px;
+  background-color: #efefef;
 `;
 
 const Button = styled.button`

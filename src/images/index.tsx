@@ -18,6 +18,7 @@ import tagged from "./icon/tagged-icon.svg";
 import accountAdd from "./icon/account-add-icon.svg";
 import chevronLeft from "./icon/chevron-left-icon.svg";
 import chevronRight from "./icon/chevron-right-icon.svg";
+import progressActivity from "./icon/progress-activity-icon.svg";
 import moreHoriz from "./icon/more-horiz-icon.svg";
 import brokenImage from "./icon/broken-image-icon.svg";
 
@@ -46,6 +47,7 @@ export {
   chevronLeft,
   chevronRight,
   moreHoriz,
+  progressActivity,
   brokenImage,
   noProfile,
   kakaoTalk,

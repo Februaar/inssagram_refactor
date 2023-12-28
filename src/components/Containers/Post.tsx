@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import PostView from "../atoms/PostView";
+import Error from "../atoms/Error";
 
 interface PostContainerProps {
   user_id: any;
@@ -39,7 +40,7 @@ const PostContainer: React.FC<PostContainerProps> = ({ user_id }) => {
           ))}
         </Article>
       ) : (
-        <p>새로운 게시글을 작성해보세요</p>
+        <Error message="게시글을 작성해보세요" />
       )}
     </>
   );

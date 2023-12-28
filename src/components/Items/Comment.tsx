@@ -1,5 +1,9 @@
 const CommentItem = () => {
-  return <></>;
+  return (
+    <>
+      <div></div>
+    </>
+  );
 };
 
 export default CommentItem;

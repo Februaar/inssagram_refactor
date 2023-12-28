@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import getPostAll from "@/services/postInfo/getPostAll";
 import { PostContentData } from "@/types/PostTypes";
 import PostTop from "../atoms/Top";
 import PostImage from "../atoms/Image";

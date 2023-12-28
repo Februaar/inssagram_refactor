@@ -38,11 +38,17 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user, isLoggined }) => {
                 height={77}
               />
             </SC.Profile>
-            <div>
+            <SC.UserArea>
               <SC.Id>{user.nickname}</SC.Id>
-              <div>팔로우</div>
-              <div>메세지 보내기</div>
-            </div>
+              <SC.Connect>
+                <SC.Detail>
+                  <SC.Button>팔로우</SC.Button>
+                </SC.Detail>
+                <SC.Detail>
+                  <SC.Button>메세지 보내기</SC.Button>
+                </SC.Detail>
+              </SC.Connect>
+            </SC.UserArea>
           </SC.CardContainer>
         )
       )}
