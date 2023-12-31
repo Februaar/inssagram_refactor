@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { noProfile } from "@/images/index";
+import { noProfile, close } from "@/images/index";
 
-const SearchItem = () => {
+const HistoryItem = () => {
   return (
     <>
       <ItemContainer>
@@ -15,16 +15,21 @@ const SearchItem = () => {
             style={{ borderRadius: "100%" }}
           />
         </Profile>
-        <ResultArea>
-          <Account>Jinnie</Account>
-          <Job>개발자</Job>
-        </ResultArea>
+        <HistoryArea>
+          <HistoryInfo>
+            <Account>Jinnie</Account>
+            <Job>개발자 · 팔로잉</Job>
+          </HistoryInfo>
+          <DeleteBtn>
+            <Image src={close} alt="delete-button" width={18} height={18} />
+          </DeleteBtn>
+        </HistoryArea>
       </ItemContainer>
     </>
   );
 };
 
-export default SearchItem;
+export default HistoryItem;
 
 const ItemContainer = styled.div`
   display: grid;
@@ -38,15 +43,20 @@ const Profile = styled.div`
   margin-right: 14px;
 `;
 
-const ResultArea = styled.div`
+const HistoryArea = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-row-gap: 3px;
+  grid-template-columns: 7fr 1fr;
 `;
+
+const HistoryInfo = styled.div``;
 
 const Account = styled.p``;
 
 const Job = styled.span`
   color: #737373;
   font-size: 12px;
+`;
+
+const DeleteBtn = styled.button`
+  margin-right: 8px;
 `;
