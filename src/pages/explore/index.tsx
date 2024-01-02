@@ -1,14 +1,14 @@
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { PostContentData } from "@/types/PostTypes";
 import getPostAll from "@/services/postInfo/getPostAll";
-import styled from "styled-components";
 import SearchInput from "@/components/Inputs/Search";
 import PostView from "@/components/atoms/PostView";
 import Loading from "@/components/Icons/Loading";
 import Footer from "@/components/Footer";
 
 const ExplorePage = () => {
+  const router = useRouter();
   const [posts, setPosts] = useState<PostContentData[] | undefined>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -28,10 +28,14 @@ const ExplorePage = () => {
     }
   };
 
+  const handleSearch = (searchTerm: string) => {
+    console.log("Search term:", searchTerm);
+  };
+
   return (
     <>
       <>
-        <SearchInput />
+        <SearchInput onSearch={handleSearch} />
         {loading ? <Loading /> : <PostView posts={posts} />}
       </>
       <Footer />
