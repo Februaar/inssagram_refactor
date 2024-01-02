@@ -32,18 +32,7 @@ const ExplorePage = () => {
     <>
       <>
         <SearchInput />
-        {loading ? (
-          <Loading />
-        ) : (
-          <Article>
-            {posts &&
-              posts.map((post) => (
-                <Link href={`/post/${post.postId}`} key={post.postId}>
-                  <PostView post={post} />
-                </Link>
-              ))}
-          </Article>
-        )}
+        {loading ? <Loading /> : <PostView posts={posts} />}
       </>
       <Footer />
     </>
@@ -51,12 +40,3 @@ const ExplorePage = () => {
 };
 
 export default ExplorePage;
-
-const Article = styled.article`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 3px;
-  grid-row-gap: 3px;
-  width: 100%;
-  height: 100%;
-`;

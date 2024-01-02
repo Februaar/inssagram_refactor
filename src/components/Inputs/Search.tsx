@@ -4,13 +4,13 @@ import * as SC from "@/styles/styled/inputs_search";
 import { search } from "@/images/index";
 
 interface SearchInputProps {
-  onSearch: (searchValue: string) => void;
+  onSearch: (searchTerm: string) => void;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value;
-    onSearch(searchValue);
+    const searchTerm = e.target.value;
+    onSearch(searchTerm);
   };
 
   return (

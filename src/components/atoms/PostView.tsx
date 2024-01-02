@@ -1,35 +1,32 @@
-import { PostContentData } from "@/types/PostTypes";
+import Link from "next/link";
 import Image from "next/image";
-import styled from "styled-components";
+import { PostContentData } from "@/types/PostTypes";
 import { brokenImage } from "@/images/index";
+import * as SC from "@/styles/styled/atoms_postview";
 
 interface PostContainerProps {
-  post: PostContentData | undefined;
+  posts: PostContentData[] | undefined;
 }
 
-const PostView: React.FC<PostContainerProps> = ({ post }) => {
+const PostView: React.FC<PostContainerProps> = ({ posts }) => {
   return (
     <>
-      <PreView>
-        {post && (
-          <Image
-            src={post.image ? post.image : brokenImage}
-            alt="broken-image"
-          />
-        )}
-      </PreView>
+      <SC.Article>
+        {posts &&
+          posts.map((post) => (
+            <Link href={`/post/${post.postId}`} key={post.postId}>
+              <SC.PreView>
+                <Image
+                  src={post.image ? post.image : brokenImage}
+                  alt="broken-image"
+                />
+              </SC.PreView>
+            </Link>
+          ))}
+      </SC.Article>
     </>
   );
 };
 
 export default PostView;
 
-const PreView = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  object-fit: cover;
-  width: 140px;
-  height: 140px;
-  border: 1px solid #dbdbdb;
-`;
