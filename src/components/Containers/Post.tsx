@@ -1,8 +1,6 @@
-import getUserPostAll from "@/services/postInfo/getUserPostAll";
-import { PostContentData } from "@/types/PostTypes";
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import styled from "styled-components";
+import { PostContentData } from "@/types/PostTypes";
+import getUserPostAll from "@/services/postInfo/getUserPostAll";
 import PostView from "../atoms/PostView";
 import Error from "../atoms/Error";
 
@@ -12,7 +10,6 @@ interface PostContainerProps {
 
 const PostContainer: React.FC<PostContainerProps> = ({ user_id }) => {
   const [posts, setPosts] = useState<PostContentData[] | undefined>();
-  console.log(posts);
 
   useEffect(() => {
     if (user_id) {
@@ -32,13 +29,7 @@ const PostContainer: React.FC<PostContainerProps> = ({ user_id }) => {
   return (
     <>
       {posts && posts.length > 0 ? (
-        <Article>
-          {posts.map((post) => (
-            <Link href={`/post/${post.postId}`} key={post.postId}>
-              <PostView post={post} />
-            </Link>
-          ))}
-        </Article>
+        <PostView posts={posts} />
       ) : (
         <Error message="게시글을 작성해보세요" />
       )}
@@ -47,12 +38,3 @@ const PostContainer: React.FC<PostContainerProps> = ({ user_id }) => {
 };
 
 export default PostContainer;
-
-const Article = styled.article`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 3px;
-  grid-row-gap: 3px;
-  width: 100%;
-  height: 100%;
-`;

@@ -20,6 +20,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user, isLoggined }) => {
               alt="profile-image"
               width={77}
               height={77}
+              style={{ borderRadius: "100%" }}
             />
           </SC.Profile>
           <SC.EditArea>
@@ -36,6 +37,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user, isLoggined }) => {
                 alt="profile-image"
                 width={77}
                 height={77}
+                style={{ borderRadius: "100%" }}
               />
             </SC.Profile>
             <SC.UserArea>

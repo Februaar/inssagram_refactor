@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import getPostDetail from "@/services/postInfo/getPostDetail";
 import { PostContentData } from "@/types/PostTypes";
+import getPostDetail from "@/services/postInfo/getPostDetail";
 import { PageHeader } from "@/components/atoms/Header";
 import PostItem from "@/components/Items/Post";
+import Footer from "@/components/Footer";
 
 const PostPage: React.FC<PostContentData> = () => {
   const pageTitle = "게시물";
@@ -30,6 +31,7 @@ const PostPage: React.FC<PostContentData> = () => {
     <>
       <PageHeader title={pageTitle} />
       <PostItem post={postDetail} />
+      <Footer />
     </>
   );
 };
