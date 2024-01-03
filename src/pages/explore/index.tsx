@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import { PostContentData } from "@/types/PostTypes";
 import getPostAll from "@/services/postInfo/getPostAll";
 import SearchInput from "@/components/Inputs/Search";
@@ -8,7 +7,6 @@ import Loading from "@/components/Icons/Loading";
 import Footer from "@/components/Footer";
 
 const ExplorePage = () => {
-  const router = useRouter();
   const [posts, setPosts] = useState<PostContentData[] | undefined>([]);
   const [loading, setLoading] = useState<boolean>(false);
 

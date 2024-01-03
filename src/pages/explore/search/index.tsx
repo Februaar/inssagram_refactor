@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-import { useSearch } from "@/context/Search";
-import { SearchResultData } from "@/types/SearchTypes";
+import { SearchResultData, SearchHistoryData } from "@/types/SearchTypes";
 import postSearchValue from "@/services/searchInfo/postSearchValue";
 import deleteSearchHistory from "@/services/searchInfo/deleteSearchHistory";
 import getSearchResultList from "@/services/searchInfo/getSearchResultList";
 import getSearchHistoryList from "@/services/searchInfo/getSearchHistoryList";
 import * as SC from "@/styles/styled/search";
-import Error from "@/components/atoms/Error";
 import SearchInput from "@/components/Inputs/Search";
 import SearchItem from "@/components/Items/Search";
 import HistoryItem from "@/components/Items/History";
@@ -15,12 +13,16 @@ import Footer from "@/components/Footer";
 const SearchPage = () => {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResultData[]>([]);
-  const { searchHistories, setSearchHistories } = useSearch();
+  const [searchHistories, setSearchHistories] = useState<SearchHistoryData[]>(
+    []
+  );
 
   useEffect(() => {
     const fetchData = async () => {
       if (searchValue) {
         await fetchSearchResultList(searchValue);
+      } else {
+        setSearchResults([]);
       }
       await fetchSearchHistoryList();
     };
@@ -56,16 +58,11 @@ const SearchPage = () => {
 
   const handleDeleteSearchHistory = async (searched: string) => {
     try {
-      console.log("삭제 요청 전:", searchHistories);
-
       await deleteSearchHistory(searched);
 
-      console.log("삭제 요청 후:", searchHistories);
-
-      const updatedHistories = await getSearchHistoryList();
-      setSearchHistories(updatedHistories);
-
-      console.log("업데이트 후:", searchHistories);
+      setSearchHistories((prevHistories) =>
+        prevHistories.filter((history) => history.searched !== searched)
+      );
     } catch (err) {
       console.error("error deleting search history:", err);
     }
@@ -90,7 +87,7 @@ const SearchPage = () => {
         ))}
 
       {!searchResults.length && !searchHistories.length ? (
-        <Error message="최근 검색 기록이 없습니다" />
+        ""
       ) : (
         searchResults.length === 0 && (
           <SC.HeadTitle>

@@ -1,8 +1,8 @@
-import { UserState } from "@/types/UserTypes";
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { UserState } from "@/types/UserTypes";
 import * as SC from "@/styles/styled/footer";
 import { home, search, direct, film, noProfile } from "@/images/index";
 

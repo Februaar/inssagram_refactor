@@ -67,6 +67,7 @@ section {
 main {
   padding-top: 44px;
   width: 100%;
+  min-height: 500vh;
 }
 
 /* :root {
