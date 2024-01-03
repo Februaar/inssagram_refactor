@@ -26,10 +26,12 @@ const NotificationsPage: React.FC<NotificationData> = () => {
   return (
     <>
       <PageHeader title={pageTitle} />
-      {notifications &&
-        notifications.map((notification) => (
-          <AlarmItem key={notification.id} noti={notification} />
-        ))}
+      <div style={{ marginTop: "20px" }}>
+        {notifications &&
+          notifications.map((notification) => (
+            <AlarmItem key={notification.id} noti={notification} />
+          ))}
+      </div>
     </>
   );
 };

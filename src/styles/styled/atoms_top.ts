@@ -25,7 +25,6 @@ export const Profile = styled.div`
 `;
 
 export const Id = styled.div`
-  font-size: 14px;
   margin-left: 12px;
 `;
 
