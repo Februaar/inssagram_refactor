@@ -1,15 +1,26 @@
-import * as SC from "@/styles/styled/modals_detail";
+import * as SC from "@/styles/styled/modals_edit";
 
-interface DetailModalProps {
+interface UserInfoModalProps {
   infoClick: () => void;
+  editPostClick: () => void;
   handleClose: () => void;
 }
 
-const DetailModal: React.FC<DetailModalProps> = ({ infoClick, handleClose }) => {
+const UserInfoModal: React.FC<UserInfoModalProps> = ({
+  infoClick,
+  editPostClick,
+  handleClose,
+}) => {
   return (
     <SC.Backdrop>
       <SC.Container>
         <SC.ContentArea>
+          <SC.ModalItem>
+            <SC.DeleteBtn>삭제하기</SC.DeleteBtn>
+          </SC.ModalItem>
+          <SC.ModalItem onClick={editPostClick}>
+            <button>수정하기</button>
+          </SC.ModalItem>
           <SC.ModalItem>
             링크 복사
             {/* <LinkCopyButton linkCopy={`localhost:3000/post/${post.postId}`} /> */}
@@ -22,4 +33,4 @@ const DetailModal: React.FC<DetailModalProps> = ({ infoClick, handleClose }) => 
   );
 };
 
-export default DetailModal;
+export default UserInfoModal;

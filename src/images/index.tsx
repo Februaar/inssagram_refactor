@@ -21,6 +21,8 @@ import chevronRight from "./icon/chevron-right-icon.svg";
 import progressActivity from "./icon/progress-activity-icon.svg";
 import moreHoriz from "./icon/more-horiz-icon.svg";
 import brokenImage from "./icon/broken-image-icon.svg";
+import calendar from "./icon/calendar-icon.svg";
+import homePin from "./icon/home-pin-icon.svg";
 
 import noProfile from "./no-profile.jpg";
 import kakaoTalk from "./kakaotalk.png";
@@ -49,6 +51,8 @@ export {
   moreHoriz,
   progressActivity,
   brokenImage,
+  calendar,
+  homePin,
   noProfile,
   kakaoTalk,
 };
