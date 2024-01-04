@@ -21,6 +21,7 @@ const Follow = styled.div`
   color: #ffffff;
   background-color: #0095f6;
   margin-left: 8px;
+  margin-bottom: 8px;
 `;
 
 const Button = styled.button`

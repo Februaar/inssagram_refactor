@@ -13,20 +13,21 @@ export const Backdrop = styled.div`
   left: 0;
 `;
 
-export const Container = styled.div`
+export const ModalContainer = styled.div`
   width: 70vw;
   padding: 3.5px;
   border-radius: 12px;
 `;
 
-export const InfoContent = styled.div`
+export const ModalContent = styled.div`
   display: grid;
   grid-template-rows: 1fr 5fr 1fr;
 `;
 
-export const ModalTitle = styled.p`
+export const Title = styled.p`
   display: grid;
   justify-items: center;
+  align-items: center;
   font-size: 16px;
   font-weight: 600;
   border-bottom: 1px solid #cccccc;
@@ -34,37 +35,48 @@ export const ModalTitle = styled.p`
   margin-top: 5px;
 `;
 
-export const ContentArea = styled.div``;
+export const Content = styled.div`
+  display: grid;
+  grid-template-rows: 2fr 1fr 1fr;
+  align-items: center;
+`;
 
 export const AccountArea = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  align-items: center;
   justify-items: center;
+  padding: 8px 12px;
 `;
 
-export const Account = styled.p``;
+export const Profile = styled.div``;
 
-export const Id = styled.p``;
-
-export const InfoArea = styled.div``;
-
-export const ModalItem = styled.div`
-  display: grid;
+export const Nickname = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
-  height: 100%;
-  border-bottom: 1px solid #ccc;
-  justify-items: center;
-  align-items: center;
+  padding-top: 8px;
+  font-size: 16px;
+  font-weight: 600;
+`;
 
-  &:last-child {
-    border-bottom: none;
-  }
+export const InfoArea = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+  height: 100%;
+  padding: 12px 20px;
+`;
+
+export const Info = styled.div``;
+
+export const Detail = styled.div`
+  color: #737373;
+  margin-top: 3px;
 `;
 
 export const ModalClose = styled.button`
   display: grid;
   justify-items: center;
+  align-items: center;
   margin-top: 5px;
   padding: 12px 8px;
   border-top: 1px solid #ccc;

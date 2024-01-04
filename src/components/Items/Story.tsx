@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { noProfile } from "@/images/index";
-
 import * as SC from "@/styles/styled/story";
+import { noProfile } from "@/images/index";
 
 const StoryItem = () => {
   return (

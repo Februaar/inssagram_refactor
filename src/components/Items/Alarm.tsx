@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { NotificationData } from "@/types/NotificationTypes";
-import { noProfile, brokenImage } from "@/images/index";
 import styled from "styled-components";
-import FollowButton from "../Buttons/Follow";
+import { noProfile, brokenImage } from "@/images/index";
 import Error from "../atoms/Error";
+import FollowButton from "../Buttons/Follow";
 
 interface AlarmItemProps {
   noti: NotificationData | undefined;

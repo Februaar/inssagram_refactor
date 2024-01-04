@@ -1,31 +1,46 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { UserState } from "@/types/UserTypes";
 import { PostContentData } from "@/types/PostTypes";
 import * as SC from "@/styles/styled/atoms_top";
 import { noProfile, moreHoriz } from "@/images/index";
-import DetailModal from "@/components/Modals/Detail";
+import InfoModal from "@/components/Modals/Info";
+import UserInfoModal from "@/components/Modals/UserInfo";
+import PostEditModal from "@/components/Modals/PostEdit";
 import AccountInfoModal from "@/components/Modals/Account";
 
 interface PostItemProps {
-  writer: PostContentData | undefined;
+  writer: PostContentData;
 }
 
 const PostTop: React.FC<PostItemProps> = ({ writer }) => {
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isPostEditModalOpen, setIsPostEditModalOpen] = useState(false);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
 
-  const handleDetailModalClick = () => {
-    setIsDetailModalOpen(true);
+  const user: UserState = useSelector((state: RootState) => state.user);
+  const isCurrentUser = user.member_id === writer.memberId.toString();
+
+  const handleInfoModalClick = () => {
+    setIsInfoModalOpen(true);
   };
 
   const handleAccountInfoModalClick = () => {
-    setIsDetailModalOpen(false);
+    setIsInfoModalOpen(false);
     setIsAccountModalOpen(true);
   };
 
+  const handlePostEditModalClick = () => {
+    setIsInfoModalOpen(false);
+    setIsPostEditModalOpen(true);
+  };
+
   const handleModalClose = () => {
-    setIsDetailModalOpen(false);
+    setIsInfoModalOpen(false);
+    setIsPostEditModalOpen(false);
     setIsAccountModalOpen(false);
   };
 
@@ -46,19 +61,28 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
               <SC.Id>{writer.nickName}</SC.Id>
             </SC.Account>
           </Link>
-          <SC.More onClick={handleDetailModalClick}>
+          <SC.More onClick={handleInfoModalClick}>
             <Image src={moreHoriz} alt="profile" width={24} height={24} />
           </SC.More>
         </SC.Container>
       )}
-      {isDetailModalOpen && (
-        <DetailModal
-          infoClick={handleAccountInfoModalClick}
-          handleClose={handleModalClose}
-        />
-      )}
+      {isCurrentUser
+        ? isInfoModalOpen && (
+            <InfoModal
+              infoClick={handleAccountInfoModalClick}
+              handleClose={handleModalClose}
+            />
+          )
+        : isInfoModalOpen && (
+            <UserInfoModal
+              infoClick={handleAccountInfoModalClick}
+              editPostClick={handlePostEditModalClick}
+              handleClose={handleModalClose}
+            />
+          )}
+      {isPostEditModalOpen && <PostEditModal handleClose={handleModalClose} />}
       {isAccountModalOpen && (
-        <AccountInfoModal handleClose={handleModalClose} />
+        <AccountInfoModal writer={writer} handleClose={handleModalClose} />
       )}
     </>
   );
