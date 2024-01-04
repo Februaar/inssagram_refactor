@@ -12,19 +12,14 @@ import SocialLogin from "@/components/Buttons/SocialLogin";
 const SigninInput = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  // const user: UserState = useSelector((state: RootState) => state.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // useEffect(() => {
-  //   console.log("Redux Store State:", user);
-  // }, [user]);
 
   const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${process.env.SERVER_URL}/signin`, {
+      const res = await axios.post("https://api.inssagram.shop/signin", {
         email: email,
         password: password,
       });
