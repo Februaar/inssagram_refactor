@@ -1,12 +1,22 @@
 import Image from "next/image";
-import { favorite } from "@/images/index";
 import * as SC from "@/styles/styled/containers_icon_container";
+import { favorite, favoriteFull } from "@/images/index";
 
-const FavoriteIcon = () => {
+interface FavoriteIconProps {
+  onClick: () => void;
+  isLiked: boolean;
+}
+
+const FavoriteIcon: React.FC<FavoriteIconProps> = ({ onClick, isLiked }) => {
   return (
     <>
-      <SC.Icon>
-        <Image src={favorite} alt="profile" width={24} height={24} />
+      <SC.Icon onClick={onClick}>
+        <Image
+          src={isLiked ? favoriteFull : favorite}
+          alt="profile"
+          width={24}
+          height={24}
+        />
       </SC.Icon>
     </>
   );
