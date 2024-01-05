@@ -8,7 +8,9 @@ import cancel from "./icon/cancel-icon.svg";
 import plus from "./icon/plus-icon.svg";
 import minus from "./icon/minus-icon.svg";
 import favorite from "./icon/favorite-icon.svg";
+import favoriteFull from "./icon/favorite-full-icon.svg";
 import bookmark from "./icon/bookmark-icon.svg";
+import bookmarkFull from "./icon/bookmark-full-icon.svg";
 import comment from "./icon/comment-icon.svg";
 import direct from "./icon/direct-icon.svg";
 import setting from "./icon/setting-icon.svg";
@@ -38,7 +40,9 @@ export {
   plus,
   minus,
   favorite,
+  favoriteFull,
   bookmark,
+  bookmarkFull,
   comment,
   direct,
   setting,

@@ -1,26 +1,18 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
-import * as SC from "@/styles/styled/atoms_header";
-import { chevronLeft } from "@/images/index";
+import { chevronLeft, close } from "@/images/index";
+import { BasePageHeader } from "./BaseHeader";
 
 interface PageHeaderProps {
   title: string;
 }
 
 export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
-  const router = useRouter();
+  return <BasePageHeader title={title} backImage={chevronLeft} />;
+};
 
-  const goBack = () => {
-    router.back();
-  };
+interface ClosePageHeaderProps {
+  title: string;
+}
 
-  return (
-    <SC.Header>
-      <button onClick={goBack}>
-        <Image src={chevronLeft} alt="prev-page" width={24} height={24} />
-      </button>
-      <SC.Title>{title}</SC.Title>
-      <SC.Span></SC.Span>
-    </SC.Header>
-  );
+export const ClosePageHeader: React.FC<ClosePageHeaderProps> = ({ title }) => {
+  return <BasePageHeader title={title} backImage={close} />;
 };
