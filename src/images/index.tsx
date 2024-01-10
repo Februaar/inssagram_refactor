@@ -25,6 +25,8 @@ import moreHoriz from "./icon/more-horiz-icon.svg";
 import brokenImage from "./icon/broken-image-icon.svg";
 import calendar from "./icon/calendar-icon.svg";
 import homePin from "./icon/home-pin-icon.svg";
+import createPost from "./icon/create-post-icon.svg";
+import createStory from "./icon/create-story-icon.svg";
 
 import noProfile from "./no-profile.jpg";
 import kakaoTalk from "./kakaotalk.png";
@@ -57,6 +59,8 @@ export {
   brokenImage,
   calendar,
   homePin,
+  createPost,
+  createStory,
   noProfile,
   kakaoTalk,
 };
