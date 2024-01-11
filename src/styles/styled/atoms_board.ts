@@ -1,27 +1,5 @@
 import styled from "styled-components";
 
-export const PageHeader = styled.div``;
-
-export const CreateBtn = styled.button`
-  position: absolute;
-  top: 5px;
-  right: 5%;
-  display: flex;
-  align-items: center;
-  width: 35px;
-  height: 35px;
-  color: #0095f6;
-  padding: 0;
-  font-size: 16px;
-`;
-
-export const CreateBoard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  vertical-align: baseline;
-`;
-
 export const NewBoardArea = styled.section`
   display: flex;
   flex-direction: row;
@@ -45,7 +23,6 @@ export const BoardContent = styled.div`
   flex-shrink: 1;
   overflow: hidden;
   width: 315px;
-
 `;
 
 export const TextArea = styled.textarea`
@@ -72,25 +49,4 @@ export const Blur = styled.div`
   height: 100%;
   background-color: rgb(0 0 0 / 50%);
   z-index: 50;
-`;
-
-export const Additional = styled.section`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 44px;
-  margin-top: 12px;
-  border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #dbdbdb;
-`;
-
-export const Title = styled.span`
-  font-size: 16px;
-  margin-left: 16px;
-`;
-
-export const Icon = styled.span`
-  display: inline-block;
-  margin: 0 16px;
 `;
