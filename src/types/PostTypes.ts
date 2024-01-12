@@ -16,3 +16,10 @@ export interface PostContentData {
   bookmarked: boolean;
   followed: boolean;
 }
+
+export interface CreateBoardData {
+  type: string;
+  image: string[];
+  fileName: string[];
+  contents: string;
+}

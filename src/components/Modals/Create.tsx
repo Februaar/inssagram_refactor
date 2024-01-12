@@ -1,30 +1,28 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { setSelectedFile } from "@/redux/fileSlice";
+import { UserState } from "@/types/UserTypes";
 import * as SC from "@/styles/styled/modals_create";
 import { createPost, createStory } from "@/images/index";
+import { uploadImage, uploadImgUrl } from "@/services/firebaseService";
 
 const CreateModal = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const [file, setFile] = useState<File | undefined>(undefined);
-  const selectedFile = useSelector(
-    (state: RootState) => state.file.selectedFile
-  );
+  const user: UserState = useSelector((state: RootState) => state.user);
 
-  useEffect(() => {
-    if (selectedFile) {
-      router.push("/create/details");
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      try {
+        const imageUrl = await uploadImage(user.member_id, file);
+        await uploadImgUrl(imageUrl);
+        router.push("/create/details");
+      } catch (err) {
+        console.error("error uploading image:", err);
+      }
     }
-  }, [selectedFile, router]);
-  
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    setFile(selectedFile);
-    dispatch(setSelectedFile(selectedFile));
   };
 
   return (
