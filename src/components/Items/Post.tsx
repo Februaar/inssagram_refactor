@@ -4,7 +4,7 @@ import PostImage from "../atoms/Image";
 import PostContent from "../atoms/Content";
 
 interface PostItemProps {
-  post: PostContentData | undefined;
+  post: PostContentData | undefined | any;
 }
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {

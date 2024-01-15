@@ -18,7 +18,7 @@ const PostView: React.FC<PostContainerProps> = ({ posts }) => {
               <SC.PreView>
                 <Image
                   src={post.image ? post.image[0] : brokenImage}
-                  alt="broken-image"
+                  alt="image"
                   layout="fill"
                   objectFit="cover"
                 />
