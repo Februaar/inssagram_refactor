@@ -12,10 +12,10 @@ const PostImage: React.FC<PostItemProps> = ({ image }) => {
     <>
       <SC.Container>
         <Image
-          src={image ? image : brokenImage}
+          src={image ? image[0] : brokenImage}
           alt="broken-image"
-          width={56}
-          height={56}
+          width={430}
+          height={430}
         />
       </SC.Container>
     </>

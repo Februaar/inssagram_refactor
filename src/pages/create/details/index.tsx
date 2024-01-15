@@ -1,8 +1,12 @@
-import { useState } from "react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { CreateBoardData } from "@/types/PostTypes";
+import { selectImageURL, selectFileName } from "@/redux/imageSlice";
+import { UserState } from "@/types/UserTypes";
+import { storage } from "../../../../firebase.config";
+import { ref, getDownloadURL } from "firebase/storage";
 import * as SC from "@/styles/styled/create_details";
 import { chevronLeft } from "@/images/index";
 import { PageHeader } from "@/components/atoms/Header";
@@ -11,17 +15,37 @@ import postCreatePost from "@/services/postInfo/postCreatePost";
 
 const DetailsPage = () => {
   const pageTitle = "새 게시물";
-  const [contents, setContents] = useState("");
+  const router = useRouter();
+  const user: UserState = useSelector((state: RootState) => state.user);
+  const imageURL = useSelector(selectImageURL);
+  const fileName = useSelector(selectFileName);
+  const [downloadedImg, setDownloadedImg] = useState<string[] | null>(null);
+  const [contents, setContents] = useState<string | null>("");
+
+  useEffect(() => {
+    // 이미지 URL이 변경될 때마다 파이어베이스에서 이미지 다운로드
+    if (imageURL) {
+      const storageRef = ref(storage, imageURL);
+      getDownloadURL(storageRef)
+        .then((downloadURL) => {
+          setDownloadedImg([downloadURL]);
+        })
+        .catch((error) => {
+          console.error("Error fetching image:", error);
+          setDownloadedImg(null);
+        });
+    }
+  }, [imageURL]);
 
   const handleCreateBoard = async (
+    type: "post",
     image: string[],
     fileName: string[],
-    contents: string
-    // location: string,
-    // taggedMemberIds: string[]
+    contents: string | null
   ) => {
     try {
-      await postCreatePost("post", image, fileName, contents);
+      await postCreatePost(type, image, fileName, contents);
+      router.push("/main");
     } catch (err) {
       console.error("error creating new post:", err);
     }
@@ -35,10 +59,20 @@ const DetailsPage = () => {
     <>
       <SC.PageHeader>
         <PageHeader title={pageTitle} />
-        <SC.CreateBtn onClick={handleCreateBoard}>공유하기</SC.CreateBtn>
+        <SC.CreateBtn
+          onClick={() =>
+            handleCreateBoard("post", downloadedImg || [], fileName || [], contents)
+          }
+        >
+          공유하기
+        </SC.CreateBtn>
       </SC.PageHeader>
       <SC.CreateBoard>
-        <BoardContent onChange={handleContentsChange} />
+        <BoardContent
+          userProfile={user.image}
+          selectedImage={downloadedImg || []}
+          onChange={handleContentsChange}
+        />
         <SC.Additional>
           <SC.Title>위치 추가</SC.Title>
           <SC.Icon>
@@ -56,7 +90,7 @@ const DetailsPage = () => {
           <SC.Icon>
             <Image
               src={chevronLeft}
-              alt=""
+              alt="into-page"
               style={{ transform: "rotate(180deg)" }}
               width={24}
               height={24}

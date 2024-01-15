@@ -4,7 +4,7 @@ const postCreatePost = (
   type: string,
   image: string[],
   fileName: string[],
-  contents: string
+  contents: string | null
 ): Promise<any> => {
   const postData = {
     type,

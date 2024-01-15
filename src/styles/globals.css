@@ -67,7 +67,8 @@ section {
 main {
   padding-top: 44px;
   width: 100%;
-  min-height: 500vh;
+  margin-bottom: 55px;
+  overflow-y: scroll;
 }
 
 textarea {
