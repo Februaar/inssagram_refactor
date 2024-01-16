@@ -14,11 +14,12 @@ import BoardContent from "@/components/atoms/Board";
 import postCreatePost from "@/services/postInfo/postCreatePost";
 
 const DetailsPage = () => {
-  const pageTitle = "새 게시물";
-  const router = useRouter();
   const user: UserState = useSelector((state: RootState) => state.user);
   const imageURL = useSelector(selectImageURL);
   const fileName = useSelector(selectFileName);
+  
+  const pageTitle = "새 게시물";
+  const router = useRouter();
   const [downloadedImg, setDownloadedImg] = useState<string[] | null>(null);
   const [contents, setContents] = useState<string | null>("");
 

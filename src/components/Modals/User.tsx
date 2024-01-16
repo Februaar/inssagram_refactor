@@ -1,4 +1,5 @@
 import * as SC from "@/styles/styled/modals_edit";
+import deletePost from "@/services/postInfo/deletePost";
 
 interface UserInfoModalProps {
   infoClick: () => void;
@@ -11,6 +12,15 @@ const UserInfoModal: React.FC<UserInfoModalProps> = ({
   editPostClick,
   handleClose,
 }) => {
+  
+  const handleDeletePost = async (postId: number) => {
+    try {
+      await deletePost(postId);
+    } catch (err) {
+      console.error("error deleting post:", err);
+    }
+  };
+
   return (
     <SC.Backdrop>
       <SC.Container>

@@ -10,11 +10,14 @@ import { createPost, createStory } from "@/images/index";
 import { storage } from "../../../firebase.config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
-const CreateModal = () => {
+interface CreateModalProps {
+  uploadProgress: (percent: number) => void;
+}
+
+const CreateModal: React.FC<CreateModalProps> = ({ uploadProgress }) => {
   const user: UserState = useSelector((state: RootState) => state.user);
-  const router = useRouter();
   const dispatch = useDispatch();
-  const [progressPercent, setProgressPercent] = useState<number>(0);
+  const router = useRouter();
 
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
@@ -29,14 +32,14 @@ const CreateModal = () => {
 
     const storageRef = ref(storage, `${user.member_id}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, file[0]);
-    
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        setProgressPercent(progress);
+        uploadProgress(progress);
       },
       (error) => {
         console.error("Error during upload:", error);
@@ -64,7 +67,10 @@ const CreateModal = () => {
     <SC.Modal>
       <SC.CreateIcon>
         게시물
-        <label htmlFor="post-upload" style={{ cursor: "pointer" }}>
+        <label
+          htmlFor="post-upload"
+          style={{ display: "flex", cursor: "pointer" }}
+        >
           <Image src={createPost} alt="create-post" width={16} height={16} />
         </label>
         <input
@@ -78,9 +84,6 @@ const CreateModal = () => {
         스토리
         <Image src={createStory} alt="create-story" width={16} height={16} />
       </SC.CreateIcon>
-      {progressPercent > 0 && progressPercent < 100 && (
-        <div>Loading... {progressPercent}%</div>
-      )}
     </SC.Modal>
   );
 };

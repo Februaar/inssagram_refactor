@@ -10,7 +10,7 @@ const StoryItem = () => {
           <SC.Profile>
             <Image src={noProfile} alt="profile" width={56} height={56} />
           </SC.Profile>
-          <SC.Account>경진</SC.Account>
+          <SC.Account>내 스토리</SC.Account>
         </SC.Item>
       </SC.Container>
     </>

@@ -27,12 +27,10 @@ const SigninInput = () => {
       if (res.status === 200) {
         const token = res.headers.authorization;
         sessionStorage.setItem("token", token);
+        console.log("login token:", token);
 
         const userInfo = res.data.data;
-
         dispatch(loginUser(userInfo));
-
-        console.log("login token:", token);
         router.push("/main");
       } else {
         console.log("login failed:", res.data.error);
