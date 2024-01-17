@@ -17,7 +17,7 @@ const DetailsPage = () => {
   const user: UserState = useSelector((state: RootState) => state.user);
   const imageURL = useSelector(selectImageURL);
   const fileName = useSelector(selectFileName);
-  
+
   const pageTitle = "새 게시물";
   const router = useRouter();
   const [downloadedImg, setDownloadedImg] = useState<string[] | null>(null);
@@ -25,16 +25,23 @@ const DetailsPage = () => {
 
   useEffect(() => {
     // 이미지 URL이 변경될 때마다 파이어베이스에서 이미지 다운로드
-    if (imageURL) {
-      const storageRef = ref(storage, imageURL);
-      getDownloadURL(storageRef)
-        .then((downloadURL) => {
-          setDownloadedImg([downloadURL]);
-        })
-        .catch((error) => {
-          console.error("Error fetching image:", error);
-          setDownloadedImg(null);
-        });
+    if (imageURL && imageURL.length > 0) {
+      const downloadURLs: string[] = [];
+      imageURL.forEach((url) => {
+        const storageRef = ref(storage, url);
+        getDownloadURL(storageRef)
+          .then((downloadURL) => {
+            downloadURLs.push(downloadURL);
+            // 모든 이미지가 다운로드 되었는지 확인
+            if (downloadURLs.length === imageURL.length) {
+              setDownloadedImg(downloadURLs);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching image:", error);
+            setDownloadedImg(null);
+          });
+      });
     }
   }, [imageURL]);
 
@@ -62,7 +69,12 @@ const DetailsPage = () => {
         <PageHeader title={pageTitle} />
         <SC.CreateBtn
           onClick={() =>
-            handleCreateBoard("post", downloadedImg || [], fileName || [], contents)
+            handleCreateBoard(
+              "post",
+              downloadedImg || [],
+              fileName || [],
+              contents
+            )
           }
         >
           공유하기
