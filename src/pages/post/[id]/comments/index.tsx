@@ -1,4 +1,4 @@
-import { ClosePageHeader } from "@/components/atoms/Header";
+import { PageHeader } from "@/components/atoms/Header";
 import StatusItem from "@/components/Items/Status";
 
 const CommentedPostPage = () => {
@@ -6,8 +6,7 @@ const CommentedPostPage = () => {
 
   return (
     <>
-      <ClosePageHeader title={pageTitle} />
-      <StatusItem />
+      <PageHeader title={pageTitle} />
     </>
   );
 };

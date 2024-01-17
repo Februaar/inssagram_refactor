@@ -19,7 +19,7 @@ interface PostItemProps {
 const PostTop: React.FC<PostItemProps> = ({ writer }) => {
   const user: UserState = useSelector((state: RootState) => state.user);
   const isCurrentUser = user.member_id === writer.memberId;
-
+  
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [isPostEditModalOpen, setIsPostEditModalOpen] = useState(false);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
@@ -75,6 +75,7 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
           )
         : isInfoModalOpen && (
             <UserInfoModal
+              post={writer}
               infoClick={handleAccountInfoModal}
               editPostClick={handlePostEditModal}
               handleClose={handleModalClose}

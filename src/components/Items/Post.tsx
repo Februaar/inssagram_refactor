@@ -7,14 +7,14 @@ interface PostItemProps {
   post: PostContentData | undefined | any;
 }
 
-const PostItem: React.FC<PostItemProps> = ({ post }) => {
+const PostItem: React.FC<PostItemProps> = ({ post}) => {
   if (!post) {
     return null;
   }
 
   return (
     <>
-      <PostTop writer={post} />
+      <PostTop writer={post}/>
       <PostImage image={post.image} />
       <PostContent content={post} />
     </>
