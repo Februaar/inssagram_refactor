@@ -1,5 +1,5 @@
 export interface UserState {
-  member_id: number;
+  member_id: string;
   email: string;
   nickname: string;
   job: string;
