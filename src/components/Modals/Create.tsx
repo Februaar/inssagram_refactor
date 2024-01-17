@@ -7,7 +7,7 @@ import { setImageURL, setFileName } from "@/redux/imageSlice";
 import { UserState } from "@/types/UserTypes";
 import * as SC from "@/styles/styled/modals_create";
 import { createPost, createStory } from "@/images/index";
-import { storage } from "../../../firebase.config";
+import { storage } from "../../../firebase-config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 interface CreateModalProps {

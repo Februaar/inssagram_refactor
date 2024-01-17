@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { selectImageURL, selectFileName } from "@/redux/imageSlice";
 import { UserState } from "@/types/UserTypes";
-import { storage } from "../../../../firebase.config";
+import { storage } from "../../../../firebase-config";
 import { ref, getDownloadURL } from "firebase/storage";
 import * as SC from "@/styles/styled/create_details";
 import { chevronLeft } from "@/images/index";
