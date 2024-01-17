@@ -16,3 +16,10 @@ export interface UserPageData {
   following: [];
   posts: any;
 }
+
+export interface LikedPostMemberData {
+  memberId: string;
+  memberNickname: string;
+  memberProfile: string;
+  followedState: boolean;
+}

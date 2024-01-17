@@ -9,7 +9,7 @@ interface PostContainerProps {
 }
 
 const PostContainer: React.FC<PostContainerProps> = ({ user_id }) => {
-  const [posts, setPosts] = useState<PostContentData[] | undefined>();
+  const [posts, setPosts] = useState<PostContentData[] | undefined>([]);
 
   useEffect(() => {
     if (user_id) {

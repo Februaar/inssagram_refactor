@@ -4,15 +4,22 @@ export interface PostContentData {
   memberId: number;
   nickName: string;
   memberImage: string;
-  image: [];
+  image: string[];
   contents: string;
   location: string;
   likeCount: number;
   commentsCounts: number;
   taggedMemberIds: number;
-  hashTags: [];
+  hashTags: string[];
   createdAt: string;
   postLike: false;
   bookmarked: boolean;
   followed: boolean;
+}
+
+export interface CreateBoardData {
+  type: string;
+  image: string[];
+  fileName: string[];
+  contents: string;
 }

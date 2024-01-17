@@ -64,16 +64,19 @@ const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
           onClick={() => handleLikePostClick(post.postId)}
           isLiked={isLiked}
         />
-        <SC.Icon>
-          <Link href={`/post/${post.postId}/comments`}>
+        <Link
+          href={`/post/${post.postId}/comments`}
+          style={{ display: "flex" }}
+        >
+          <SC.Icon>
             <Image src={comment} alt="profile" width={24} height={24} />
-          </Link>
-        </SC.Icon>
-        <SC.Icon>
-          <Link href="/direct/new">
+          </SC.Icon>
+        </Link>
+        <Link href="/direct/new" style={{ display: "flex" }}>
+          <SC.Icon>
             <Image src={direct} alt="profile" width={24} height={24} />
-          </Link>
-        </SC.Icon>
+          </SC.Icon>
+        </Link>
         <Save
           onClick={() => handleSavePostClick(post.postId)}
           isSaved={isSaved}

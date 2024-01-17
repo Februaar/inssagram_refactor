@@ -17,8 +17,10 @@ const PostView: React.FC<PostContainerProps> = ({ posts }) => {
             <Link href={`/post/${post.postId}`} key={post.postId}>
               <SC.PreView>
                 <Image
-                  src={post.image ? post.image : brokenImage}
-                  alt="broken-image"
+                  src={post.image ? post.image[0] : brokenImage}
+                  alt="image"
+                  layout="fill"
+                  objectFit="cover"
                 />
               </SC.PreView>
             </Link>
@@ -29,4 +31,3 @@ const PostView: React.FC<PostContainerProps> = ({ posts }) => {
 };
 
 export default PostView;
-
