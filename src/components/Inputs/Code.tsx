@@ -36,7 +36,7 @@ const CodeInput = () => {
       <SC.Container>
         <SC.Title>인증 코드 입력</SC.Title>
         <SC.SubTitle>
-          kyoooungjin@gmail.com 주소로 전송된 인증 코드를 입력하세요.
+          주소로 전송된 인증 코드를 입력하세요.
         </SC.SubTitle>
         <SC.CodeInfo>
           <SC.Code

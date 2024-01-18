@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
@@ -8,9 +8,8 @@ import { validateEmail } from "@/utils/authValidation";
 
 const EmailInput = () => {
   const router = useRouter();
-  const { dispatch, state } = useSignUp();
+  const { dispatch } = useSignUp();
   const [email, setEmail] = useState<string>("");
-  // const [isDisabled, isSetDisabled] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     if (!validateEmail(email)) {

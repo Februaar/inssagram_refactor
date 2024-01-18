@@ -69,12 +69,12 @@ const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
           style={{ display: "flex" }}
         >
           <SC.Icon>
-            <Image src={comment} alt="profile" width={24} height={24} />
+            <Image src={comment} alt="comments-page" width={24} height={24} />
           </SC.Icon>
         </Link>
         <Link href="/direct/new" style={{ display: "flex" }}>
           <SC.Icon>
-            <Image src={direct} alt="profile" width={24} height={24} />
+            <Image src={direct} alt="direct-page" width={24} height={24} />
           </SC.Icon>
         </Link>
         <Save
