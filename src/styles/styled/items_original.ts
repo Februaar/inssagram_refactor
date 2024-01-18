@@ -7,54 +7,93 @@ export const OriginalContainer = styled.div`
   justify-content: flex-start;
   align-items: stretch;
   padding: 12px 0;
-  overflow-x: visible;
   overflow-y: visible;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-`;
-
-export const CommentItem = styled.li`
-  padding: 5px 16px 16px 0;
-`;
-
-export const ItemList = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  overflow-x: visible;
 `;
 
 export const Profile = styled.div`
-  align-self: flex-start !important;
-  margin-right: 18px;
+  display: block;
+  margin: 0 8px;
 `;
 
-export const Content = styled.div`
-  position: relative;
-  display: inline-block;
-  flex-shrink: 1;
+export const CommentArea = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-self: auto;
   min-width: 0;
+  min-height: 0;
+  overflow-y: visible;
+  overflow-x: visible;
 `;
 
-export const Nickname = styled.h2`
-  display: inline-flex;
+export const Comment = styled.div`
+  position: static;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: visible;
+  overflow-x: visible;
+`;
+
+export const Details = styled.div`
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: visible;
+  overflow-x: visible;
+`;
+
+export const Nickname = styled.div`
+  position: static;
+  display: inline-block;
+  overflow-y: visible;
+  overflow-x: visible;
+`;
+
+export const Div = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  font-size: 14px;
-  margin-right: 5px;
+  justify-content: flex-start;
 `;
 
-export const Comment = styled.h1`
+export const Span = styled.span`
   display: inline;
-  font-size: inherit;
-  font-weight: 300;
-  color: #262626;
+  margin: 0;
+  text-align: inherit;
+  font-weight: 600;
+`;
+
+export const Divi = styled.span`
+  display: inline;
+  margin: 0 !important;
+  font-weight: 400;
+`;
+
+export const Content = styled.span`
+  display: inline !important;
+  margin: 0 !important;
+  font-weight: 400;
 `;
 
 export const Time = styled.div`
-  margin-top: 8px;
-  margin-bottom: 4px;
-  overflow-y: visible;
-  overflow-x: visible;
-  color: #737373;
+  position: static;
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-direction: row;
+  align-items: center;
+  height: 16px;
+  margin-top: 4px;
 `;
 
 export const Stroke = styled.div`

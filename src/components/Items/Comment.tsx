@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import * as SC from "@/styles/styled/items_comment";
 import { noProfile, favorite } from "@/images/index";
-import Favorite from "../Icons/Favorite";
 
 const CommentItem = () => {
   return (
@@ -14,14 +13,14 @@ const CommentItem = () => {
           </SC.Profile>
           <SC.CommentArea>
             <SC.Comment>
-              <Link href="" alt="" style={{ display: "inline", margin: "0" }}>
+              <Link href="" style={{ display: "inline", margin: "0" }}>
                 <SC.Nickname>
                   <SC.Div>
                     <SC.Span>지니쥐니</SC.Span>
                   </SC.Div>
                 </SC.Nickname>
               </Link>
-              <SC.Stroke>&nbsp;</SC.Stroke>
+              <SC.Divi>&nbsp;</SC.Divi>
               <SC.Content>
                 커피 수혈이 필요한데커피 수혈이 필요한데커피 수혈이 필요한데
               </SC.Content>
@@ -38,7 +37,7 @@ const CommentItem = () => {
             </span>
           </SC.Like>
         </SC.ContentsArea>
-        <SC.ReplyArea>123</SC.ReplyArea>
+        <SC.ReplyArea>답글 2개 모두 보기</SC.ReplyArea>
       </SC.ItemArea>
     </SC.CommentContainer>
   );

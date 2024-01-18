@@ -79,7 +79,7 @@ export const Span = styled.span`
   font-weight: 600;
 `;
 
-export const Stroke = styled.span`
+export const Divi = styled.span`
   display: inline;
   margin: 0 !important;
   font-weight: 400;
