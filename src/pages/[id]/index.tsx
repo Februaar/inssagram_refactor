@@ -20,7 +20,7 @@ const UserPage = () => {
   const [userInfo, setUserInfo] = useState<UserPageData | undefined>();
   const [postInfo, setPostInfo] = useState<PostContentData[] | undefined>();
 
-  const isCurrentUser = id === user.member_id.toString();
+  const isCurrentUser = id === user.member_id;
 
   useEffect(() => {
     if (id) {

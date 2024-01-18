@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
@@ -7,7 +7,7 @@ import { validatePassword } from "@/utils/authValidation";
 
 const DetailInput = () => {
   const router = useRouter();
-  const { dispatch, state } = useSignUp();
+  const { dispatch } = useSignUp();
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
 

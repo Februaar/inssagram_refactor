@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/atoms/Header";
-import StatusItem from "@/components/Items/Status";
+import CommentContainer from "@/components/Containers/Comment";
+import Footer from "@/components/Footer";
 
 const CommentedPostPage = () => {
   const pageTitle = "댓글";
@@ -7,6 +8,8 @@ const CommentedPostPage = () => {
   return (
     <>
       <PageHeader title={pageTitle} />
+      <CommentContainer />
+      <Footer />
     </>
   );
 };

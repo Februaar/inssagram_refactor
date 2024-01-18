@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
+  display: flex;
+  flex-direction: row;
   margin-top: 4px;
   padding: 6px 0 8px;
   height: 54px;
-  display: flex;
-  flex-direction: row;
 `;
 
 export const Icon = styled.span`
