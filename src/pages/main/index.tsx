@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setPosts } from "@/redux/postSlice";
@@ -12,18 +12,18 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state: RootState) => state.post.posts);
 
-  useEffect(() => {
-    fetchPostAllData();
-  }, []);
-
-  const fetchPostAllData = async () => {
+  const fetchPostAllData = useCallback(async () => {
     try {
       const res = await getPostAll();
       dispatch(setPosts(res.data));
     } catch (err) {
       console.error("error fetching post data:", err);
     }
-  };
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchPostAllData();
+  }, [fetchPostAllData]);
 
   return (
     <section>

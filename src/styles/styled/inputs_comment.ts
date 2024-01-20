@@ -26,7 +26,7 @@ export const MyProfile = styled.span`
   background-color: transparent;
 `;
 
-export const InputForm = styled.form`
+export const TextForm = styled.form`
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -36,18 +36,22 @@ export const InputForm = styled.form`
   padding: 8px;
 `;
 
-export const Input = styled.div`
+export const TextArea = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 1;
   align-items: center;
+  vertical-align: baseline;
 `;
 
 export const Text = styled.textarea`
   display: flex;
-  width: 100%;
-  height: 18px;
+  flex-grow: 1;
+  resize: none;
+  width: 0;
+  height: 18px !important;
   max-height: 80px;
-  padding-top: 2px;
 `;
 
 export const Submit = styled.span`

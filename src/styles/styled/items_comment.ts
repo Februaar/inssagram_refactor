@@ -10,6 +10,7 @@ export const CommentContainer = styled.div`
   align-self: auto;
   overflow-y: visible;
   overflow-x: visible;
+  min-height: 62px;
 `;
 
 export const ItemArea = styled.div`
@@ -28,6 +29,7 @@ export const ContentsArea = styled.div`
 `;
 
 export const Profile = styled.div`
+  cursor: pointer;
   margin-right: 8px;
 `;
 export const CommentArea = styled.div`
@@ -102,6 +104,7 @@ export const Details = styled.div`
   align-self: auto;
   height: 16px;
   margin-top: 4px;
+  gap: 8px;
 `;
 
 export const Like = styled.div`

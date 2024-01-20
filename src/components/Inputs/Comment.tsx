@@ -1,8 +1,26 @@
 import Image from "next/image";
+import { useState } from "react";
 import * as SC from "@/styles/styled/inputs_comment";
 import { noProfile } from "@/images/index";
+import postNewComment from "@/services/postInfo/postNewComment";
 
-const CommentInput = () => {
+interface CommentInputProps {
+  postId: number;
+}
+
+const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
+  const [newComment, setNewComment] = useState<string>("");
+  const isEmpty = newComment.trim() === "";
+
+  const handleCommentSubmit = async (postId: number, contents: string) => {
+    try {
+      await postNewComment(postId, contents);
+      setNewComment("");
+    } catch (err) {
+      console.error("error submitting comment:", err);
+    }
+  };
+
   return (
     <SC.InputContainer>
       <SC.InputArea>
@@ -15,12 +33,23 @@ const CommentInput = () => {
             style={{ borderRadius: "100%" }}
           />
         </SC.MyProfile>
-        <SC.InputForm>
-          <SC.Input>
-            <SC.Text aria-label="댓글 달기..." placeholder="댓글 달기..." />
-            <SC.Submit>게시</SC.Submit>
-          </SC.Input>
-        </SC.InputForm>
+        <SC.TextForm>
+          <SC.TextArea>
+            <SC.Text
+              value={newComment}
+              aria-label="댓글 달기..."
+              placeholder="댓글 달기..."
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            {isEmpty ? null : (
+              <SC.Submit
+                onClick={() => handleCommentSubmit(postId, newComment)}
+              >
+                게시
+              </SC.Submit>
+            )}
+          </SC.TextArea>
+        </SC.TextForm>
       </SC.InputArea>
     </SC.InputContainer>
   );

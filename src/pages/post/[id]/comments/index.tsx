@@ -1,14 +1,52 @@
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { OriginalCommentData, CommentData } from "@/types/PostTypes";
 import { PageHeader } from "@/components/atoms/Header";
 import CommentContainer from "@/components/Containers/Comment";
 import Footer from "@/components/Footer";
+import getCommentAll from "@/services/postInfo/getCommentAll";
+import getPostDetail from "@/services/postInfo/getPostDetail";
 
 const CommentedPostPage = () => {
   const pageTitle = "댓글";
+  const router = useRouter();
+  const { id } = router.query;
+  const postId: number = typeof id === "string" ? parseInt(id, 10) : -1;
+
+  const [original, setOriginal] = useState<OriginalCommentData | undefined>();
+  // console.log(original);
+  const [comments, setComments] = useState<CommentData[] | undefined>();
+  // console.log(comments);
+
+  const fetchOriginalData = async (postId: number) => {
+    try {
+      const res = await getPostDetail(postId);
+      setOriginal(res.data);
+    } catch (err) {
+      console.error("error fetching original comment data:", err);
+    }
+  };
+
+  const fetchCommentAllData = async (postId: number) => {
+    try {
+      const res = await getCommentAll(postId);
+      setComments(res.data);
+    } catch (err) {
+      console.error("error fetching comments data:", err);
+    }
+  };
+
+  useEffect(() => {
+    if (postId !== -1) {
+      fetchOriginalData(postId);
+      fetchCommentAllData(postId);
+    }
+  }, [postId]);
 
   return (
     <>
       <PageHeader title={pageTitle} />
-      <CommentContainer />
+      <CommentContainer original={original} comments={comments} />
       <Footer />
     </>
   );

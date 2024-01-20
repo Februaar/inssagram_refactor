@@ -23,3 +23,34 @@ export interface CreateBoardData {
   fileName: string[];
   contents: string;
 }
+
+export interface OriginalCommentData {
+  nickName: string;
+  memberId: number;
+  memberImage: string;
+  contents: string;
+  postId: number;
+  postLike: boolean;
+  createdAt: string;
+  followed: boolean;
+  hashTags: string[];
+  likeCount: number;
+  location: string;
+  taggedMemberIds: string[];
+}
+
+export interface CommentData {
+  nickname: string;
+  memberId: number;
+  memberImage: string;
+  content: string;
+  parentId: number;
+  postId: number;
+  createdAt: string;
+  likeCount: number;
+  commentId: number;
+  commentLike: number;
+  commentCount: number;
+  mentionList: string[];
+  replyFlag: boolean;
+}
