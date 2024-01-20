@@ -14,8 +14,8 @@ const FavoriteIcon: React.FC<FavoriteIconProps> = ({ onClick, isLiked }) => {
         <Image
           src={isLiked ? favoriteFull : favorite}
           alt="profile"
-          width={12}
-          height={12}
+          width={24}
+          height={24}
         />
       </SC.Icon>
     </>

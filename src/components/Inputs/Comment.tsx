@@ -18,7 +18,7 @@ const CommentInput = () => {
         <SC.InputForm>
           <SC.Input>
             <SC.Text aria-label="댓글 달기..." placeholder="댓글 달기..." />
-            <SC.Submit>게시</SC.Submit>
+            {/* <SC.Submit>게시</SC.Submit> */}
           </SC.Input>
         </SC.InputForm>
       </SC.InputArea>

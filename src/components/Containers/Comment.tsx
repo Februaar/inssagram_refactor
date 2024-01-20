@@ -1,17 +1,30 @@
+import { OriginalCommentData } from "@/types/PostTypes";
 import styled from "styled-components";
 import OriginalItem from "@/components/Items/Original";
 import CommentItem from "@/components/Items/Comment";
 import CommentInput from "@/components/Inputs/Comment";
 
-const CommentContainer = () => {
+interface CommentContainerProps {
+  original: OriginalCommentData;
+  comments: OriginalCommentData[];
+}
+
+const CommentContainer: React.FC<CommentContainerProps> = ({
+  original,
+  comments,
+}) => {
   return (
     <>
       <Container>
         <DetailArea>
           <ContentsArea>
-            <OriginalItem />
+            <OriginalItem original={original} />
             <CommentArea>
-              <CommentItem />
+              {comments.length > 0
+                ? comments.map((comment, index) => (
+                    <CommentItem key={index} comment={comment} />
+                  ))
+                : ""}
             </CommentArea>
           </ContentsArea>
           <CommentInput />

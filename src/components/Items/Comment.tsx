@@ -1,9 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { OriginalCommentData } from "@/types/PostTypes";
 import * as SC from "@/styles/styled/items_comment";
 import { noProfile, favorite } from "@/images/index";
 
-const CommentItem = () => {
+interface CommentItemProps {
+  comment: OriginalCommentData[];
+}
+
+const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
   return (
     <SC.CommentContainer>
       <SC.ItemArea role="button">
@@ -21,9 +26,7 @@ const CommentItem = () => {
                 </SC.Nickname>
               </Link>
               <SC.Divi>&nbsp;</SC.Divi>
-              <SC.Content>
-                커피 수혈이 필요한데커피 수혈이 필요한데커피 수혈이 필요한데
-              </SC.Content>
+              <SC.Content>커피 수혈이</SC.Content>
             </SC.Comment>
             <SC.Details>
               <span>5주</span>

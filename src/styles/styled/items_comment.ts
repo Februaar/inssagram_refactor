@@ -10,6 +10,7 @@ export const CommentContainer = styled.div`
   align-self: auto;
   overflow-y: visible;
   overflow-x: visible;
+  min-height: 62px;
 `;
 
 export const ItemArea = styled.div`
