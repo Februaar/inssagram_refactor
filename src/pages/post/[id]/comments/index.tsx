@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { OriginalCommentData, CommentData } from "@/types/PostTypes";
 import { PageHeader } from "@/components/atoms/Header";
 import CommentContainer from "@/components/Containers/Comment";
 import Footer from "@/components/Footer";
@@ -12,10 +13,10 @@ const CommentedPostPage = () => {
   const { id } = router.query;
   const postId: number = typeof id === "string" ? parseInt(id, 10) : -1;
 
-  const [original, setOriginal] = useState<string>("");
-  console.log(original);
-  const [comments, setComments] = useState<string[]>([]);
-  console.log(comments);
+  const [original, setOriginal] = useState<OriginalCommentData | undefined>();
+  // console.log(original);
+  const [comments, setComments] = useState<CommentData[] | undefined>();
+  // console.log(comments);
 
   const fetchOriginalData = async (postId: number) => {
     try {

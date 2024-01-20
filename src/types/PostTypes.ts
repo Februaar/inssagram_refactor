@@ -38,3 +38,19 @@ export interface OriginalCommentData {
   location: string;
   taggedMemberIds: string[];
 }
+
+export interface CommentData {
+  nickname: string;
+  memberId: number;
+  memberImage: string;
+  content: string;
+  parentId: number;
+  postId: number;
+  createdAt: string;
+  likeCount: number;
+  commentId: number;
+  commentLike: number;
+  commentCount: number;
+  mentionList: string[];
+  replyFlag: boolean;
+}

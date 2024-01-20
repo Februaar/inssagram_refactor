@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { OriginalCommentData } from "@/types/PostTypes";
-
 import * as SC from "@/styles/styled/items_original";
 import { noProfile } from "@/images/index";
 
