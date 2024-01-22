@@ -20,7 +20,7 @@ export const DetailArea = styled.div`
 
 export const ContentsArea = styled.div`
   border-bottom: 1px solid #dbdbdb;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   height: 90%;
 `;
 

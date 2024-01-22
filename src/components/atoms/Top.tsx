@@ -18,7 +18,7 @@ interface PostItemProps {
 
 const PostTop: React.FC<PostItemProps> = ({ writer }) => {
   const user: UserState = useSelector((state: RootState) => state.user);
-  const isCurrentUser = user.member_id === writer.memberId.toString();
+  const isCurrentUser = user.member_id == writer.memberId;
 
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [isPostEditModalOpen, setIsPostEditModalOpen] = useState(false);

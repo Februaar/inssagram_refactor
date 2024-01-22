@@ -116,7 +116,9 @@ export const Details = styled.div`
   gap: 8px;
 `;
 
-export const ReplyBtn = styled.span``;
+export const ReplyBtn = styled.span`
+  cursor: pointer;
+`;
 
 export const Like = styled.div`
   position: static;
