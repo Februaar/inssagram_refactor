@@ -23,8 +23,8 @@ export const ContentArea = styled.div`
   grid-template-rows: 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
-  width: 70vw;
-  height: 17vh;
+  width: 315px;
+  height: 15vh;
 `;
 
 export const ModalItem = styled.div`

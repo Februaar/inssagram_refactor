@@ -14,7 +14,7 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  width: 70vw;
+  width: 315px;
   padding: 3.5px;
   border-radius: 12px;
 `;

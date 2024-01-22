@@ -23,8 +23,8 @@ export const ContentArea = styled.div`
   grid-template-rows: 1fr 1fr;
   align-items: center;
   justify-items: center;
-  width: 260px;
-  height: 84px;
+  width: 215px;
+  height: 85px;
 
   & > :first-child {
     color: #ed4956;

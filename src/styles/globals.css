@@ -3,11 +3,9 @@
   src: url("/fonts/JejuGothic.TTF") format("truetype");
 }
 
-#root {
-  font-family: "JejuGothic", sans-serif;
-  min-width: 430px;
-  min-height: 932px;
-  max-width: 1280px;
+#__next {
+  width: 430px;
+  height: 932px;
   margin: 0 auto;
   font: inherit;
 }
@@ -51,7 +49,6 @@ button {
 input {
   border: none;
   outline: none;
-  /* border-bottom: 2px solid #efefef; */
 }
 
 ul,
@@ -70,7 +67,6 @@ main {
   padding-top: 44px;
   width: 100%;
   margin-bottom: 55px;
-  overflow-y: scroll;
 }
 
 textarea {
