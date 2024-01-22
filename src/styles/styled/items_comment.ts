@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const Option = styled.span`
+  display: none;
+  cursor: pointer;
+`;
+
 export const CommentContainer = styled.div`
   position: static;
   display: flex;
@@ -11,6 +16,10 @@ export const CommentContainer = styled.div`
   overflow-y: visible;
   overflow-x: visible;
   min-height: 62px;
+
+  &:hover ${Option} {
+    display: inline-block;
+  }
 `;
 
 export const ItemArea = styled.div`
@@ -106,6 +115,8 @@ export const Details = styled.div`
   margin-top: 4px;
   gap: 8px;
 `;
+
+export const ReplyBtn = styled.span``;
 
 export const Like = styled.div`
   position: static;

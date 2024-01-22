@@ -20,11 +20,15 @@ export const Container = styled.div`
 
 export const ContentArea = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   align-items: center;
   justify-items: center;
-  width: 70vw;
-  height: 17vh;
+  width: 260px;
+  height: 84px;
+
+  & > :first-child {
+    color: #ed4956;
+  }
 `;
 
 export const ModalItem = styled.div`
@@ -34,6 +38,7 @@ export const ModalItem = styled.div`
   border-bottom: 1px solid #ccc;
   justify-items: center;
   align-items: center;
+  cursor: pointer;
 
   &:last-child {
     border-bottom: none;

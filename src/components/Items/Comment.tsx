@@ -1,14 +1,40 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeComment } from "@/redux/commentSlice";
 import { CommentData } from "@/types/PostTypes";
 import * as SC from "@/styles/styled/items_comment";
-import { noProfile, favorite } from "@/images/index";
+import { noProfile, favorite, moreHoriz } from "@/images/index";
+import CommentModal from "@/components/Modals/Comment";
+import deleteComment from "@/services/postInfo/deleteComment";
 
 interface CommentItemProps {
   comment: CommentData;
 }
 
 const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
+  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDeleteComment = async (commentId: number) => {
+    try {
+      await deleteComment(commentId);
+      dispatch(removeComment(commentId));
+      setIsModalOpen(false);
+    } catch (err) {
+      console.error("error deleting comment");
+    }
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <SC.CommentContainer>
       <SC.ItemArea role="button">
@@ -46,7 +72,16 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
               {comment.likeCount !== 0 && (
                 <span>좋아요 {comment.likeCount}개</span>
               )}
-              <span>답글달기</span>
+              <SC.ReplyBtn>답글달기</SC.ReplyBtn>
+              <SC.Option onClick={handleOpenModal}>
+                <Image src={moreHoriz} alt="option" />
+              </SC.Option>
+              {isModalOpen ? (
+                <CommentModal
+                  onDelete={() => handleDeleteComment(comment.commentId)}
+                  handleClose={handleCloseModal}
+                />
+              ) : null}
             </SC.Details>
           </SC.CommentArea>
           <SC.Like>
