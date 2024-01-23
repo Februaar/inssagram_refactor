@@ -4,20 +4,20 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { selectImageURL, selectFileName } from "@/redux/imageSlice";
-import { UserState } from "@/types/UserTypes";
 import { storage } from "../../../../firebase-config";
 import { ref, getDownloadURL } from "firebase/storage";
+import { UserState } from "@/types/UserTypes";
+import postCreatePost from "@/services/postInfo/postCreatePost";
 import * as SC from "@/styles/styled/create_details";
 import { chevronLeft } from "@/images/index";
 import { PageHeader } from "@/components/atoms/Header";
 import BoardContent from "@/components/atoms/Board";
-import postCreatePost from "@/services/postInfo/postCreatePost";
 
 const DetailsPage = () => {
   const user: UserState = useSelector((state: RootState) => state.user);
   const imageURL = useSelector(selectImageURL);
   const fileName = useSelector(selectFileName);
-
+  
   const pageTitle = "새 게시물";
   const router = useRouter();
   const [downloadedImg, setDownloadedImg] = useState<string[] | null>(null);
