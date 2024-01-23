@@ -10,7 +10,11 @@ import PostItem from "@/components/Items/Post";
 
 const MainPage = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
   const posts = useSelector((state: RootState) => state.post.posts);
+
+  const requireToken = user === null;
+  // console.log(requireToken);
 
   const fetchPostAllData = useCallback(async () => {
     try {
@@ -30,8 +34,12 @@ const MainPage = () => {
       <Header />
       <main>
         <StoryItem />
-        {posts &&
-          posts.map((post) => <PostItem key={post.postId} post={post} />)}
+        {requireToken ? (
+          <div style={{ padding: " 12px 16px" }}>로그인 해보세요</div>
+        ) : (
+          posts &&
+          posts.map((post) => <PostItem key={post.postId} post={post} />)
+        )}
       </main>
       <Footer />
     </section>

@@ -14,13 +14,12 @@ import PostContainer from "@/components/Containers/Post";
 
 const UserPage = () => {
   const user = useSelector((state: RootState) => state.user);
-
   const router = useRouter();
   const { id } = router.query;
+  const isCurrentUser = id === user.member_id.toString();
+
   const [userInfo, setUserInfo] = useState<UserPageData | undefined>();
   const [postInfo, setPostInfo] = useState<PostContentData[] | undefined>();
-
-  const isCurrentUser = id === user.member_id.toString();
 
   useEffect(() => {
     if (id) {

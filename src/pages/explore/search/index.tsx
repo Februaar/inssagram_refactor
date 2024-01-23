@@ -86,16 +86,14 @@ const SearchPage = () => {
           />
         ))}
 
-      {!searchResults.length && !searchHistories.length ? (
-        ""
-      ) : (
-        searchResults.length === 0 && (
-          <SC.HeadTitle>
-            <SC.SubTitle>최근 검색어</SC.SubTitle>
-            <SC.DeleteAll>모두 지우기</SC.DeleteAll>
-          </SC.HeadTitle>
-        )
-      )}
+      {!searchResults.length && !searchHistories.length
+        ? ""
+        : searchResults.length === 0 && (
+            <SC.HeadTitle>
+              <SC.SubTitle>최근 검색어</SC.SubTitle>
+              <SC.DeleteAll>모두 지우기</SC.DeleteAll>
+            </SC.HeadTitle>
+          )}
 
       {/* 최근 검색 기록 */}
       {searchHistories.length > 0 &&

@@ -23,16 +23,16 @@ const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
       await postLikePost(postId);
       setIsLiked(!isLiked);
 
-      const title = isLiked ? "좋아요 취소 💔" : "좋아요 완료 ❤";
+      // const title = isLiked ? "좋아요 취소 💔" : "좋아요 완료 ❤";
 
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: title,
-        width: 200,
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      // Swal.fire({
+      //   position: "center",
+      //   icon: "success",
+      //   title: title,
+      //   width: 200,
+      //   showConfirmButton: false,
+      //   timer: 1500,
+      // });
     } catch (err) {
       console.error("like post:", err);
     }
@@ -43,15 +43,15 @@ const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
       await postSavePost(postId);
       setIsSaved(!isSaved);
 
-      const title = isSaved ? "게시글 저장 취소" : "게시글 저장 완료";
+      // const title = isSaved ? "게시글 저장 취소" : "게시글 저장 완료";
 
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: title,
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      // Swal.fire({
+      //   position: "center",
+      //   icon: "success",
+      //   title: title,
+      //   showConfirmButton: false,
+      //   timer: 1500,
+      // });
     } catch (err) {
       console.error("save post:", err);
     }

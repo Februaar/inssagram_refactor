@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 import { removeComment } from "@/redux/commentSlice";
 import { CommentData } from "@/types/PostTypes";
 import * as SC from "@/styles/styled/items_comment";
@@ -14,6 +15,9 @@ interface CommentItemProps {
 }
 
 const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
+  const user = useSelector((state: RootState) => state.user);
+  const isCurrentUser = user.member_id === comment.memberId;
+
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -73,9 +77,11 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
                 <span>좋아요 {comment.likeCount}개</span>
               )}
               <SC.ReplyBtn>답글달기</SC.ReplyBtn>
-              <SC.Option onClick={handleOpenModal}>
-                <Image src={moreHoriz} alt="option" />
-              </SC.Option>
+              {isCurrentUser ? (
+                <SC.Option onClick={handleOpenModal}>
+                  <Image src={moreHoriz} alt="option" />
+                </SC.Option>
+              ) : null}
               {isModalOpen ? (
                 <CommentModal
                   onDelete={() => handleDeleteComment(comment.commentId)}
