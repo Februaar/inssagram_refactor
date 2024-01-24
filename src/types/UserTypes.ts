@@ -12,9 +12,20 @@ export interface UserPageData {
   companyName: string;
   profilePic: string;
   description: string;
-  followers: [];
-  following: [];
-  posts: any;
+  followers: [
+    {
+      followerId: number;
+      followerName: string;
+      followerImage: string;
+    }
+  ];
+  following: [
+    {
+      following_Id: number;
+      following_Name: string;
+      following_Image: string;
+    }
+  ];
 }
 
 export interface LikedPostMemberData {

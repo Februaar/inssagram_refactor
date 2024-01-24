@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const InputArea = styled.div`
@@ -28,19 +28,19 @@ export const MyProfile = styled.span`
 
 export const TextForm = styled.form`
   display: flex;
-  flex-direction: row;
   flex-grow: 1;
   flex-shrink: 1;
+  flex-direction: row;
+  padding: 8px;
   border: 1px solid #dbdbdb;
   border-radius: 38px;
-  padding: 8px;
 `;
 
 export const TextArea = styled.div`
   display: flex;
-  flex-direction: row;
   flex-grow: 1;
   flex-shrink: 1;
+  flex-direction: row;
   align-items: center;
   vertical-align: baseline;
 `;
@@ -55,10 +55,11 @@ export const Text = styled.textarea`
 `;
 
 export const Submit = styled.span`
+  display: flex;
+  align-items: center;
   min-width: 28px;
   height: 18px;
   color: #0095f6;
   margin-left: 8px;
-  display: flex;
-  align-items: center;
+  cursor: pointer;
 `;

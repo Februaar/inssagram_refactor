@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-const FollowButton = () => {
+const DeleteButton = () => {
   return (
     <>
       <Button>
-        <Title>팔로잉</Title>
+        <Title>삭제</Title>
       </Button>
     </>
   );
 };
 
-export default FollowButton;
+export default DeleteButton;
 
 const Button = styled.div`
   position: static;
@@ -26,15 +26,20 @@ const Button = styled.div`
 
 const Title = styled.button`
   position: relative;
-  display: block;
+  display: flex;
+  flex-basis: auto;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   border-radius: 8px;
-  padding: 7px 16px;
-  pointer-events: auto;
-  width: 82px;
+  width: auto;
+  min-width: 0;
   height: 32px;
-  color: #222222;
-  background-color: #efefef;
+  min-height: 0;
   text-overflow: ellipsis;
-  text-transform: inherit;
+  padding: 0 16px;
+  background-color: #efefef;
+  font-size: 0.875rem;
 `;
