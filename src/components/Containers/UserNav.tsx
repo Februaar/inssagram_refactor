@@ -1,20 +1,21 @@
 import { UserPageData } from "@/types/UserTypes";
-
+import { PostContentData } from "@/types/PostTypes";
 import styled from "styled-components";
 
 interface UserNavProps {
   user_id: any;
   user: UserPageData | undefined;
+  post: PostContentData[] | undefined;
 }
 
-const UserNavigation: React.FC<UserNavProps> = ({ user_id, user }) => {
+const UserNavigation: React.FC<UserNavProps> = ({ user_id, user, post }) => {
   return (
     <>
       {user ? (
         <Container>
           <Nav>
             <Title>게시물</Title>
-            <span>{user.posts}</span>
+            <span>{post}</span>
           </Nav>
           <Nav>
             <Link href={`/${user_id}/followers`}>

@@ -1,7 +1,11 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-const ProfileEdit = () => {
+interface ProfileEditProps {
+  user: any;
+}
+
+const ProfileEdit: React.FC<ProfileEditProps> = ({ user }) => {
   return (
     <>
       <Link href="/accounts/edit">

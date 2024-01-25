@@ -27,6 +27,7 @@ const AccountInfoModal: React.FC<AccountInfoModalProps> = ({
                       alt="no-profile"
                       width={77}
                       height={77}
+                      style={{ borderRadius: "100%" }}
                     />
                   </SC.Profile>
                   <SC.Nickname>{writer.nickName}</SC.Nickname>

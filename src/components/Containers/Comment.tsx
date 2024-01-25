@@ -15,10 +15,10 @@ interface CommentContainerProps {
 }
 
 const CommentContainer: React.FC<CommentContainerProps> = ({ postId }) => {
-  const [original, setOriginal] = useState<OriginalCommentData | undefined>();
-
   const dispatch = useDispatch();
   const comments = useSelector((state: RootState) => state.comment.comments);
+
+  const [original, setOriginal] = useState<OriginalCommentData | undefined>();
 
   const fetchOriginalData = async (postId: number) => {
     try {

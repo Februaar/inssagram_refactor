@@ -5,12 +5,13 @@ import { RootState } from "@/redux/store";
 import { UserPageData } from "@/types/UserTypes";
 import { PostContentData } from "@/types/PostTypes";
 import getUserDetail from "@/services/userInfo/getUserDetail";
-import Footer from "@/components/Footer";
 import UserHeader from "@/components/atoms/User";
 import ProfileCard from "@/components/atoms/Profile";
+import DescriptionCard from "@/components/atoms/Description";
 import UserNavigation from "@/components/Containers/UserNav";
 import PostNavigation from "@/components/Containers/PostNav";
 import PostContainer from "@/components/Containers/Post";
+import Footer from "@/components/Footer";
 
 const UserPage = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -19,7 +20,9 @@ const UserPage = () => {
   const isCurrentUser = id === user.member_id.toString();
 
   const [userInfo, setUserInfo] = useState<UserPageData | undefined>();
+  console.log(userInfo);
   const [postInfo, setPostInfo] = useState<PostContentData[] | undefined>();
+  console.log(postInfo);
 
   useEffect(() => {
     if (id) {
@@ -42,7 +45,8 @@ const UserPage = () => {
       <section>
         <UserHeader user={userInfo} isLoggined={isCurrentUser} />
         <ProfileCard user={userInfo} isLoggined={isCurrentUser} />
-        <UserNavigation user_id={id} user={userInfo} />
+        <DescriptionCard user={userInfo} />
+        <UserNavigation user_id={id} user={userInfo} post={postInfo} />
         <PostNavigation
           user_id={id}
           post={postInfo}

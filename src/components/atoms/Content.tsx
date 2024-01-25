@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { PostContentData } from "@/types/PostTypes";
+import { formatData } from "@/utils/date";
 import * as SC from "@/styles/styled/atoms_content";
 import PostIconContainer from "../Containers/PostIcon";
 
 interface PostItemProps {
-  content: PostContentData | undefined;
+  content: PostContentData;
 }
 
 const PostContent: React.FC<PostItemProps> = ({ content }) => {
+  const formattedCreatedAt = formatData(new Date(content.createdAt));
+
   return (
     <>
       {content && (
@@ -28,7 +31,7 @@ const PostContent: React.FC<PostItemProps> = ({ content }) => {
               </Link>
             </SC.MoreComments>
           </SC.CommentContainer>
-          <SC.CreatedAt>{content.createdAt}</SC.CreatedAt>
+          <SC.CreatedAt>{formattedCreatedAt}</SC.CreatedAt>
         </SC.Container>
       )}
     </>

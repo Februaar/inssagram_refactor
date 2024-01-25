@@ -1,7 +1,7 @@
 import { UserPageData } from "@/types/UserTypes";
 import Image from "next/image";
 import { noProfile } from "@/images/index";
-import * as SC from "@/styles/styled/atoms_user";
+import * as SC from "@/styles/styled/atoms_profile";
 import ProfileEdit from "../Buttons/ProfileEdit";
 
 interface ProfileCardProps {
@@ -25,7 +25,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user, isLoggined }) => {
           </SC.Profile>
           <SC.EditArea>
             <SC.Id>{user.nickname}</SC.Id>
-            <ProfileEdit />
+            <ProfileEdit user={user} />
           </SC.EditArea>
         </SC.CardContainer>
       ) : (

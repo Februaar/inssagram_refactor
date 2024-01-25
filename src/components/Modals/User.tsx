@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { setDeletedPost } from "@/redux/postSlice";
 import * as SC from "@/styles/styled/modals_edit";
 import deletePost from "@/services/postInfo/deletePost";
+import LinkCopyButton from "@/components/Buttons/LinkCopy";
 
 interface UserInfoModalProps {
   post: any;
@@ -43,8 +44,9 @@ const UserInfoModal: React.FC<UserInfoModalProps> = ({
                 <button>수정하기</button>
               </SC.ModalItem>
               <SC.ModalItem>
-                링크 복사
-                {/* <LinkCopyButton linkCopy={`localhost:3000/post/${post.postId}`} /> */}
+                <LinkCopyButton
+                  linkCopy={`https://inssagram-two.vercel.app/post/${post.postId}`}
+                />
               </SC.ModalItem>
               <SC.ModalItem onClick={infoClick}>이 계정 정보</SC.ModalItem>
               <SC.ModalItem onClick={handleClose}>취소</SC.ModalItem>

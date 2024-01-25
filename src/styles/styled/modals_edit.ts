@@ -34,6 +34,7 @@ export const ModalItem = styled.div`
   border-bottom: 1px solid #ccc;
   justify-items: center;
   align-items: center;
+  cursor: pointer;
 
   &:last-child {
     border-bottom: none;

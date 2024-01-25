@@ -14,8 +14,8 @@ interface EditInputProps {
 const EditInput: React.FC<EditInputProps> = ({ user, onImageUpload }) => {
   const profileURL = useSelector(selectprofileURL);
   const router = useRouter();
-  const [job, setJob] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
+  const [job, setJob] = useState<string | null>(null);
+  const [description, setDescription] = useState<string | null>(null);
 
   const handleSubmit = async (
     id: any,

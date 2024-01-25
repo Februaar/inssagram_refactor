@@ -70,6 +70,7 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
       {!isCurrentUser
         ? isInfoModalOpen && (
             <InfoModal
+              post={writer}
               infoClick={handleAccountInfoModal}
               handleClose={handleModalClose}
             />

@@ -8,10 +8,6 @@ interface PostItemProps {
 }
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
-  if (!post) {
-    return null;
-  }
-
   return (
     <>
       <PostTop writer={post} />
