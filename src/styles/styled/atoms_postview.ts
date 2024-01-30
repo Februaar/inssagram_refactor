@@ -6,8 +6,6 @@ export const Article = styled.article`
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 3px;
   grid-row-gap: 3px;
-  width: 100%;
-  height: 100%;
 `;
 
 export const PreView = styled.div`

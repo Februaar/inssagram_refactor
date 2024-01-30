@@ -56,6 +56,7 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
                   alt="profile"
                   width={32}
                   height={32}
+                  style={{ borderRadius: "100%" }}
                 />
               </SC.Profile>
               <SC.Id>{writer.nickName}</SC.Id>
@@ -69,6 +70,7 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
       {!isCurrentUser
         ? isInfoModalOpen && (
             <InfoModal
+              post={writer}
               infoClick={handleAccountInfoModal}
               handleClose={handleModalClose}
             />

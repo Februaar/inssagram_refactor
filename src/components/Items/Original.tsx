@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { OriginalCommentData } from "@/types/PostTypes";
+import { formatData } from "@/utils/date";
 import * as SC from "@/styles/styled/items_original";
 import { noProfile } from "@/images/index";
 
@@ -9,6 +10,8 @@ interface OriginalItemProps {
 }
 
 const OriginalItem: React.FC<OriginalItemProps> = ({ original }) => {
+  const formattedCreatedAt = formatData(new Date(original.createdAt));
+
   return (
     <>
       <SC.OriginalContainer>
@@ -23,6 +26,7 @@ const OriginalItem: React.FC<OriginalItemProps> = ({ original }) => {
               object-fit="cover"
               width={32}
               height={32}
+              style={{ borderRadius: "100%" }}
             />
           </Link>
         </SC.Profile>
@@ -44,7 +48,7 @@ const OriginalItem: React.FC<OriginalItemProps> = ({ original }) => {
                 <SC.Content>{original.contents}</SC.Content>
               </SC.Details>
             </div>
-            <SC.Time>{original.createdAt}</SC.Time>
+            <SC.Time>{formattedCreatedAt}</SC.Time>
           </SC.Comment>
         </SC.CommentArea>
       </SC.OriginalContainer>

@@ -32,7 +32,7 @@ const MainPage = () => {
   return (
     <section>
       <Header />
-      <main>
+      <main style={{ paddingTop: "44px", marginBottom: "55px" }}>
         <StoryItem />
         {requireToken ? (
           <div style={{ padding: " 12px 16px" }}>로그인 해보세요</div>

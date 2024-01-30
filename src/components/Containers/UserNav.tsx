@@ -1,67 +1,37 @@
 import { UserPageData } from "@/types/UserTypes";
-
-import styled from "styled-components";
+import * as SC from "@/styles/styled/containers_usernav";
 
 interface UserNavProps {
   user_id: any;
   user: UserPageData | undefined;
+  post: number | undefined;
 }
 
-const UserNavigation: React.FC<UserNavProps> = ({ user_id, user }) => {
+const UserNavigation: React.FC<UserNavProps> = ({ user_id, user, post }) => {
   return (
     <>
-      {user ? (
-        <Container>
-          <Nav>
-            <Title>게시물</Title>
-            <span>{user.posts}</span>
-          </Nav>
-          <Nav>
-            <Link href={`/${user_id}/followers`}>
-              <Title>팔로워</Title>
+      {user && (
+        <SC.Container>
+          <SC.Nav>
+            <SC.Title>게시물</SC.Title>
+            <span>{post}</span>
+          </SC.Nav>
+          <SC.Nav>
+            <SC.Link href={`/${user_id}/followers`}>
+              <SC.Title>팔로워</SC.Title>
               <span>{user.followers.length}</span>
-            </Link>
-          </Nav>
-          <Nav>
-            <Link href={`/${user_id}/following`}>
-              <Title>팔로우</Title>
+            </SC.Link>
+          </SC.Nav>
+          <SC.Nav>
+            <SC.Link href={`/${user_id}/following`}>
+              <SC.Title>팔로우</SC.Title>
               <span>{user.following.length}</span>
-            </Link>
-          </Nav>
-        </Container>
-      ) : (
-        ""
+            </SC.Link>
+          </SC.Nav>
+        </SC.Container>
       )}
     </>
   );
 };
 
 export default UserNavigation;
-
-const Container = styled.ul`
-  display: flex;
-  justify-content: space-evenly;
-  padding: 12px 0;
-  height: 60px;
-  border-top: 1px solid #dbdbdb;
-`;
-
-const Nav = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  width: 33.3%;
-`;
-
-const Link = styled.a`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 35.33px;
-`;
-
-const Title = styled.span`
-  color: #737373;
-`;

@@ -2,39 +2,86 @@ import { useState, useEffect } from "react";
 import { PostContentData } from "@/types/PostTypes";
 import getUserPostAll from "@/services/postInfo/getUserPostAll";
 import PostView from "../atoms/PostView";
+import PostItem from "../Items/Post";
 import Error from "../atoms/Error";
+import getBookmarkedPostAll from "@/services/postInfo/getBookmarkedPostAll";
+import getTaggedPostAll from "@/services/postInfo/getTaggedPostAll";
 
 interface PostContainerProps {
   user_id: any;
+  iconName: string;
 }
 
-const PostContainer: React.FC<PostContainerProps> = ({ user_id }) => {
-  const [posts, setPosts] = useState<PostContentData[] | undefined>([]);
+const PostContainer: React.FC<PostContainerProps> = ({ user_id, iconName }) => {
+  const [posts, setPosts] = useState<PostContentData[]>([]);
+  const [bookmarkedPost, setBookmarkedPost] = useState<PostContentData[]>([]);
+  const [taggedPost, setTaggedPost] = useState<PostContentData[]>([]);
 
   useEffect(() => {
     if (user_id) {
-      fetchUserPostAllData(user_id);
+      fetchUserData(user_id);
     }
-  }, [user_id]);
+  }, [user_id, iconName]);
 
-  const fetchUserPostAllData = async (memberId: any) => {
+  const fetchUserData = async (userId: any) => {
     try {
-      const res = await getUserPostAll(memberId);
-      setPosts(res.data);
+      if (iconName === "saved") {
+        const res = await getBookmarkedPostAll();
+        setBookmarkedPost(res.data);
+      } else if (iconName === "tagged") {
+        const res = await getTaggedPostAll(userId);
+        setTaggedPost(res.data);
+      } else {
+        const res = await getUserPostAll(userId);
+        setPosts(res.data);
+      }
     } catch (err) {
-      console.error("error fetching user's post all:", err);
+      console.error("Error fetching user data:", err);
     }
   };
 
-  return (
-    <>
-      {posts && posts.length > 0 ? (
-        <PostView posts={posts} />
-      ) : (
-        <Error message="게시글을 작성해보세요" />
-      )}
-    </>
-  );
+  const renderContent = () => {
+    if (iconName === "saved") {
+      return (
+        <>
+          {bookmarkedPost && bookmarkedPost.length > 0 ? (
+            <PostView posts={bookmarkedPost} />
+          ) : (
+            <Error message="게시글을 저장해보세요" />
+          )}
+        </>
+      );
+    } else if (iconName === "tagged") {
+      return (
+        <>
+          {taggedPost && taggedPost.length > 0 ? (
+            <PostView posts={taggedPost} />
+          ) : (
+            <Error message="태그 된 게시글이 없습니다" />
+          )}
+        </>
+      );
+    } else if (iconName === "calendar") {
+      return (
+        <>
+          {posts &&
+            posts.map((post) => <PostItem key={post.postId} post={post} />)}
+        </>
+      );
+    } else if (iconName === "grid" || iconName === "") {
+      return (
+        <>
+          {posts && posts.length > 0 ? (
+            <PostView posts={posts} />
+          ) : (
+            <Error message="게시글을 작성해보세요" />
+          )}
+        </>
+      );
+    }
+  };
+
+  return <>{renderContent()}</>;
 };
 
 export default PostContainer;

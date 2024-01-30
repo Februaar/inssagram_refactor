@@ -1,14 +1,13 @@
 import Image from "next/image";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setImageURL, setFileName } from "@/redux/imageSlice";
 import { UserState } from "@/types/UserTypes";
-import * as SC from "@/styles/styled/modals_create";
-import { createPost, createStory } from "@/images/index";
 import { storage } from "../../../firebase-config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import * as SC from "@/styles/styled/modals_create";
+import { createPost, createStory } from "@/images/index";
 
 interface CreateModalProps {
   uploadProgress: (percent: number) => void;
@@ -30,7 +29,7 @@ const CreateModal: React.FC<CreateModalProps> = ({ uploadProgress }) => {
     const extension = file[0].name.split(".").pop();
     const fileName = `_${timestamp}.${extension}`;
 
-    const storageRef = ref(storage, `${user.member_id}/${fileName}`);
+    const storageRef = ref(storage, `/post/${user.member_id}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, file[0]);
 
     uploadTask.on(

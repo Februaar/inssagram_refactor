@@ -19,7 +19,7 @@ const SigninInput = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://api.inssagram.shop/signin", {
+      const res = await axios.post(`${process.env.SERVER_URL}/signin`, {
         email: email,
         password: password,
       });
@@ -40,6 +40,12 @@ const SigninInput = () => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); //엔터 키에 대한 기본 동작
+    }
+  };
+
   return (
     <SC.FormContainer>
       <SocialLogin />
@@ -47,16 +53,22 @@ const SigninInput = () => {
       <SC.SigninArea>
         <SC.InputItem>
           <SC.Input
+            type="text"
             alt="email"
             placeholder="이메일을 입력하세요"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
         </SC.InputItem>
         <SC.InputItem>
-          <SC.Input
+          <SC.Password
+            type="password"
             alt="password"
             placeholder="비밀번호를 입력하세요"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
         </SC.InputItem>
         <SC.SigninBtn>

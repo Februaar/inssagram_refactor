@@ -35,6 +35,20 @@ export const Input = styled.input`
   background-color: #fafafa;
 `;
 
+export const Password = styled.input`
+  width: 100%;
+  height: 37px;
+  padding: 9px 0 7px 8px;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+  font-family: Arial, Helvetica, sans-serif;
+
+  &:: placeholder {
+    font-family: JejuGothic;
+  }
+`;
+
 export const SigninBtn = styled.div`
   display: flex;
   align-items: center;

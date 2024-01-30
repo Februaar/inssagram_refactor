@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-const ProfileEdit = () => {
+const ProfileEditButton = () => {
   return (
     <>
       <Link href="/accounts/edit">
@@ -13,7 +13,7 @@ const ProfileEdit = () => {
   );
 };
 
-export default ProfileEdit;
+export default ProfileEditButton;
 
 export const Container = styled.div`
   display: flex;
