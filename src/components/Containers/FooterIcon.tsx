@@ -8,7 +8,6 @@ import { home, search, direct, film, noProfile } from "@/images/index";
 
 const FooterIconContainer = () => {
   const user: UserState = useSelector((state: RootState) => state.user);
-  const id = user.member_id;
 
   return (
     <>
@@ -29,13 +28,19 @@ const FooterIconContainer = () => {
           </Link>
         </SC.Icon>
         <SC.Icon>
-          <Link href="/direct/new">
+          <Link href="/direct/inbox">
             <Image src={direct} alt="direct-new" width={24} height={24} />
           </Link>
         </SC.Icon>
         <SC.Icon>
-          <Link href={`/${id}`}>
-            <Image src={noProfile} alt="user-page" width={24} height={24} />
+          <Link href={`/${user.member_id}`}>
+            <Image
+              src={user.image ? user.image : noProfile}
+              alt="user-page"
+              width={24}
+              height={24}
+              style={{ borderRadius: "100%" }}
+            />
           </Link>
         </SC.Icon>
       </SC.Container>

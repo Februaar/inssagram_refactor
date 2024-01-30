@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { UserState } from "@/types/UserTypes";
 import { addComment } from "@/redux/commentSlice";
 import * as SC from "@/styles/styled/inputs_comment";
 import { noProfile } from "@/images/index";
@@ -11,7 +13,9 @@ interface CommentInputProps {
 }
 
 const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
+  const user: UserState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+
   const [newComment, setNewComment] = useState<string>("");
   const isEmpty = newComment.trim() === "";
 
@@ -31,7 +35,7 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
       <SC.InputArea>
         <SC.MyProfile>
           <Image
-            src={noProfile}
+            src={user.image ? user.image : noProfile}
             alt="profile-image"
             width={32}
             height={32}

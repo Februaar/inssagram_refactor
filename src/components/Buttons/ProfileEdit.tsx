@@ -1,11 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-interface ProfileEditProps {
-  user: any;
-}
-
-const ProfileEdit: React.FC<ProfileEditProps> = ({ user }) => {
+const ProfileEditButton = () => {
   return (
     <>
       <Link href="/accounts/edit">
@@ -17,7 +13,7 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({ user }) => {
   );
 };
 
-export default ProfileEdit;
+export default ProfileEditButton;
 
 export const Container = styled.div`
   display: flex;

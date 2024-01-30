@@ -6,7 +6,6 @@ interface DescriptionCardProps {
 }
 
 const DescriptionCard: React.FC<DescriptionCardProps> = ({ user }) => {
-  console.log(user);
   return (
     <>
       {user && (
@@ -52,6 +51,7 @@ const Job = styled.span`
   position: relative;
   min-width: 0;
   max-width: 100%;
+  color: #0095f6;
   font-size: 14px;
   font-weight: 600;
   word-wrap: break-word;

@@ -1,7 +1,7 @@
 export const formatData = (timestamp: Date): string => {
   const now: Date = new Date();
 
-  const diffInSeconds = Math.floor((now - timestamp) / 1000);
+  const diffInSeconds = Math.floor((now.getTime() - timestamp.getTime()) / 1000);
 
   if (diffInSeconds < 60) {
     return `${diffInSeconds}초 전`;

@@ -12,6 +12,7 @@ const FollowersItem: React.FC<FollowersItemProps> = ({ member }) => {
         id: member.followerId,
         nickname: member.followerName,
         image: member.followerImage,
+        description: member.followerDescription,
       }}
       customContent={<DeleteButton />}
     />

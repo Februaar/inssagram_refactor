@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserPageData } from "@/types/UserTypes";
-import { PostContentData } from "@/types/PostTypes";
 import getUserDetail from "@/services/userInfo/getUserDetail";
 import UserHeader from "@/components/atoms/User";
 import ProfileCard from "@/components/atoms/Profile";
@@ -20,9 +19,8 @@ const UserPage = () => {
   const isCurrentUser = id === user.member_id.toString();
 
   const [userInfo, setUserInfo] = useState<UserPageData | undefined>();
-  console.log(userInfo);
-  const [postInfo, setPostInfo] = useState<PostContentData[] | undefined>();
-  console.log(postInfo);
+  const [postCount, setPostCount] = useState<number>();
+  const [iconName, setIconName] = useState<string>("");
 
   useEffect(() => {
     if (id) {
@@ -34,10 +32,14 @@ const UserPage = () => {
     try {
       const res = await getUserDetail(id);
       setUserInfo(res.data);
-      setPostInfo(res.data.posts);
+      setPostCount(res.data.posts);
     } catch (err) {
       console.error("error fetching member detail:", err);
     }
+  };
+
+  const handleIconClick = (iconName: string) => {
+    setIconName(iconName);
   };
 
   return (
@@ -46,13 +48,12 @@ const UserPage = () => {
         <UserHeader user={userInfo} isLoggined={isCurrentUser} />
         <ProfileCard user={userInfo} isLoggined={isCurrentUser} />
         <DescriptionCard user={userInfo} />
-        <UserNavigation user_id={id} user={userInfo} post={postInfo} />
+        <UserNavigation user_id={id} user={userInfo} post={postCount} />
         <PostNavigation
-          user_id={id}
-          post={postInfo}
           isLoggined={isCurrentUser}
+          onIconClick={handleIconClick}
         />
-        <PostContainer user_id={id} />
+        <PostContainer user_id={id} iconName={iconName} />
       </section>
       <Footer />
     </>

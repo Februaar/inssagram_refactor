@@ -13,6 +13,7 @@ import bookmark from "./icon/bookmark-icon.svg";
 import bookmarkFull from "./icon/bookmark-full-icon.svg";
 import comment from "./icon/comment-icon.svg";
 import direct from "./icon/direct-icon.svg";
+import directNew from "./icon/direct-new-icon.svg";
 import setting from "./icon/setting-icon.svg";
 import gridView from "./icon/grid-view-icon.svg";
 import calendarView from "./icon/calendar-view-icon.svg";
@@ -20,6 +21,7 @@ import tagged from "./icon/tagged-icon.svg";
 import accountAdd from "./icon/account-add-icon.svg";
 import chevronLeft from "./icon/chevron-left-icon.svg";
 import chevronRight from "./icon/chevron-right-icon.svg";
+import arrowBack from "./icon/arrow-back-icon.svg";
 import progressActivity from "./icon/progress-activity-icon.svg";
 import moreHoriz from "./icon/more-horiz-icon.svg";
 import brokenImage from "./icon/broken-image-icon.svg";
@@ -47,6 +49,7 @@ export {
   bookmarkFull,
   comment,
   direct,
+  directNew,
   setting,
   gridView,
   calendarView,
@@ -54,6 +57,7 @@ export {
   accountAdd,
   chevronLeft,
   chevronRight,
+  arrowBack,
   moreHoriz,
   progressActivity,
   brokenImage,

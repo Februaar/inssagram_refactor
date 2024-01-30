@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
 import { storage } from "../../../../firebase-config";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytesResumable,
+} from "firebase/storage";
 import * as SC from "@/styles/styled/accounts_edit";
 import { PageHeader } from "@/components/atoms/Header";
 import EditInput from "@/components/Inputs/Edit";
@@ -35,7 +39,7 @@ const AccountsEditPage = () => {
         console.log("file available at", downloadURL);
 
         return downloadURL;
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error during upload:", error);
         switch (error.code) {
           case "storage/canceled":
@@ -46,6 +50,9 @@ const AccountsEditPage = () => {
         }
       }
     }
+
+    // selectedImage가 없을 경우에 대한 처리
+    return "";
   };
 
   return (

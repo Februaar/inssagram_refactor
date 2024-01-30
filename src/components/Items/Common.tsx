@@ -24,7 +24,9 @@ const CommonItem: React.FC<CommonItemProps> = ({ member, customContent }) => {
                   <Image
                     src={member.image ? member.image : noProfile}
                     alt="프로필 이미지"
-                    style={{ width: "100%", height: "100%" }}
+                    width={44}
+                    height={44}
+                    style={{ borderRadius: "100%" }}
                   />
                 </Link>
               </SC.AccountImg>
@@ -43,7 +45,7 @@ const CommonItem: React.FC<CommonItemProps> = ({ member, customContent }) => {
                     <SC.Follow>팔로우</SC.Follow> */}
                   </SC.Details>
                   <SC.Desc>
-                    <SC.Text>{member.description}내 소개 입니다</SC.Text>
+                    <SC.Text>{member.description}</SC.Text>
                   </SC.Desc>
                 </SC.DetailsArea>
               </SC.InfoArea>

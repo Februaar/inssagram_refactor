@@ -8,14 +8,14 @@ import * as SC from "@/styles/styled/inputs_edit";
 
 interface EditInputProps {
   user: UserState;
-  onImageUpload: () => void;
+  onImageUpload: () => Promise<string>;
 }
 
 const EditInput: React.FC<EditInputProps> = ({ user, onImageUpload }) => {
   const profileURL = useSelector(selectprofileURL);
   const router = useRouter();
-  const [job, setJob] = useState<string | null>(null);
-  const [description, setDescription] = useState<string | null>(null);
+  const [job, setJob] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   const handleSubmit = async (
     id: any,

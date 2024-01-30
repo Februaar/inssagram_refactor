@@ -6,11 +6,12 @@ import { PageHeader } from "@/components/atoms/Header";
 import PostItem from "@/components/Items/Post";
 import Footer from "@/components/Footer";
 
-const PostPage: React.FC<PostContentData> = () => {
+const PostPage = () => {
   const pageTitle = "게시물";
   const router = useRouter();
   const { id } = router.query;
-  const [postDetail, setPostDetail] = useState();
+  const [postDetail, setPostDetail] = useState<PostContentData[]>([]);
+  console.log(postDetail);
 
   useEffect(() => {
     if (id) {

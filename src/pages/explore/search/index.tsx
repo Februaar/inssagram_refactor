@@ -81,7 +81,7 @@ const SearchPage = () => {
         searchResults.map((result) => (
           <SearchItem
             key={result.memberId}
-            member={result}
+            result={result}
             onClick={handlePostSearchValue}
           />
         ))}
