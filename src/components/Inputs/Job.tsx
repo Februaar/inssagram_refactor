@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
 import * as SC from "@/styles/styled/inputs_job";

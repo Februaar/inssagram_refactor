@@ -5,10 +5,10 @@ import { PostContentData } from "@/types/PostTypes";
 import postLikePost from "@/services/postInfo/postLikePost";
 import postSavePost from "@/services/postInfo/postSavePost";
 import Swal from "sweetalert2";
-import * as SC from "@/styles/styled/containers_icon_container";
+import styled from "styled-components";
 import { comment, direct } from "@/images/index";
-import Favorite from "../Icons/Favorite";
-import Save from "../Icons/Save";
+import FavoriteIcon from "../Icons/Favorite";
+import SaveIcon from "../Icons/Save";
 
 interface PostIconProps {
   post: PostContentData;
@@ -52,15 +52,19 @@ const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
       //   showConfirmButton: false,
       //   timer: 1500,
       // });
-    } catch (err) {
+    } catch (err: any) {
+      if (err.response.status === 400) {
+        const message = "이미 저장된 게시글 입니다";
+        alert(message);
+      }
       console.error("save post:", err);
     }
   };
 
   return (
     <>
-      <SC.Container>
-        <Favorite
+      <PostIcons>
+        <FavoriteIcon
           onClick={() => handleLikePostClick(post.postId)}
           isLiked={isLiked}
         />
@@ -68,22 +72,37 @@ const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
           href={`/post/${post.postId}/comments`}
           style={{ display: "flex" }}
         >
-          <SC.Icon>
+          <span>
             <Image src={comment} alt="comments-page" width={24} height={24} />
-          </SC.Icon>
+          </span>
         </Link>
         <Link href="/direct/new" style={{ display: "flex" }}>
-          <SC.Icon>
+          <span>
             <Image src={direct} alt="direct-page" width={24} height={24} />
-          </SC.Icon>
+          </span>
         </Link>
-        <Save
+        <SaveIcon
           onClick={() => handleSavePostClick(post.postId)}
           isSaved={isSaved}
         />
-      </SC.Container>
+      </PostIcons>
     </>
   );
 };
 
 export default PostIconContainer;
+
+const PostIcons = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 4px;
+  padding: 6px 0 8px;
+  height: 54px;
+
+  span {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    cursor: pointer;
+  }
+`;

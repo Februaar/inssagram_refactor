@@ -21,5 +21,5 @@ export const SubTitle = styled.div`
 export const DeleteAll = styled.button`
   display: flex;
   justify-content: flex-end;
-  color: #0095f6;
+  color: #92a8d1;
 `;

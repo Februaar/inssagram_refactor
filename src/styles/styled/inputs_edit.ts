@@ -180,7 +180,7 @@ export const Submit = styled.div`
   text-align: center;
   text-overflow: ellipsis;
   letter-spacing: 1px;
-  background-color: #0095f6;
+  background-color: #92a8d1;
   border: 1px solid rgb(0, 0, 0, 0.4);
   border-radius: 8px;
 `;

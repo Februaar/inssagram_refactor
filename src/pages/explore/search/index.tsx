@@ -73,7 +73,7 @@ const SearchPage = () => {
   };
 
   return (
-    <>
+    <section>
       <SearchInput onSearch={handleSearch} />
 
       {/* 검색 결과 */}
@@ -107,7 +107,7 @@ const SearchPage = () => {
         ))}
 
       <Footer />
-    </>
+    </section>
   );
 };
 

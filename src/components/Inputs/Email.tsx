@@ -11,6 +11,16 @@ const EmailInput = () => {
   const { dispatch } = useSignUp();
   const [email, setEmail] = useState<string>("");
 
+  const handleAddressSelect = (address: string) => {
+    setEmail((prevEmail) => {
+      if (prevEmail.trim() !== "") {
+        return `${prevEmail}${address}`;
+      }
+
+      return address;
+    });
+  };
+
   const handleSubmit = async () => {
     if (!validateEmail(email)) {
       alert("올바른 이메일 형식이 아닙니다.");
@@ -57,10 +67,22 @@ const EmailInput = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <SC.AddressType>
-            <AddressButton address="@gmail.com" />
-            <AddressButton address="@naver.com" />
-            <AddressButton address="@kakao.com" />
-            <AddressButton address="@outlook.com" />
+            <AddressButton
+              address="@gmail.com"
+              onSelect={handleAddressSelect}
+            />
+            <AddressButton
+              address="@naver.com"
+              onSelect={handleAddressSelect}
+            />
+            <AddressButton
+              address="@kakao.com"
+              onSelect={handleAddressSelect}
+            />
+            <AddressButton
+              address="@outlook.com"
+              onSelect={handleAddressSelect}
+            />
           </SC.AddressType>
         </SC.EmailInfo>
         <SC.SubmitButton>

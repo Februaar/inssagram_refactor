@@ -3,12 +3,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
 import { storage } from "../../../../firebase-config";
-import {
-  ref,
-  getDownloadURL,
-  uploadBytesResumable,
-} from "firebase/storage";
-import * as SC from "@/styles/styled/accounts_edit";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import styled from "styled-components";
 import { PageHeader } from "@/components/atoms/Header";
 import EditInput from "@/components/Inputs/Edit";
 import ProfileEditItem from "@/components/Items/Profile";
@@ -58,17 +54,43 @@ const AccountsEditPage = () => {
   return (
     <section>
       <PageHeader title={pageTitle} />
-      <SC.Main>
-        <SC.PageContainer>
-          <SC.ContentArea>
+      <AccountEditContainer>
+        <div className="edit-area">
+          <div className="edit-item">
             <ProfileEditItem user={user} onImageChange={onImageChange} />
             <EditInput user={user} onImageUpload={handleImageUpload} />
-          </SC.ContentArea>
-        </SC.PageContainer>
-      </SC.Main>
+          </div>
+        </div>
+      </AccountEditContainer>
       <Footer />
     </section>
   );
 };
 
 export default AccountsEditPage;
+
+const AccountEditContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .edit-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 0;
+    overflow-y: visible;
+    overflow-x: visible;
+
+    .edit-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 12px;
+      overflow-y: visible;
+      overflow-x: visible;
+    }
+  }
+`;

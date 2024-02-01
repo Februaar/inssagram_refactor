@@ -64,8 +64,15 @@ const PostContainer: React.FC<PostContainerProps> = ({ user_id, iconName }) => {
     } else if (iconName === "calendar") {
       return (
         <>
-          {posts &&
-            posts.map((post) => <PostItem key={post.postId} post={post} />)}
+          {posts && posts.length > 0 ? (
+            <main style={{ marginBottom: "55px" }}>
+              {posts.map((post) => (
+                <PostItem key={post.postId} post={post} />
+              ))}
+            </main>
+          ) : (
+            <Error message="작성한 게시글이 없습니다" />
+          )}
         </>
       );
     } else if (iconName === "grid" || iconName === "") {

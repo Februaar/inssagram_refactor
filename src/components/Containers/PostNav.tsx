@@ -1,5 +1,5 @@
 import Image from "next/image";
-import * as SC from "@/styles/styled/containers_postnav";
+import styled from "styled-components";
 import { gridView, calendarView, bookmark, tagged } from "@/images/index";
 
 interface PostNavProps {
@@ -17,7 +17,7 @@ const PostNavigation: React.FC<PostNavProps> = ({
 
   return (
     <>
-      <SC.Container>
+      <NavContainer>
         <Image
           src={gridView}
           alt="grid-view"
@@ -48,9 +48,22 @@ const PostNavigation: React.FC<PostNavProps> = ({
           height={24}
           onClick={() => handleIconClick("tagged")}
         />
-      </SC.Container>
+      </NavContainer>
     </>
   );
 };
 
 export default PostNavigation;
+
+const NavContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 45px;
+  padding: 12px 0;
+  border-top: 1px solid #dbdbdb;
+
+  & > * {
+    cursor: pointer;
+  }
+`;

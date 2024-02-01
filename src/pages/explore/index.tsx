@@ -31,13 +31,13 @@ const ExplorePage = () => {
   };
 
   return (
-    <>
+    <section>
       <>
         <SearchInput onSearch={handleSearch} />
         {loading ? <Loading /> : <PostView posts={posts} />}
       </>
       <Footer />
-    </>
+    </section>
   );
 };
 

@@ -42,6 +42,14 @@ export const Detail = styled.input`
   background-color: #fafafa;
 `;
 
+export const Password = styled(Detail)`
+  font-family: Arial, Helvetica, sans-serif;
+
+  &:: placeholder {
+    font-family: JejuGothic;
+  }
+`;
+
 export const SubmitButton = styled.div`
   display: flex;
   justify-content: center;
@@ -49,7 +57,7 @@ export const SubmitButton = styled.div`
   height: 40px;
   margin: 16px 0;
   border-radius: 8px;
-  background-color: #0095f6;
+  background-color: #92a8d1;
 `;
 
 export const Btn = styled.button`

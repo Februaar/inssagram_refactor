@@ -21,6 +21,6 @@ export const ResultArea = styled.div`
 export const Account = styled.p``;
 
 export const Job = styled.span`
-  color: #0095f6;
+  color: #92a8d1;
   font-size: 12px;
 `;

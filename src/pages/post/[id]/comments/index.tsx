@@ -10,11 +10,11 @@ const CommentedPostPage = () => {
   const postId: number = typeof id === "string" ? parseInt(id, 10) : -1;
 
   return (
-    <>
+    <section>
       <PageHeader title={pageTitle} />
       <CommentContainer postId={postId} />
       <Footer />
-    </>
+    </section>
   );
 };
 

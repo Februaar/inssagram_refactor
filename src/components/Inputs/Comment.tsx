@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
 import { addComment } from "@/redux/commentSlice";
-import * as SC from "@/styles/styled/inputs_comment";
 import { noProfile } from "@/images/index";
+import styled from "styled-components";
 import postNewComment from "@/services/postInfo/postNewComment";
 
 interface CommentInputProps {
@@ -31,9 +31,9 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
   };
 
   return (
-    <SC.InputContainer>
-      <SC.InputArea>
-        <SC.MyProfile>
+    <InputContainer>
+      <div className="container">
+        <div className="profile">
           <Image
             src={user.image ? user.image : noProfile}
             alt="profile-image"
@@ -41,27 +41,97 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
             height={32}
             style={{ borderRadius: "100%" }}
           />
-        </SC.MyProfile>
-        <SC.TextForm>
-          <SC.TextArea>
-            <SC.Text
+        </div>
+        <form>
+          <div className="input-area">
+            <textarea
+              className="text-area"
               value={newComment}
               aria-label="댓글 달기..."
               placeholder="댓글 달기..."
               onChange={(e) => setNewComment(e.target.value)}
             />
             {isEmpty ? null : (
-              <SC.Submit
+              <span
+                className="submit"
                 onClick={() => handleCommentSubmit(postId, newComment)}
               >
                 게시
-              </SC.Submit>
+              </span>
             )}
-          </SC.TextArea>
-        </SC.TextForm>
-      </SC.InputArea>
-    </SC.InputContainer>
+          </div>
+        </form>
+      </div>
+    </InputContainer>
   );
 };
 
 export default CommentInput;
+
+const InputContainer = styled.div`
+  position: fixed;
+  bottom: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 375px;
+  height: 80px;
+  padding: 8px;
+  border-top: 1px solid #dbdbdb;
+  z-index: 5;
+
+  .container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    .profile {
+      position: relative;
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      margin-right: 5px;
+      background-color: transparent;
+    }
+
+    form {
+      flex-grow: 1;
+      flex-shrink: 1;
+      display: flex;
+      flex-direction: row;
+      padding: 8px;
+      border: 1px solid #dbdbdb;
+      border-radius: 38px;
+
+      .input-area {
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        vertical-align: baseline;
+
+        .text-area {
+          flex-grow: 1;
+          display: flex;
+          resize: none;
+          width: 0;
+          height: 18px !important;
+          max-height: 80px;
+        }
+
+        .submit {
+          display: flex;
+          align-items: center;
+          min-width: 28px;
+          height: 18px;
+          color: #92a8d1;
+          margin-left: 8px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+`;

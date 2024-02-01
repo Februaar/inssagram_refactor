@@ -32,6 +32,7 @@ import createStory from "./icon/create-story-icon.svg";
 
 import noProfile from "./no-profile.jpg";
 import kakaoTalk from "./kakaotalk.png";
+import Phone from "./Phone.png";
 
 export {
   menu,
@@ -67,4 +68,5 @@ export {
   createStory,
   noProfile,
   kakaoTalk,
+  Phone,
 };

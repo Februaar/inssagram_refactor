@@ -6,9 +6,11 @@ interface ProgressBarProps {
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ percent }) => {
   return (
-    <StyledProgressBar percent={percent}>
-      <ColoredProgressBar percent={percent} />
-    </StyledProgressBar>
+    <div style={{ width: "375px" }}>
+      <StyledProgressBar className="bar-container" percent={percent}>
+        <ColoredProgressBar percent={percent} />
+      </StyledProgressBar>
+    </div>
   );
 };
 

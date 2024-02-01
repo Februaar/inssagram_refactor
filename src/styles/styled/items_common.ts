@@ -126,7 +126,7 @@ export const Follow = styled.button`
   position: relative;
   display: inline-block;
   padding: 0;
-  color: #0095f6;
+  color: #92a8d1;
 `;
 
 export const Desc = styled.span`

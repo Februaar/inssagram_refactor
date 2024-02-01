@@ -11,7 +11,6 @@ const PostPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const [postDetail, setPostDetail] = useState<PostContentData[]>([]);
-  console.log(postDetail);
 
   useEffect(() => {
     if (id) {
@@ -29,11 +28,11 @@ const PostPage = () => {
   };
 
   return (
-    <>
+    <section>
       <PageHeader title={pageTitle} />
       <PostItem post={postDetail} />
       <Footer />
-    </>
+    </section>
   );
 };
 

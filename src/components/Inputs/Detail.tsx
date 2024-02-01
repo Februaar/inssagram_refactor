@@ -54,12 +54,14 @@ const DetailInput = () => {
         <SC.DetailInfo>
           <SC.DetailArea>
             <SC.Detail
+              type="text"
               alt="nickname"
               placeholder="닉네임"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
-            <SC.Detail
+            <SC.Password
+              type="password"
               alt="password"
               placeholder="영문, 숫자, 특수문자 조합 (6-10자)"
               value={password}
