@@ -47,7 +47,7 @@ export const SubmitButton = styled.div`
   height: 40px;
   margin: 16px 0;
   border-radius: 8px;
-  background-color: #0095f6;
+  background-color: #92a8d1;
 `;
 
 export const Btn = styled.button`

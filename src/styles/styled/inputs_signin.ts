@@ -35,13 +35,7 @@ export const Input = styled.input`
   background-color: #fafafa;
 `;
 
-export const Password = styled.input`
-  width: 100%;
-  height: 37px;
-  padding: 9px 0 7px 8px;
-  border-radius: 3px;
-  border: 1px solid #dbdbdb;
-  background-color: #fafafa;
+export const Password = styled(Input)`
   font-family: Arial, Helvetica, sans-serif;
 
   &:: placeholder {
@@ -57,7 +51,7 @@ export const SigninBtn = styled.div`
   width: 100%;
   height: 35px;
   border-radius: 8px;
-  background-color: #0095f6;
+  background-color: #92a8d1;
 `;
 
 export const Btn = styled.button`
@@ -79,5 +73,5 @@ export const Explan = styled.span`
 
 export const SignupBtn = styled.button`
   margin-left: 5px;
-  color: #0095f6;
+  color: #92a8d1;
 `;

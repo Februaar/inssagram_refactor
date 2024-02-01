@@ -4,10 +4,7 @@
 }
 
 #__next {
-  width: 430px;
-  height: 932px;
-  margin: 0 auto;
-  font: inherit;
+  font-family: "JejuGothic";
 }
 
 * {
@@ -59,8 +56,27 @@ li {
 }
 
 section {
+  position: relative;
   display: flex;
   flex-direction: column;
+  width: 375px;
+  height: 812px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  transition: overflow-y 0.3s;
+}
+
+section:hover {
+  overflow-y: auto;
+}
+
+section::-webkit-scrollbar {
+  width: 8px;
+}
+
+section::-webkit-scrollbar-thumb {
+  background-color: #92a8d1;
+  border-radius: 8px;
 }
 
 main {

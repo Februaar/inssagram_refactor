@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
 import { PostContentData } from "@/types/PostTypes";
-import * as SC from "@/styles/styled/atoms_top";
+import styled from "styled-components";
 import { noProfile, moreHoriz } from "@/images/index";
 import InfoModal from "@/components/Modals/Info";
 import UserInfoModal from "@/components/Modals/User";
@@ -47,10 +47,10 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
   return (
     <>
       {writer && (
-        <SC.Container>
+        <PostTopContainer>
           <Link href={`/${writer.memberId}`}>
-            <SC.Account>
-              <SC.Profile>
+            <header>
+              <div className="profile">
                 <Image
                   src={writer.memberImage ? writer.memberImage : noProfile}
                   alt="profile"
@@ -58,14 +58,14 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
                   height={32}
                   style={{ borderRadius: "100%" }}
                 />
-              </SC.Profile>
-              <SC.Id>{writer.nickName}</SC.Id>
-            </SC.Account>
+              </div>
+              <div className="id">{writer.nickName}</div>
+            </header>
           </Link>
-          <SC.More onClick={handleInfoModal}>
+          <button className="more" onClick={handleInfoModal}>
             <Image src={moreHoriz} alt="profile" width={24} height={24} />
-          </SC.More>
-        </SC.Container>
+          </button>
+        </PostTopContainer>
       )}
       {!isCurrentUser
         ? isInfoModalOpen && (
@@ -92,3 +92,35 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
 };
 
 export default PostTop;
+
+const PostTopContainer = styled.div`
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+
+  header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 14px 4px 14px 16px;
+
+    .profile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+    }
+
+    .id {
+      margin-left: 12px;
+    }
+  }
+
+  .more {
+    padding: 8px;
+  }
+`;

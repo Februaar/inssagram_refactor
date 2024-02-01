@@ -64,7 +64,7 @@ const ProfileEditItem: React.FC<ProfileEditItemProps> = ({
               >
                 <span
                   style={{
-                    color: "#0095f6",
+                    color: "#92a8d1",
                     backgroundColor: "#efefef",
                     cursor: "pointer",
                   }}

@@ -3,7 +3,7 @@ import { OriginalCommentData } from "@/types/PostTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { setComments } from "@/redux/commentSlice";
 import { RootState } from "@/redux/store";
-import * as SC from "@/styles/styled/containers_comment";
+import styled from "styled-components";
 import OriginalItem from "@/components/Items/Original";
 import CommentItem from "@/components/Items/Comment";
 import CommentInput from "@/components/Inputs/Comment";
@@ -47,11 +47,11 @@ const CommentContainer: React.FC<CommentContainerProps> = ({ postId }) => {
 
   return (
     <>
-      <SC.Container>
-        <SC.DetailArea>
-          <SC.ContentsArea>
+      <Container>
+        <div className="content-area">
+          <div>
             {original && <OriginalItem original={original} />}
-            <SC.CommentArea>
+            <div className="comment-area">
               {comments ? (
                 comments.map((comment, index) => (
                   <CommentItem key={index} comment={comment} />
@@ -59,13 +59,37 @@ const CommentContainer: React.FC<CommentContainerProps> = ({ postId }) => {
               ) : (
                 <div>아직 댓글이 없습니다.</div>
               )}
-            </SC.CommentArea>
-          </SC.ContentsArea>
+            </div>
+          </div>
           {original && <CommentInput postId={original.postId} />}
-        </SC.DetailArea>
-      </SC.Container>
+        </div>
+      </Container>
     </>
   );
 };
 
 export default CommentContainer;
+
+const Container = styled.div`
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: calc(100vh - 45px - 50px);
+  overflow-y: visible;
+  overflow-x: visible;
+
+  .content-area {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+
+      .comment-area {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+`;

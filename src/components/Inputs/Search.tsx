@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import * as SC from "@/styles/styled/inputs_search";
+import styled from "styled-components";
 import { search } from "@/images/index";
 
 interface SearchInputProps {
@@ -14,21 +14,34 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   };
 
   return (
-    <>
-      <SC.InputContainer>
-        <SC.SearchIcon>
-          <Image src={search} alt="search-input" width={18} height={18} />
-        </SC.SearchIcon>
-        <Link href="/explore/search">
-          <SC.Input
-            type="text"
-            placeholder="검색"
-            onChange={handleInputChange}
-          />
-        </Link>
-      </SC.InputContainer>
-    </>
+    <InputContainer>
+      <div className="icon">
+        <Image src={search} alt="search-input" width={18} height={18} />
+      </div>
+      <Link href="/explore/search">
+        <input type="text" placeholder="검색" onChange={handleInputChange} />
+      </Link>
+    </InputContainer>
   );
 };
 
 export default SearchInput;
+
+const InputContainer = styled.div`
+  display: grid;
+  grid-template-columns: 0.1fr 5fr;
+  align-items: center;
+  margin: 10px 16px;
+  padding: 8px 16px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+
+  .icon {
+    margin-right: 8px;
+  }
+
+  .input {
+    width: 100%;
+    padding: 0 8px;
+  }
+`;

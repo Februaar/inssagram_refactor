@@ -7,7 +7,6 @@ export const Header = styled.div`
   justify-content: space-between;
   width: 100%;
   min-height: 44px;
-  height: 44px;
   padding: 0 16px;
   border-bottom: 1px solid #dbdbdb;
 `;

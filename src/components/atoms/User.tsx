@@ -2,7 +2,7 @@ import { UserPageData } from "@/types/UserTypes";
 import Link from "next/link";
 import Image from "next/image";
 import { setting, accountAdd } from "@/images/index";
-import * as SC from "@/styles/styled/atoms_user";
+import styled from "styled-components";
 import { PageHeader } from "@/components/atoms/Header";
 
 interface UserHeaderProps {
@@ -14,15 +14,15 @@ const UserHeader: React.FC<UserHeaderProps> = ({ user, isLoggined }) => {
   return (
     <>
       {isLoggined && user ? (
-        <SC.Container>
-          <Link href="/accounts/setting">
+        <HeaderContainer>
+          <Link href="/accounts/edit">
             <Image src={setting} alt="profile" width={24} height={24} />
           </Link>
           <h2>{user.nickname}</h2>
           <Link href="/explore/people">
             <Image src={accountAdd} alt="profile" width={24} height={24} />
           </Link>
-        </SC.Container>
+        </HeaderContainer>
       ) : (
         user && <PageHeader title={user.nickname} />
       )}
@@ -31,3 +31,13 @@ const UserHeader: React.FC<UserHeaderProps> = ({ user, isLoggined }) => {
 };
 
 export default UserHeader;
+
+const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 375px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-bottom: 1px solid #dbdbdb;
+`;

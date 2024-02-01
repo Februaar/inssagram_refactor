@@ -12,10 +12,12 @@ const Loading: React.FC<LoadingProps> = () => {
   );
 };
 
-const LoadingIcon = styled.div`
+const LoadingIcon = styled.span`
   position: absolute;
   top: 25%;
-  right: 50%;
+  right: 45%;
+  margin: 0 auto;
+  z-index: 10;
 `;
 
 export default Loading;

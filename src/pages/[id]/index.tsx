@@ -43,20 +43,18 @@ const UserPage = () => {
   };
 
   return (
-    <>
-      <section>
-        <UserHeader user={userInfo} isLoggined={isCurrentUser} />
-        <ProfileCard user={userInfo} isLoggined={isCurrentUser} />
-        <DescriptionCard user={userInfo} />
-        <UserNavigation user_id={id} user={userInfo} post={postCount} />
-        <PostNavigation
-          isLoggined={isCurrentUser}
-          onIconClick={handleIconClick}
-        />
-        <PostContainer user_id={id} iconName={iconName} />
-      </section>
+    <section>
+      <UserHeader user={userInfo} isLoggined={isCurrentUser} />
+      <ProfileCard user={userInfo} isLoggined={isCurrentUser} />
+      <DescriptionCard user={userInfo} />
+      <UserNavigation user_id={id} user={userInfo} post={postCount} />
+      <PostNavigation
+        isLoggined={isCurrentUser}
+        onIconClick={handleIconClick}
+      />
+      <PostContainer user_id={id} iconName={iconName} />
       <Footer />
-    </>
+    </section>
   );
 };
 

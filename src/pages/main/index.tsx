@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setPosts } from "@/redux/postSlice";
 import getPostAll from "@/services/postInfo/getPostAll";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StoryItem from "@/components/Items/Story";
@@ -14,7 +15,6 @@ const MainPage = () => {
   const posts = useSelector((state: RootState) => state.post.posts);
 
   const requireToken = user === null;
-  // console.log(requireToken);
 
   const fetchPostAllData = useCallback(async () => {
     try {
@@ -32,7 +32,7 @@ const MainPage = () => {
   return (
     <section>
       <Header />
-      <main style={{ paddingTop: "44px", marginBottom: "55px" }}>
+      <main style={{ paddingTop: "44px", marginBottom: "20px" }}>
         <StoryItem />
         {requireToken ? (
           <div style={{ padding: " 12px 16px" }}>로그인 해보세요</div>

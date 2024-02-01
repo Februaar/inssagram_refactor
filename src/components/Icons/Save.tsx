@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { bookmark, bookmarkFull } from "@/images/index";
-import * as SC from "@/styles/styled/containers_icon_container";
+import styled from "styled-components";
 
 interface SaveIconProps {
   onClick: () => void;
@@ -10,16 +10,23 @@ interface SaveIconProps {
 const SaveIcon: React.FC<SaveIconProps> = ({ onClick, isSaved }) => {
   return (
     <>
-      <SC.SaveIcon onClick={onClick}>
+      <Icon onClick={onClick}>
         <Image
           src={isSaved ? bookmarkFull : bookmark}
           alt="profile"
           width={24}
           height={24}
         />
-      </SC.SaveIcon>
+      </Icon>
     </>
   );
 };
 
 export default SaveIcon;
+
+const Icon = styled.span`
+  padding: 8px;
+  margin: 0;
+  margin-left: auto;
+  cursor: pointer;
+`;

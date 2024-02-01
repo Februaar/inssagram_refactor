@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 interface AddressButtonProps {
   address: string;
+  onSelect: (address: string) => void;
 }
 
-const AddressButton: React.FC<AddressButtonProps> = (props) => {
-  const handleAddressClick = () => {};
+const AddressButton: React.FC<AddressButtonProps> = ({ address, onSelect }) => {
+  const handleClick = () => {
+    onSelect(address);
+  };
+  
   return (
     <>
-      <Container onClick={handleAddressClick}>{props.address}</Container>
+      <Container onClick={handleClick}>{address}</Container>
     </>
   );
 };

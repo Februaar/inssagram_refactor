@@ -1,33 +1,3 @@
-import styled from "styled-components";
-
-export const Container = styled.div`
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1.5px solid #dbdbdb;
-  width: 430px;
-  height: 44px;
-  padding: 0 16px;
-  z-index: 10;
-`;
-
-export const Logo = styled.h1`
-  font-size: 25px;
-`;
-
-export const IconContainer = styled.div`
-  display: flex;
-  gap: 10px;
-  width: 58px;
-  height: 24px;
-`;
-
-export const CreateIcon = styled.button``;
-
-export const NotificationIcon = styled.button``;
-
 // export const NotiAlarm = styled.span`
 //   position: absolute;
 //   top: 10px;

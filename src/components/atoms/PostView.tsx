@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PostContentData } from "@/types/PostTypes";
 import { brokenImage } from "@/images/index";
-import * as SC from "@/styles/styled/atoms_postview";
+import styled from "styled-components";
 
 interface PostContainerProps {
   posts: PostContentData[] | undefined;
@@ -10,24 +10,43 @@ interface PostContainerProps {
 
 const PostView: React.FC<PostContainerProps> = ({ posts }) => {
   return (
-    <>
-      <SC.Article>
-        {posts &&
-          posts.map((post) => (
-            <Link href={`/post/${post.postId}`} key={post.postId}>
-              <SC.PreView>
-                <Image
-                  src={post.image ? post.image[0] : brokenImage}
-                  alt="image"
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </SC.PreView>
-            </Link>
-          ))}
-      </SC.Article>
-    </>
+    <ViewContainer>
+      {posts &&
+        posts.map((post) => (
+          <Link href={`/post/${post.postId}`} key={post.postId}>
+            <div>
+              <Image
+                src={post.image ? post.image[0] : brokenImage}
+                alt="image"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+          </Link>
+        ))}
+    </ViewContainer>
   );
 };
 
 export default PostView;
+
+const ViewContainer = styled.article`
+  position: relative;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
+  width: 100%;
+
+  div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    width: 123px;
+    height: 123px;
+    border: 1px solid #dbdbdb;
+  }
+`;

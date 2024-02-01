@@ -29,7 +29,7 @@ export const DetailInfo = styled.div`
 `;
 
 export const Job = styled.span`
-  color: #0095f6;
+  color: #92a8d1;
 `;
 
 export const FriendStatus = styled.span`

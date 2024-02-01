@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
 import * as SC from "@/styles/styled/inputs_code";
@@ -22,11 +22,11 @@ const CodeInput = () => {
       } else {
         console.error("Unexpected response status:", res.status);
       }
-    } catch (error: any) {
-      if (error.response && error.response.status === 409) {
-        alert(error.response.data.message);
+    } catch (err: any) {
+      if (err.response && err.response.status === 409) {
+        alert(err.response.data.message);
       } else {
-        console.error("error:", error);
+        console.error("error:", err);
       }
     }
   };
@@ -36,6 +36,7 @@ const CodeInput = () => {
       <SC.Container>
         <SC.Title>인증 코드 입력</SC.Title>
         <SC.SubTitle>
+          <span style={{ paddingRight: "3px" }}>{state.emailData}</span>
           주소로 전송된 인증 코드를 입력하세요.
         </SC.SubTitle>
         <SC.CodeInfo>

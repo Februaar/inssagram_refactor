@@ -1,5 +1,5 @@
 import { UserPageData } from "@/types/UserTypes";
-import * as SC from "@/styles/styled/containers_usernav";
+import styled from "styled-components";
 
 interface UserNavProps {
   user_id: any;
@@ -11,27 +11,55 @@ const UserNavigation: React.FC<UserNavProps> = ({ user_id, user, post }) => {
   return (
     <>
       {user && (
-        <SC.Container>
-          <SC.Nav>
-            <SC.Title>게시물</SC.Title>
+        <NavContainer>
+          <li>
+            <span className="title">게시물</span>
             <span>{post}</span>
-          </SC.Nav>
-          <SC.Nav>
-            <SC.Link href={`/${user_id}/followers`}>
-              <SC.Title>팔로워</SC.Title>
+          </li>
+          <li>
+            <a href={`/${user_id}/followers`}>
+              <span className="title">팔로워</span>
               <span>{user.followers.length}</span>
-            </SC.Link>
-          </SC.Nav>
-          <SC.Nav>
-            <SC.Link href={`/${user_id}/following`}>
-              <SC.Title>팔로우</SC.Title>
+            </a>
+          </li>
+          <li>
+            <a href={`/${user_id}/following`}>
+              <span className="title">팔로우</span>
               <span>{user.following.length}</span>
-            </SC.Link>
-          </SC.Nav>
-        </SC.Container>
+            </a>
+          </li>
+        </NavContainer>
       )}
     </>
   );
 };
 
 export default UserNavigation;
+
+const NavContainer = styled.ul`
+  display: flex;
+  justify-content: space-evenly;
+  height: 60px;
+  padding: 12px 0;
+  border-top: 1px solid #dbdbdb;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 33.3%;
+
+    .title {
+      color: #737373;
+    }
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 35.33px;
+  }
+`;

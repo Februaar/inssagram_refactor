@@ -14,7 +14,7 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ noti }) => {
     <>
       {noti ? (
         <ItemContainer>
-          <Account>
+          <div className="profile">
             <Image
               src={noti.sender_image ? noti.sender_image : noProfile}
               alt="profile"
@@ -22,17 +22,17 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ noti }) => {
               height={44}
               style={{ borderRadius: "100%" }}
             />
-          </Account>
-          <Message>{noti.message}</Message>
+          </div>
+          <span className="message">{noti.message}</span>
           {noti.post_id !== undefined ? (
-            <Post>
+            <div className="post">
               <Image
                 src={noti.post_image ? noti.post_image : brokenImage}
                 alt="broken-image"
                 width={24}
                 height={24}
-              /> 
-            </Post>
+              />
+            </div>
           ) : (
             <FollowButton />
           )}
@@ -47,28 +47,31 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ noti }) => {
 export default AlarmItem;
 
 const ItemContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 62px;
   padding: 8px 16px;
-`;
 
-const Account = styled.div`
-  width: 44px;
-  margin-right: 14px;
-`;
+  .profile {
+    margin-right: 14px;
+  }
 
-const Message = styled.div`
-  display: flex;
-  align-items: center;
-  min-width: 240px;
-`;
+  .message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
 
-const Post = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  margin-left: 14px;
+  .post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    margin-left: 12px;
+  }
 `;
