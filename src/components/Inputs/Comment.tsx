@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
 import { addComment } from "@/redux/commentSlice";
-import { noProfile } from "@/images/index";
+import { noProfile } from "@/images";
 import styled from "styled-components";
 import postNewComment from "@/services/postInfo/postNewComment";
 

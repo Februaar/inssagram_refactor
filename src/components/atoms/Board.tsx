@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
-import { noProfile, brokenImage } from "@/images/index";
+import { noProfile, brokenImage } from "@/images";
 
 interface BoardContentsProps {
   userProfile: string | null;

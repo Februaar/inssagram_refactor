@@ -5,7 +5,7 @@ import { store } from "@/redux/store";
 import { SignUpProvider } from "@/context/SignUp";
 import Image from "next/image";
 import styled from "styled-components";
-import { Phone } from "@/images/index";
+import { Phone } from "@/images";
 import LaptopBackground from "@/components/atoms/LaptopBackground";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {

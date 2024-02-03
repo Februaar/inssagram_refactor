@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { PostContentData } from "@/types/PostTypes";
 import styled from "styled-components";
-import { noProfile, calendar, homePin } from "@/images/index";
+import { noProfile, calendar, homePin } from "@/images";
 
 interface AccountInfoModalProps {
   writer: PostContentData | undefined;

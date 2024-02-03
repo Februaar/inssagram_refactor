@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PostContentData } from "@/types/PostTypes";
-import { brokenImage } from "@/images/index";
+import { brokenImage } from "@/images";
 import styled from "styled-components";
 
 interface PostContainerProps {

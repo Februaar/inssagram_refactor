@@ -47,7 +47,7 @@ const LaptopBackground = () => {
       </TitleContainer>
 
       <TextContainer>
-        <p>친구 위치 공유 플랫폼</p>
+        <p>직장인들을 위한 소셜 플랫폼</p>
         {/* <img alt="logo" src={Logo} /> */}
       </TextContainer>
     </Container>

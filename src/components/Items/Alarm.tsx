@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { NotificationData } from "@/types/NotificationTypes";
 import styled from "styled-components";
-import { noProfile, brokenImage } from "@/images/index";
+import { noProfile, brokenImage } from "@/images";
 import Error from "../atoms/Error";
 import FollowButton from "../Buttons/Follow";
 

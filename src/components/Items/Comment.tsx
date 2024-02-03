@@ -7,7 +7,7 @@ import { removeComment } from "@/redux/commentSlice";
 import { CommentData } from "@/types/PostTypes";
 import { formatData } from "@/utils/date";
 import * as SC from "@/styles/styled/items_comment";
-import { noProfile, favorite, moreHoriz } from "@/images/index";
+import { noProfile, favorite, moreHoriz } from "@/images";
 import CommentModal from "@/components/Modals/Comment";
 import deleteComment from "@/services/postInfo/deleteComment";
 

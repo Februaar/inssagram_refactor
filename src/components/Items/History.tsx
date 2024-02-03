@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as SC from "@/styles/styled/inputs_history";
-import { noProfile, close } from "@/images/index";
+import { noProfile, close } from "@/images";
 import { SearchHistoryData } from "@/types/SearchTypes";
 
 interface HistoryItemProps {

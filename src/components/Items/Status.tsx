@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { LikedPostMemberData } from "@/types/UserTypes";
-import { noProfile } from "@/images/index";
+import { noProfile } from "@/images";
 import styled from "styled-components";
 import FollowButton from "@/components/Buttons/Follow";
 

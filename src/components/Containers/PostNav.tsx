@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { gridView, calendarView, bookmark, tagged } from "@/images/index";
+import { gridView, calendarView, bookmark, tagged } from "@/images";
 
 interface PostNavProps {
   isLoggined: boolean;

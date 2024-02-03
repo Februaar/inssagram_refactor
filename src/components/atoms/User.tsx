@@ -1,7 +1,7 @@
 import { UserPageData } from "@/types/UserTypes";
 import Link from "next/link";
 import Image from "next/image";
-import { setting, accountAdd } from "@/images/index";
+import { setting, accountAdd } from "@/images";
 import styled from "styled-components";
 import { PageHeader } from "@/components/atoms/Header";
 

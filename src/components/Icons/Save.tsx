@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { bookmark, bookmarkFull } from "@/images/index";
+import { bookmark, bookmarkFull } from "@/images";
 import styled from "styled-components";
 
 interface SaveIconProps {

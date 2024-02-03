@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { kakaoTalk } from "@/images/index";
+import { kakaoTalk } from "@/images";
 
 const SocialLogin = () => {
   return (

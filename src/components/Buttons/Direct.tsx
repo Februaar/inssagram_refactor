@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { directNew } from "@/images/index";
+import { directNew } from "@/images";
 
 interface DirectNewProps {}
 

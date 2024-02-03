@@ -71,12 +71,11 @@ section:hover {
 }
 
 section::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 section::-webkit-scrollbar-thumb {
   background-color: #92a8d1;
-  border-radius: 8px;
 }
 
 main {

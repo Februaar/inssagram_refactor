@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { progressActivity } from "@/images/index";
+import { progressActivity } from "@/images";
 
 interface LoadingProps {}
 

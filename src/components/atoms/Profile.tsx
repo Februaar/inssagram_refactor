@@ -1,6 +1,6 @@
 import { UserPageData } from "@/types/UserTypes";
 import Image from "next/image";
-import { noProfile } from "@/images/index";
+import { noProfile } from "@/images";
 import styled from "styled-components";
 import ProfileEditButton from "../Buttons/ProfileEdit";
 

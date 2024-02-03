@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as SC from "@/styles/styled/items_search";
-import { noProfile } from "@/images/index";
+import { noProfile } from "@/images";
 import { SearchResultData } from "@/types/SearchTypes";
 import CommonItem from "@/components/Items/Common";
 

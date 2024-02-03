@@ -6,7 +6,7 @@ import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
 import { PostContentData } from "@/types/PostTypes";
 import styled from "styled-components";
-import { noProfile, moreHoriz } from "@/images/index";
+import { noProfile, moreHoriz } from "@/images";
 import InfoModal from "@/components/Modals/Info";
 import UserInfoModal from "@/components/Modals/User";
 import PostEditModal from "@/components/Modals/PostEdit";

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { OriginalCommentData } from "@/types/PostTypes";
 import { formatData } from "@/utils/date";
 import * as SC from "@/styles/styled/items_original";
-import { noProfile } from "@/images/index";
+import { noProfile } from "@/images";
 
 interface OriginalItemProps {
   original: OriginalCommentData;

@@ -4,49 +4,47 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
 import styled from "styled-components";
-import { home, search, direct, film, noProfile } from "@/images/index";
+import { home, search, direct, film, noProfile } from "@/images";
 
 const Footer = () => {
   const user: UserState = useSelector((state: RootState) => state.user);
 
   return (
-    <>
-      <FooterContainer>
-        <div className="footer">
-          <span>
-            <Link href="/main">
-              <Image src={home} alt="home" width={24} height={24} />
-            </Link>
-          </span>
-          <span>
-            <Link href="/explore">
-              <Image src={search} alt="explore" width={24} height={24} />
-            </Link>
-          </span>
-          <span>
-            <Link href="/create">
-              <Image src={film} alt="create-story" width={24} height={24} />
-            </Link>
-          </span>
-          <span>
-            <Link href="/direct/inbox">
-              <Image src={direct} alt="direct-new" width={24} height={24} />
-            </Link>
-          </span>
-          <span>
-            <Link href={`/${user.member_id}`}>
-              <Image
-                src={user.image ? user.image : noProfile}
-                alt="user-page"
-                width={24}
-                height={24}
-                style={{ borderRadius: "100%" }}
-              />
-            </Link>
-          </span>
-        </div>
-      </FooterContainer>
-    </>
+    <FooterContainer>
+      <div className="footer">
+        <span>
+          <Link href="/main">
+            <Image src={home} alt="home" width={24} height={24} />
+          </Link>
+        </span>
+        <span>
+          <Link href="/explore">
+            <Image src={search} alt="explore" width={24} height={24} />
+          </Link>
+        </span>
+        <span>
+          <Link href="/create">
+            <Image src={film} alt="create-story" width={24} height={24} />
+          </Link>
+        </span>
+        <span>
+          <Link href="/direct/inbox">
+            <Image src={direct} alt="direct-new" width={24} height={24} />
+          </Link>
+        </span>
+        <span>
+          <Link href={`/${user.member_id}`}>
+            <Image
+              src={user.image ? user.image : noProfile}
+              alt="user-page"
+              width={24}
+              height={24}
+              style={{ borderRadius: "100%" }}
+            />
+          </Link>
+        </span>
+      </div>
+    </FooterContainer>
   );
 };
 

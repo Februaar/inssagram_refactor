@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { UserState } from "@/types/UserTypes";
 import * as SC from "@/styles/styled/items_profile";
-import { noProfile } from "@/images/index";
+import { noProfile } from "@/images";
 
 interface ProfileEditItemProps {
   user: UserState;

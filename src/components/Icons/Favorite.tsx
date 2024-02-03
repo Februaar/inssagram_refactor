@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { favorite, favoriteFull } from "@/images/index";
+import { favorite, favoriteFull } from "@/images";
 import styled from "styled-components";
 
 interface FavoriteIconProps {

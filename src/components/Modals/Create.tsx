@@ -7,7 +7,7 @@ import { UserState } from "@/types/UserTypes";
 import { storage } from "../../../firebase-config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import * as SC from "@/styles/styled/modals_create";
-import { createPost, createStory } from "@/images/index";
+import { createPost, createStory } from "@/images";
 
 interface CreateModalProps {
   uploadProgress: (percent: number) => void;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as SC from "@/styles/styled/items_common";
-import { noProfile } from "@/images/index";
+import { noProfile } from "@/images";
 
 interface CommonItemProps {
   member: any;

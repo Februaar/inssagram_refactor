@@ -1,10 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
-import styled from "styled-components";
-import { Phone } from "@/images/index";
-import LaptopBackground from "@/components/atoms/LaptopBackground";
 import SignInPage from "@/pages/accounts/signin";
-import MainPage from "@/pages/main";
 
 const Home = () => {
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { plus, favorite } from "@/images/index";
+import { plus, favorite } from "@/images";
 import styled from "styled-components";
 import ProgressBar from "@/components/atoms/ProgressBar";
 import CreateModal from "@/components/Modals/Create";

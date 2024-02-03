@@ -9,7 +9,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { UserState } from "@/types/UserTypes";
 import postCreatePost from "@/services/postInfo/postCreatePost";
 import styled from "styled-components";
-import { chevronLeft } from "@/images/index";
+import { chevronLeft } from "@/images";
 import { PageHeader } from "@/components/atoms/Header";
 import BoardContent from "@/components/atoms/Board";
 

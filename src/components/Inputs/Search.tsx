@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
-import { search } from "@/images/index";
+import { search } from "@/images";
 
 interface SearchInputProps {
   onSearch: (searchTerm: string) => void;

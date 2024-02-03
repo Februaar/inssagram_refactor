@@ -1,5 +1,5 @@
-import * as SC from "@/styles/styled/atoms_header";
-import { chevronLeft, arrowBack, close } from "@/images/index";
+import { chevronLeft, arrowBack, close } from "@/images";
+import styled from "styled-components";
 import { BasePageHeader } from "./BaseHeader";
 import DirectNew from "@/components/Buttons/Direct";
 
@@ -12,7 +12,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
     <BasePageHeader
       title={title}
       backImage={chevronLeft}
-      customContent={<SC.Span />}
+      customContent={<Span />}
     />
   );
 };
@@ -28,7 +28,7 @@ export const ArrowBackPageHeader: React.FC<ArrowBackPageHeaderProps> = ({
     <BasePageHeader
       title={title}
       backImage={arrowBack}
-      customContent={<SC.Span />}
+      customContent={<Span />}
     />
   );
 };
@@ -55,10 +55,10 @@ interface ClosePageHeaderProps {
 
 export const ClosePageHeader: React.FC<ClosePageHeaderProps> = ({ title }) => {
   return (
-    <BasePageHeader
-      title={title}
-      backImage={close}
-      customContent={<SC.Span />}
-    />
+    <BasePageHeader title={title} backImage={close} customContent={<Span />} />
   );
 };
+
+const Span = styled.span`
+  min-width: 24px;
+`;

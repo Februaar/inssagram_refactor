@@ -6,7 +6,7 @@ import postLikePost from "@/services/postInfo/postLikePost";
 import postSavePost from "@/services/postInfo/postSavePost";
 import Swal from "sweetalert2";
 import styled from "styled-components";
-import { comment, direct } from "@/images/index";
+import { comment, direct } from "@/images";
 import FavoriteIcon from "../Icons/Favorite";
 import SaveIcon from "../Icons/Save";
 
