@@ -2,12 +2,17 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import styled from "styled-components";
-import { UserState } from "@/types/ChatRoomTypes";
+import {
+  UserState,
+  ChatHistoryData,
+  NewMessageData,
+} from "@/types/ChatRoomTypes";
 import ChatRoomHeader from "@/components/atoms/ChatHeader";
 import RecevierProfile from "@/components/atoms/Receiver";
-import DirectItem from "@/components/Items/Direct";
 import DirectInput from "@/components/Inputs/Direct";
+import ChatContentsContainer from "@/components/Containers/ChatContents";
 import getChatRoomData from "@/services/directInfo/getChatRoomData";
+import getChatHistory from "@/services/directInfo/getChatHistory";
 
 interface ChatRoomContainerProps {
   roomId: any;
@@ -20,10 +25,15 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({ roomId }) => {
     receiver: UserState;
   } | null>(null);
   console.log(chatRoom);
+  const [chatHistory, setChatHistory] = useState<ChatHistoryData[] | null>(
+    null
+  );
+  const [newMessage, setNewMessage] = useState<NewMessageData[] | null>(null);
 
   const fetchChatRoomData = async (roomId: string) => {
     try {
       const res = await getChatRoomData(roomId);
+      console.log(res);
       const memberList = res.memberList;
       const currentUserId = user?.member_id;
       const otherMemberId = Object.keys(memberList).find(
@@ -46,22 +56,47 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({ roomId }) => {
     }
   };
 
+  const fetchChatHistory = async (roomId: string) => {
+    try {
+      const res = await getChatHistory(roomId);
+      setChatHistory(res.data);
+    } catch (err) {
+      console.error("fetching chat history", err);
+    }
+  };
+
+  const handleSendMessage = (message: NewMessageData) => {};
+
+  const handleSendClick = (message: NewMessageData) => {
+    handleSendMessage(message);
+    setNewMessage(message);
+    console.log("Received message:", message);
+  };
+
   useEffect(() => {
     fetchChatRoomData(roomId);
+    fetchChatHistory(roomId);
   }, [roomId]);
 
   return (
     <>
-      {chatRoom && (
+      {chatRoom && chatHistory && (
         <>
           <ChatRoomHeader receiver={chatRoom.receiver} />
           <ChatRoom>
             <div className="container">
               <RecevierProfile receiver={chatRoom.receiver} />
-              <DirectItem />
+              <ChatContentsContainer
+                history={chatHistory}
+                newMessage={newMessage}
+              />
             </div>
           </ChatRoom>
-          <DirectInput />
+          <DirectInput
+            roomId={roomId}
+            receiver={chatRoom.receiver}
+            onClick={handleSendClick}
+          />
         </>
       )}
     </>

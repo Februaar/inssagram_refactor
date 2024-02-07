@@ -18,3 +18,30 @@ export interface UserState {
   memberPostCounts: string;
   memberFollowState: boolean;
 }
+
+export interface ChatHistoryData {
+  type: string;
+  chatMessageId: number;
+  chatRoomId: number;
+  createdAt: string;
+  image: string;
+  memberIdInShareObject: number;
+  memberNicknameInShareObject: string;
+  memberProfileInShareObject: string | null;
+  message: string;
+  receiverNickname: string;
+  senderMemberId: number;
+  senderNickname: string;
+  senderProfile: string | null;
+  shareObjectContents: string;
+  shareObjectId: number;
+  shareObjectImage: string;
+  sharePostType: string;
+}
+
+export interface NewMessageData {
+  type: string;
+  chatRoomId: string;
+  receiverMemberId: string;
+  message: string;
+}

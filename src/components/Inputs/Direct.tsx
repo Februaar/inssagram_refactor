@@ -2,20 +2,42 @@ import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { UserState } from "@/types/UserTypes";
+// import { UserState } from "@/types/UserTypes";
+import { UserState, NewMessageData } from "@/types/ChatRoomTypes";
 import { addComment } from "@/redux/commentSlice";
 import { noProfile } from "@/images";
 import styled from "styled-components";
 import postNewComment from "@/services/postInfo/postNewComment";
 
-interface DirectInputProps {}
+interface DirectInputProps {
+  roomId: string;
+  receiver: UserState;
+  onClick: (message: NewMessageData) => void;
+}
 
-const DirectInput: React.FC<DirectInputProps> = () => {
-  const user: UserState = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
+const DirectInput: React.FC<DirectInputProps> = ({
+  roomId,
+  receiver,
+  onClick,
+}) => {
+  // const user: UserState = useSelector((state: RootState) => state.user);
+  // const dispatch = useDispatch();
 
   const [newMessage, setNewMessage] = useState<string>("");
   const isEmpty = newMessage.trim() === "";
+
+  const handleSendMessage = (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    const message: NewMessageData = {
+      type: "message",
+      chatRoomId: roomId,
+      receiverMemberId: receiver.memberId,
+      message: newMessage,
+    };
+    onClick(message);
+    setNewMessage("");
+  };
 
   return (
     <InputContainer>
@@ -30,12 +52,11 @@ const DirectInput: React.FC<DirectInputProps> = () => {
             />
           </div>
         </div>
-        {/* <div>사진공유</div> */}
-        {isEmpty ? null : (
-          <div
-            className="submit"
-            // onClick={() => handleCommentSubmit(postId, newMessage)}
-          >
+
+        {isEmpty ? (
+          <span>사진</span>
+        ) : (
+          <div className="submit" onClick={handleSendMessage}>
             보내기
           </div>
         )}
