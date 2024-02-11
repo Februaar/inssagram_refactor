@@ -1,14 +1,17 @@
 import axiosInstance from "../axiosInstance";
 
-const getChatRoomData = (roomId: string): Promise<any> => {
+const getReceivedMessages = (roomId: string): Promise<any> => {
   return axiosInstance({
     method: "get",
-    url: `/chat/room/${roomId}`,
+    url: `/chat/enter/room`,
     headers: {
       "Content-Type": "application/json",
       charset: "utf-8",
     },
+    params: {
+      "room-id": roomId,
+    },
   });
 };
 
-export default getChatRoomData;
+export default getReceivedMessages;

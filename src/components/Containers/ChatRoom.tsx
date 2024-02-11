@@ -1,104 +1,83 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import styled from "styled-components";
 import {
   UserState,
-  ChatHistoryData,
-  NewMessageData,
+  MessageState,
+  PostMessageState,
 } from "@/types/ChatRoomTypes";
 import ChatRoomHeader from "@/components/atoms/ChatHeader";
 import RecevierProfile from "@/components/atoms/Receiver";
-import DirectInput from "@/components/Inputs/Direct";
+import MessageInput from "@/components/Inputs/Message";
 import ChatContentsContainer from "@/components/Containers/ChatContents";
-import getChatRoomData from "@/services/directInfo/getChatRoomData";
-import getChatHistory from "@/services/directInfo/getChatHistory";
+import getReceivedMessages from "@/services/directInfo/getReceivedMessages";
+import WebSocketHandler from "@/handlers/WebSocketHandler";
 
 interface ChatRoomContainerProps {
+  user: any;
   roomId: any;
-}
-
-const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({ roomId }) => {
-  const user = useSelector((state: RootState) => state.user);
-  const [chatRoom, setChatRoom] = useState<{
+  membersData: {
     sender: UserState;
     receiver: UserState;
-  } | null>(null);
-  console.log(chatRoom);
-  const [chatHistory, setChatHistory] = useState<ChatHistoryData[] | null>(
-    null
-  );
-  const [newMessage, setNewMessage] = useState<NewMessageData[] | null>(null);
+  } | null;
+}
 
-  const fetchChatRoomData = async (roomId: string) => {
-    try {
-      const res = await getChatRoomData(roomId);
-      console.log(res);
-      const memberList = res.memberList;
-      const currentUserId = user?.member_id;
-      const otherMemberId = Object.keys(memberList).find(
-        (memberId) => Number(memberId) !== Number(currentUserId)
-      );
-
-      if (currentUserId && otherMemberId) {
-        const senderId = currentUserId;
-        const receiverId = otherMemberId;
-        const sender = memberList[senderId];
-        const receiver = memberList[receiverId];
-
-        setChatRoom({
-          sender: sender,
-          receiver: receiver,
-        });
-      }
-    } catch (err) {
-      console.error("fetching chat room data", err);
-    }
-  };
+const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
+  user,
+  roomId,
+  membersData,
+}) => {
+  // const accessToken = sessionStorage.getItem("token");
+  const [receivedMessages, setReceivedMessages] = useState<MessageState[]>();
+  const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
 
   const fetchChatHistory = async (roomId: string) => {
     try {
-      const res = await getChatHistory(roomId);
-      setChatHistory(res.data);
+      const res = await getReceivedMessages(roomId);
+      setReceivedMessages(res.data);
     } catch (err) {
       console.error("fetching chat history", err);
     }
   };
 
-  const handleSendMessage = (message: NewMessageData) => {};
+  const handleSendMessage = (newMessageData: PostMessageState) => {};
 
-  const handleSendClick = (message: NewMessageData) => {
-    handleSendMessage(message);
-    setNewMessage(message);
-    console.log("Received message:", message);
+  const handleSendClick = (newMessageData: PostMessageState) => {
+    handleSendMessage(newMessageData);
+    setNewMessage(newMessageData);
+    console.log("sended new message:", newMessageData);
   };
 
   useEffect(() => {
-    fetchChatRoomData(roomId);
     fetchChatHistory(roomId);
   }, [roomId]);
 
   return (
     <>
-      {chatRoom && chatHistory && (
+      {membersData && receivedMessages && (
         <>
-          <ChatRoomHeader receiver={chatRoom.receiver} />
+          <ChatRoomHeader receiver={membersData.receiver} />
           <ChatRoom>
             <div className="container">
-              <RecevierProfile receiver={chatRoom.receiver} />
+              <RecevierProfile receiver={membersData.receiver} />
               <ChatContentsContainer
-                history={chatHistory}
+                user={user}
+                messages={receivedMessages}
                 newMessage={newMessage}
               />
             </div>
           </ChatRoom>
-          <DirectInput
+          <MessageInput
             roomId={roomId}
-            receiver={chatRoom.receiver}
+            receiver={membersData.receiver}
             onClick={handleSendClick}
           />
         </>
       )}
+      {/* <WebSocketHandler
+        accessToken={accessToken}
+        roomId={roomId}
+        onMessageReceived={(message: PostMessageState) => setNewMessage(message)}
+      /> */}
     </>
   );
 };

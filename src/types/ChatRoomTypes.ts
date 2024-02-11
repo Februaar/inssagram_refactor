@@ -1,3 +1,12 @@
+export interface UserState {
+  memberId: string;
+  memberNickname: string;
+  memberProfile: string;
+  memberFollowerCounts: string;
+  memberPostCounts: string;
+  memberFollowState: boolean;
+}
+
 export interface ChatRoomState {
   sender_id: number;
   sender_image: string;
@@ -10,16 +19,7 @@ export interface ChatRoomState {
   read_status: boolean;
 }
 
-export interface UserState {
-  memberId: string;
-  memberNickname: string;
-  memberProfile: string;
-  memberFollowerCounts: string;
-  memberPostCounts: string;
-  memberFollowState: boolean;
-}
-
-export interface ChatHistoryData {
+export interface MessageState {
   type: string;
   chatMessageId: number;
   chatRoomId: number;
@@ -39,7 +39,7 @@ export interface ChatHistoryData {
   sharePostType: string;
 }
 
-export interface NewMessageData {
+export interface PostMessageState {
   type: string;
   chatRoomId: string;
   receiverMemberId: string;

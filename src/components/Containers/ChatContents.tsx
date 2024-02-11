@@ -1,56 +1,51 @@
 import Image from "next/image";
-import { ChatHistoryData, NewMessageData } from "@/types/ChatRoomTypes";
+import { MessageState, PostMessageState } from "@/types/ChatRoomTypes";
 import { noProfile } from "@/images";
 import styled from "styled-components";
-import DirectItem from "@/components/Items/Direct";
+import MyMessage from "@/components/Items/MyMessage";
 
 interface ChatContentsProps {
-  history: ChatHistoryData[] | null;
-  newMessage: NewMessageData[] | null;
+  user: any;
+  messages: MessageState[];
+  newMessage: PostMessageState | null;
 }
 
 const ChatContentsContainer: React.FC<ChatContentsProps> = ({
-  history,
+  user,
+  messages,
   newMessage,
 }) => {
-  console.log(history);
-  console.log(newMessage);
-
   return (
     <>
-      <Message>
-        <div className="message-card" role="none">
-          {history ? (
-            <div className="sender-profile">
-              <Image
-                src={history.senderProfile ? history.senderProfile : noProfile}
-                alt="profile-image"
-                width={28}
-                height={28}
-                style={{ borderRadius: "100%" }}
-              />
-            </div>
+      {messages &&
+        messages.map((message) =>
+          message.senderMemberId === user.member_id ? (
+            <MyMessage key={message.chatMessageId} message={message} />
           ) : (
-            ""
-          )}
-          <div className="message-area">
-            {history ? (
-              <div className="message received">{history.message}</div>
-            ) : (
-              ""
-            )}
-            <div className="message between">
-              <div />
-            </div>
-            {newMessage ? (
-              <div className="message sended">{newMessage.message}</div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="spacing"></div>
-        </div>
-      </Message>
+            <Message key={message.chatMessageId}>
+              <div className="message-card" role="none">
+                <div className="sender-profile">
+                  <Image
+                    src={
+                      message.senderProfile ? message.senderProfile : noProfile
+                    }
+                    alt="profile-image"
+                    width={28}
+                    height={28}
+                    style={{ borderRadius: "100%" }}
+                  />
+                </div>
+                <div className="message-area">
+                  <div className="message messages">{message.message}</div>
+                  <div className="message between"></div>
+                  <div className="message"></div>
+                </div>
+                <div className="spacing"></div>
+              </div>
+            </Message>
+          )
+        )}
+      {newMessage ? <MyMessage message={newMessage} /> : null}
     </>
   );
 };
@@ -103,7 +98,7 @@ const Message = styled.div`
         z-index: 1;
       }
 
-      .received {
+      .messages {
         position: relative;
         flex-shrink: 0;
         display: flex;
@@ -124,18 +119,6 @@ const Message = styled.div`
       .between {
         flex-grow: 0;
         max-width: 100%;
-
-        div {
-          flex-grow: 1;
-          flex-shrink: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding-left: 5px;
-          width: 44px;
-          max-width: 70px;
-          z-index: 10;
-        }
       }
 
       .sended {

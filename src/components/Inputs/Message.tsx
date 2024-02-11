@@ -2,40 +2,36 @@ import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-// import { UserState } from "@/types/UserTypes";
-import { UserState, NewMessageData } from "@/types/ChatRoomTypes";
+import { UserState, PostMessageState } from "@/types/ChatRoomTypes";
 import { addComment } from "@/redux/commentSlice";
 import { noProfile } from "@/images";
 import styled from "styled-components";
 import postNewComment from "@/services/postInfo/postNewComment";
 
-interface DirectInputProps {
+interface MessageInputProps {
   roomId: string;
   receiver: UserState;
-  onClick: (message: NewMessageData) => void;
+  onClick: (message: PostMessageState) => void;
 }
 
-const DirectInput: React.FC<DirectInputProps> = ({
+const MessageInput: React.FC<MessageInputProps> = ({
   roomId,
   receiver,
   onClick,
 }) => {
-  // const user: UserState = useSelector((state: RootState) => state.user);
-  // const dispatch = useDispatch();
-
   const [newMessage, setNewMessage] = useState<string>("");
   const isEmpty = newMessage.trim() === "";
 
   const handleSendMessage = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const message: NewMessageData = {
+    const newMessageData: PostMessageState = {
       type: "message",
       chatRoomId: roomId,
       receiverMemberId: receiver.memberId,
       message: newMessage,
     };
-    onClick(message);
+    onClick(newMessageData);
     setNewMessage("");
   };
 
@@ -54,8 +50,9 @@ const DirectInput: React.FC<DirectInputProps> = ({
         </div>
 
         {isEmpty ? (
-          <span>사진</span>
+          ""
         ) : (
+          // <span>사진</span>
           <div className="submit" onClick={handleSendMessage}>
             보내기
           </div>
@@ -65,7 +62,7 @@ const DirectInput: React.FC<DirectInputProps> = ({
   );
 };
 
-export default DirectInput;
+export default MessageInput;
 
 const InputContainer = styled.div`
   display: flex;

@@ -8,7 +8,6 @@ import getChatListAll from "@/services/directInfo/getChatListAll";
 const ChatListContainer = () => {
   const router = useRouter();
   const [chatList, setChatList] = useState<ChatRoomState[] | null>(null);
-  console.log(chatList);
 
   const fetchChatListAll = async () => {
     try {
