@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface BasePageHeaderProps {
   title: string;
-  backImage: any;
+  backImage: string;
   customContent: React.ReactNode;
 }
 
@@ -26,8 +26,8 @@ export const BasePageHeader: React.FC<BasePageHeaderProps> = ({
           <Image src={backImage} alt="prev-page" width={24} height={24} />
         </button>
       </div>
-      <div className="title">
-        <span>{title}</span>
+      <div className="page-title">
+        <span className="title">{title}</span>
       </div>
       {customContent}
     </CommonHeader>
@@ -48,14 +48,14 @@ const CommonHeader = styled.div`
     display: flex;
   }
 
-  .title {
+  .page-title {
     display: flex;
     flex-shrink: 1;
     align-items: center;
     text-align: inherit;
     cursor: pointer;
 
-    span {
+    .title {
       display: flex;
       flex-direction: row;
       align-items: center;

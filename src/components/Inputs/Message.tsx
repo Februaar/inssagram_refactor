@@ -1,17 +1,11 @@
-import Image from "next/image";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import { UserState, PostMessageState } from "@/types/ChatRoomTypes";
-import { addComment } from "@/redux/commentSlice";
-import { noProfile } from "@/images";
 import styled from "styled-components";
-import postNewComment from "@/services/postInfo/postNewComment";
 
 interface MessageInputProps {
   roomId: string;
   receiver: UserState;
-  onClick: (message: PostMessageState) => void;
+  onClick: (MessageData: PostMessageState) => void;
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({
@@ -19,20 +13,20 @@ const MessageInput: React.FC<MessageInputProps> = ({
   receiver,
   onClick,
 }) => {
-  const [newMessage, setNewMessage] = useState<string>("");
-  const isEmpty = newMessage.trim() === "";
+  const [messageValue, setMessageValue] = useState<string>("");
+  const isEmpty = messageValue.trim() === "";
 
   const handleSendMessage = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const newMessageData: PostMessageState = {
+    const MessageData: PostMessageState = {
       type: "message",
       chatRoomId: roomId,
       receiverMemberId: receiver.memberId,
-      message: newMessage,
+      message: messageValue,
     };
-    onClick(newMessageData);
-    setNewMessage("");
+    onClick(MessageData);
+    setMessageValue("");
   };
 
   return (
@@ -41,10 +35,10 @@ const MessageInput: React.FC<MessageInputProps> = ({
         <div className="input-area">
           <div role="textbox" className="input">
             <input
-              value={newMessage}
+              value={messageValue}
               aria-label="메시지 입력..."
               placeholder="메시지 입력..."
-              onChange={(e) => setNewMessage(e.target.value)}
+              onChange={(e) => setMessageValue(e.target.value)}
             />
           </div>
         </div>

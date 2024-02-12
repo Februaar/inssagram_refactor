@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -10,45 +10,52 @@ import getChatRoomMembersData from "@/services/directInfo/getChatRoomMembersData
 const ChatRoomPage = () => {
   const user = useSelector((state: RootState) => state.user);
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router.query as { id: string };
   const [membersData, setMembersData] = useState<{
     sender: UserState;
     receiver: UserState;
   } | null>(null);
 
   // 채팅방 유저들 데이터
-  const fetchChatRoomMembersData = async (id: string) => {
-    try {
-      const res = await getChatRoomMembersData(id);
-      const memberList = res.memberList;
-      const currentMemberId = user?.member_id;
-      const otherMemberId = Object.keys(memberList).find(
-        (memberId) => Number(memberId) !== Number(currentMemberId)
-      );
+  const fetchChatRoomMembersData = useCallback(
+    async (id: string) => {
+      try {
+        const res = await getChatRoomMembersData(id);
+        const memberList = res.memberList;
+        const currentMemberId = user?.member_id;
+        const otherMemberId = Object.keys(memberList).find(
+          (memberId) => Number(memberId) !== Number(currentMemberId)
+        );
 
-      if (currentMemberId && otherMemberId) {
-        const senderId = currentMemberId;
-        const receiverId = otherMemberId;
-        const sender = memberList[senderId];
-        const receiver = memberList[receiverId];
+        if (currentMemberId && otherMemberId) {
+          const senderId = currentMemberId;
+          const receiverId = otherMemberId;
+          const sender = memberList[senderId];
+          const receiver = memberList[receiverId];
 
-        setMembersData({
-          sender: sender,
-          receiver: receiver,
-        });
+          setMembersData({
+            sender: sender,
+            receiver: receiver,
+          });
+        }
+      } catch (err) {
+        console.error("fetching chat room member's data", err);
       }
-    } catch (err) {
-      console.error("fetching chat room member's data", err);
-    }
-  };
+    },
+    [user?.member_id]
+  );
 
   useEffect(() => {
     fetchChatRoomMembersData(id);
-  }, [id]);
+  }, [fetchChatRoomMembersData, id]);
 
   return (
     <PageContainer>
-      <ChatRoomContainer user={user} roomId={id} membersData={membersData} />
+      <ChatRoomContainer
+        user={user}
+        roomId={id}
+        membersData={membersData}
+      />
     </PageContainer>
   );
 };

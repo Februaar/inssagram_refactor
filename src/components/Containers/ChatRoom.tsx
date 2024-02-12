@@ -9,12 +9,12 @@ import ChatRoomHeader from "@/components/atoms/ChatHeader";
 import RecevierProfile from "@/components/atoms/Receiver";
 import MessageInput from "@/components/Inputs/Message";
 import ChatContentsContainer from "@/components/Containers/ChatContents";
-import getReceivedMessages from "@/services/directInfo/getReceivedMessages";
+import getPreviousMessages from "@/services/directInfo/getPreviousMessages";
 import WebSocketHandler from "@/handlers/WebSocketHandler";
 
 interface ChatRoomContainerProps {
   user: any;
-  roomId: any;
+  roomId: string;
   membersData: {
     sender: UserState;
     receiver: UserState;
@@ -26,25 +26,25 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   roomId,
   membersData,
 }) => {
-  // const accessToken = sessionStorage.getItem("token");
-  const [receivedMessages, setReceivedMessages] = useState<MessageState[]>();
+  const accessToken = sessionStorage.getItem("token");
   const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
+  const [previousMessages, setPreviousMessages] = useState<
+    MessageState[] | null
+  >(null);
 
+  // 새로운 메세지
+  const handleSendClick = (MessageData: PostMessageState) => {
+    setNewMessage(MessageData);
+  };
+
+  // 과거 채팅 내용
   const fetchChatHistory = async (roomId: string) => {
     try {
-      const res = await getReceivedMessages(roomId);
-      setReceivedMessages(res.data);
+      const res = await getPreviousMessages(roomId);
+      setPreviousMessages(res.data);
     } catch (err) {
       console.error("fetching chat history", err);
     }
-  };
-
-  const handleSendMessage = (newMessageData: PostMessageState) => {};
-
-  const handleSendClick = (newMessageData: PostMessageState) => {
-    handleSendMessage(newMessageData);
-    setNewMessage(newMessageData);
-    console.log("sended new message:", newMessageData);
   };
 
   useEffect(() => {
@@ -53,15 +53,15 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
 
   return (
     <>
-      {membersData && receivedMessages && (
+      {membersData && (
         <>
           <ChatRoomHeader receiver={membersData.receiver} />
           <ChatRoom>
-            <div className="container">
+            <div className="chatroom-container">
               <RecevierProfile receiver={membersData.receiver} />
               <ChatContentsContainer
                 user={user}
-                messages={receivedMessages}
+                messages={previousMessages}
                 newMessage={newMessage}
               />
             </div>
@@ -73,11 +73,14 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
           />
         </>
       )}
-      {/* <WebSocketHandler
+      <WebSocketHandler
         accessToken={accessToken}
         roomId={roomId}
-        onMessageReceived={(message: PostMessageState) => setNewMessage(message)}
-      /> */}
+        newMessage={newMessage}
+        // onMessageReceived={(message: MessageState) =>
+        //   setPreviousMessages(message)
+        // }
+      />
     </>
   );
 };
@@ -103,7 +106,7 @@ const ChatRoom = styled.div`
     background-color: #92a8d1;
   }
 
-  .container {
+  .chatroom-container {
     display: flex;
     flex-direction: column;
     align-items: inherit;
