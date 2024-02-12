@@ -1,10 +1,10 @@
 import { chevronLeft, arrowBack, close } from "@/images";
 import styled from "styled-components";
 import { BasePageHeader } from "./BaseHeader";
-import DirectNew from "@/components/Buttons/Direct";
+import { SearchAccount, OpenChatRoom } from "@/components/Buttons/Direct";
 
 interface PageHeaderProps {
-  title: string;
+  title: any;
 }
 
 export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
@@ -17,13 +17,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
   );
 };
 
-interface ArrowBackPageHeaderProps {
-  title: string;
-}
-
-export const ArrowBackPageHeader: React.FC<ArrowBackPageHeaderProps> = ({
-  title,
-}) => {
+export const ArrowBackPageHeader: React.FC<PageHeaderProps> = ({ title }) => {
   return (
     <BasePageHeader
       title={title}
@@ -33,27 +27,35 @@ export const ArrowBackPageHeader: React.FC<ArrowBackPageHeaderProps> = ({
   );
 };
 
-interface DirectPageHeaderProps {
-  title: string;
+export const DirectPageHeader: React.FC<PageHeaderProps> = ({ title }) => {
+  return (
+    <BasePageHeader
+      title={title}
+      backImage={arrowBack}
+      customContent={<SearchAccount />}
+    />
+  );
+};
+
+interface DirectNewPageHeaderProps {
+  handleNewChatRoom: () => void;
+  title: any;
 }
 
-export const DirectPageHeader: React.FC<DirectPageHeaderProps> = ({
+export const DirectNewPageHeader: React.FC<DirectNewPageHeaderProps> = ({
+  handleNewChatRoom,
   title,
 }) => {
   return (
     <BasePageHeader
       title={title}
       backImage={arrowBack}
-      customContent={<DirectNew />}
+      customContent={<OpenChatRoom onClick={handleNewChatRoom} />}
     />
   );
 };
 
-interface ClosePageHeaderProps {
-  title: string;
-}
-
-export const ClosePageHeader: React.FC<ClosePageHeaderProps> = ({ title }) => {
+export const ClosePageHeader: React.FC<PageHeaderProps> = ({ title }) => {
   return (
     <BasePageHeader title={title} backImage={close} customContent={<Span />} />
   );

@@ -7,10 +7,11 @@ import ChatListContainer from "@/components/Containers/ChatList";
 
 const DirectInboxPage = () => {
   const user: UserState = useSelector((state: RootState) => state.user);
+  const pageTitle = user.nickname;
 
   return (
     <section>
-      <DirectPageHeader title={user.nickname} />
+      <DirectPageHeader title={pageTitle} />
       <PageTitle>메시지</PageTitle>
       <ChatListContainer />
     </section>

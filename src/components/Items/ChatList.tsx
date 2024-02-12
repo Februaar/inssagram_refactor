@@ -42,7 +42,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ list, onClick }) => {
               >
                 {list.message}
               </div>
-              {/* <p className="created-at">· {formattedCreatedAt}</p> */}
+              <p className="created-at">· {formattedCreatedAt}</p>
             </div>
           </div>
           {list.read_status ? <p className="mark" /> : null}
@@ -93,7 +93,7 @@ const ItemContainer = styled.li`
       }
 
       .created-at {
-        max-width: 22px;
+        // max-width: 22px;
         overflow: hidden;
       }
     }

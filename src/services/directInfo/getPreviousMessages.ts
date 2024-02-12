@@ -1,6 +1,6 @@
 import axiosInstance from "../axiosInstance";
 
-const getReceivedMessages = (roomId: string): Promise<any> => {
+const getPreviousMessages = (roomId: string): Promise<any> => {
   return axiosInstance({
     method: "get",
     url: `/chat/enter/room`,
@@ -14,4 +14,4 @@ const getReceivedMessages = (roomId: string): Promise<any> => {
   });
 };
 
-export default getReceivedMessages;
+export default getPreviousMessages;
