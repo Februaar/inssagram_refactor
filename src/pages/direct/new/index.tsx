@@ -45,10 +45,16 @@ const DirectNewPage = () => {
       const first = user.member_id;
       const second = selectedAccount.memberId;
 
+      if (first === second) {
+        console.error("You cannot create a chat room with yourself.");
+        alert("대화를 나누고 싶은 상대를 찾아보세요 :)");
+        return;
+      }
+
       try {
         const res = await postNewChatRoom(first, second);
         console.log(typeof res.chatRoomId);
-        router.push(`/direct/in/${res.chatRoomId}`);
+        router.push(`/direct/${res.chatRoomId}`);
       } catch (err) {
         console.error("error creating new chat room:", err);
       }
