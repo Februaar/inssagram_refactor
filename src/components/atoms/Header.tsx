@@ -38,19 +38,19 @@ export const DirectPageHeader: React.FC<PageHeaderProps> = ({ title }) => {
 };
 
 interface DirectNewPageHeaderProps {
-  handleNewChatRoom: () => void;
+  onClick: () => void;
   title: any;
 }
 
 export const DirectNewPageHeader: React.FC<DirectNewPageHeaderProps> = ({
-  handleNewChatRoom,
+  onClick,
   title,
 }) => {
   return (
     <BasePageHeader
       title={title}
       backImage={arrowBack}
-      customContent={<OpenChatRoom onClick={handleNewChatRoom} />}
+      customContent={<OpenChatRoom onClick={onClick} />}
     />
   );
 };

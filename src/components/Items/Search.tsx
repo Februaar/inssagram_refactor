@@ -1,9 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import * as SC from "@/styles/styled/items_search";
+import styled from "styled-components";
 import { noProfile } from "@/images";
 import { SearchResultData } from "@/types/SearchTypes";
-import CommonItem from "@/components/Items/Common";
 
 interface SearchItemProps {
   result: SearchResultData;
@@ -13,8 +12,8 @@ interface SearchItemProps {
 const SearchItem: React.FC<SearchItemProps> = ({ result, onClick }) => {
   return (
     <Link href={`/${result.memberId}`} onClick={() => onClick(result.memberId)}>
-      <SC.ItemContainer>
-        <SC.Profile>
+      <ItemContainer>
+        <div className="profile-img">
           <Image
             src={result.image ? result.image : noProfile}
             alt="profile"
@@ -22,14 +21,37 @@ const SearchItem: React.FC<SearchItemProps> = ({ result, onClick }) => {
             height={44}
             style={{ borderRadius: "100%" }}
           />
-        </SC.Profile>
-        <SC.ResultArea>
-          <SC.Account>{result.nickName}</SC.Account>
-          <SC.Job>{result.job}</SC.Job>
-        </SC.ResultArea>
-      </SC.ItemContainer>
+        </div>
+        <div className="result-area">
+          <p>{result.nickName}</p>
+          <span>{result.job}</span>
+        </div>
+      </ItemContainer>
     </Link>
   );
 };
 
 export default SearchItem;
+
+const ItemContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+  padding: 8px 16px;
+
+  .profile-img {
+    width: 44px;
+    margin-right: 14px;
+  }
+
+  .result-area {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 3px;
+
+    span {
+      color: #92a8d1;
+      font-size: 12px;
+    }
+  }
+`;

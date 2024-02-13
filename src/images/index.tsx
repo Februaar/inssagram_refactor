@@ -29,6 +29,8 @@ import calendar from "./icon/calendar-icon.svg";
 import homePin from "./icon/home-pin-icon.svg";
 import createPost from "./icon/create-post-icon.svg";
 import createStory from "./icon/create-story-icon.svg";
+import check from "./icon/check-circle-icon.svg";
+import uncheck from "./icon/uncheck-circle-icon.svg";
 
 import noProfile from "./no-profile.jpg";
 import kakaoTalk from "./kakaotalk.png";
@@ -66,6 +68,8 @@ export {
   homePin,
   createPost,
   createStory,
+  check,
+  uncheck,
   noProfile,
   kakaoTalk,
   Phone,

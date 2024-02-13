@@ -1,6 +1,30 @@
+import { useState, useEffect } from "react";
+import { SearchResultData } from "@/types/SearchTypes";
 import styled from "styled-components";
 
-const DirectSearchInput = () => {
+interface DirectSearchInputProps {
+  onSearch: (searchValue: string) => void;
+  selectedAccount: SearchResultData | null;
+}
+
+const DirectSearchInput: React.FC<DirectSearchInputProps> = ({
+  onSearch,
+  selectedAccount,
+}) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value;
+    setSearchValue(searchValue);
+    onSearch(searchValue);
+  };
+
+  useEffect(() => {
+    if (selectedAccount) {
+      setSearchValue("");
+    }
+  }, [selectedAccount]);
+
   return (
     <InputContainer>
       <div className="input-area">
@@ -8,11 +32,20 @@ const DirectSearchInput = () => {
           <span>받는 사람:</span>
         </div>
         <div className="search-area">
+          {selectedAccount && (
+            <div className="selected-account">
+              <div className="tag">
+                <p className="nickname">{selectedAccount.nickName}</p>
+              </div>
+            </div>
+          )}
           <input
-            className="search-input"
             type="text"
             placeholder="검색..."
             spellCheck="false"
+            value={searchValue}
+            onChange={handleInputChange}
+            className="search-input"
           />
         </div>
       </div>
@@ -86,6 +119,30 @@ const InputContainer = styled.div`
       min-height: 0;
       overflow-y: visible;
       overflow-x: visible;
+
+      .selected-account {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        max-width: 200px;
+        overflow-x: auto;
+
+        .tag {
+          margin-left: 7px;
+          text-align: center;
+          padding: 5px;
+          border-radius: 5px;
+          min-width: 60px;
+          height: 26px;
+          background-color: #92a8d1;
+
+          .nickname {
+            color: #ffffff;
+            background-color: transparent;
+          }
+        }
+      }
 
       .search-input {
         flex-grow: 1;
