@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-const DeleteButton = () => {
+interface FollowingItemProps {
+  onClick: () => void;
+}
+
+const DeleteButton: React.FC<FollowingItemProps> = ({ onClick }) => {
   return (
-    <>
-      <Button>
-        <Title>삭제</Title>
-      </Button>
-    </>
+    <Button onClick={onClick}>
+      <Title>삭제</Title>
+    </Button>
   );
 };
 

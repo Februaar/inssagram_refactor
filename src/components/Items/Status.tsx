@@ -4,12 +4,22 @@ import { LikedPostMemberData } from "@/types/UserTypes";
 import { noProfile } from "@/images";
 import styled from "styled-components";
 import FollowButton from "@/components/Buttons/Follow";
+import postUserFollow from "@/services/userInfo/postUserFollow";
 
 interface StatusItemProps {
   member: LikedPostMemberData;
 }
 
 const StatusItem: React.FC<StatusItemProps> = ({ member }) => {
+  console.log(member);
+  const handleFollowClick = async (memberId: string) => {
+    try {
+      await postUserFollow(memberId);
+    } catch (err) {
+      console.error("error following member:", err);
+    }
+  };
+
   return (
     <>
       <ItemContainer key={member.memberId}>
@@ -27,7 +37,10 @@ const StatusItem: React.FC<StatusItemProps> = ({ member }) => {
             <span>{member.memberNickname}</span>
           </div>
         </div>
-        <FollowButton />
+        <FollowButton
+          onClick={() => handleFollowClick(member.memberId)}
+          status={member.followedState}
+        />
       </ItemContainer>
     </>
   );

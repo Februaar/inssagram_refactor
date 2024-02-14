@@ -3,13 +3,25 @@ import Image from "next/image";
 import { noProfile } from "@/images";
 import styled from "styled-components";
 import ProfileEditButton from "../Buttons/ProfileEdit";
+import MainFollowButton from "../Buttons/Follow";
+import postUserFollow from "@/services/userInfo/postUserFollow";
 
 interface ProfileCardProps {
+  id: string;
   user: UserPageData | undefined;
   isLoggined: boolean;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ user, isLoggined }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ id, user, isLoggined }) => {
+  console.log(user);
+  const handleFollowClick = async (memberId: string) => {
+    try {
+      await postUserFollow(memberId);
+    } catch (err) {
+      console.error("error following member:", err);
+    }
+  };
+
   return (
     <>
       {isLoggined && user ? (
@@ -47,9 +59,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user, isLoggined }) => {
             <div className="user-area">
               <h1>{user.nickname}</h1>
               <div className="follow">
-                <div>
-                  <button>팔로우</button>
-                </div>
+                <MainFollowButton
+                  onClick={() => handleFollowClick(id)}
+                  status={user.friendStatus}
+                />
                 <div>
                   <button>메세지 보내기</button>
                 </div>

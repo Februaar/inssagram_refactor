@@ -42,7 +42,7 @@ const CommonItem: React.FC<CommonItemProps> = ({ member, customContent }) => {
                       <SC.Nickname>{member.nickname}</SC.Nickname>
                     </Link>
                     {/* <SC.Divide>·</SC.Divide>
-                    <SC.Follow>팔로우</SC.Follow> */}
+                    <SC.Follow>{member.status ? "팔로우" : "팔로잉"}</SC.Follow> */}
                   </SC.Details>
                   <SC.Desc>
                     <SC.Text>{member.description}</SC.Text>

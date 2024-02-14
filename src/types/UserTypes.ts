@@ -12,6 +12,7 @@ export interface UserPageData {
   companyName: string;
   profilePic: string;
   description: string;
+  friendStatus: boolean;
   followers: [
     {
       followerId: number;

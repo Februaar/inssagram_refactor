@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserPageData } from "@/types/UserTypes";
-import getUserDetail from "@/services/userInfo/getUserDetail";
+import postUserDetail from "@/services/userInfo/postUserDetail";
 import UserHeader from "@/components/atoms/User";
 import ProfileCard from "@/components/atoms/Profile";
 import DescriptionCard from "@/components/atoms/Description";
@@ -30,7 +30,7 @@ const UserPage = () => {
 
   const fetchUserDetailData = async (id: any) => {
     try {
-      const res = await getUserDetail(id);
+      const res = await postUserDetail(id);
       setUserInfo(res.data);
       setPostCount(res.data.posts);
     } catch (err) {
@@ -45,7 +45,11 @@ const UserPage = () => {
   return (
     <section>
       <UserHeader user={userInfo} isLoggined={isCurrentUser} />
-      <ProfileCard user={userInfo} isLoggined={isCurrentUser} />
+      <ProfileCard
+        id={typeof id === "string" ? id : ""}
+        user={userInfo}
+        isLoggined={isCurrentUser}
+      />
       <DescriptionCard user={userInfo} />
       <UserNavigation user_id={id} user={userInfo} post={postCount} />
       <PostNavigation

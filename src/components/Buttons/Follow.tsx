@@ -22,6 +22,24 @@ const FollowButton: React.FC<FollowButtonProps> = ({ onClick, status }) => {
 
 export default FollowButton;
 
+export const MainFollowButton: React.FC<FollowButtonProps> = ({
+  onClick,
+  status,
+}) => {
+  return (
+    <Button onClick={onClick}>
+      <button
+        style={{
+          background: status ? "#efefef" : "#92a8d1",
+          color: status ? "#222222" : "#ffffff",
+        }}
+      >
+        {status ? "팔로잉" : "팔로우"}
+      </button>
+    </Button>
+  );
+};
+
 const Button = styled.div`
   position: static;
   flex-grow: 0;

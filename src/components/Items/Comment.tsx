@@ -6,7 +6,7 @@ import { RootState } from "@/redux/store";
 import { removeComment } from "@/redux/commentSlice";
 import { CommentData } from "@/types/PostTypes";
 import { formatData } from "@/utils/date";
-import * as SC from "@/styles/styled/items_comment";
+import styled from "styled-components";
 import { noProfile, favorite, moreHoriz } from "@/images";
 import DeleteModal from "@/components/Modals/Delete";
 import deleteComment from "@/services/postInfo/deleteComment";
@@ -121,7 +121,6 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
 
 export default CommentItem;
 
-import styled from "styled-components";
 
 const CommentContainer = styled.div`
   position: static;

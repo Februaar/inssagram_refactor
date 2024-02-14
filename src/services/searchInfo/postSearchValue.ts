@@ -1,6 +1,6 @@
 import axiosInstance from "../axiosInstance";
 
-const postSearchValue = (memberId: number): Promise<any> => {
+const postSearchValue = (memberId: string): Promise<any> => {
   const SearchData = {
     memberId,
   };

@@ -1,6 +1,6 @@
 import axiosInstance from "../axiosInstance";
 
-const getUserDetail = (id: any): Promise<any> => {
+const postUserDetail = (id: any): Promise<any> => {
   return axiosInstance({
     method: "post",
     url: `/member/detail/${id}`,
@@ -11,4 +11,4 @@ const getUserDetail = (id: any): Promise<any> => {
   });
 };
 
-export default getUserDetail;
+export default postUserDetail;

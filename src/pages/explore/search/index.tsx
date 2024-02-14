@@ -48,7 +48,7 @@ const SearchPage = () => {
     }
   };
 
-  const handlePostSearchValue = async (memberId: number) => {
+  const handlePostSearchValue = async (memberId: string) => {
     try {
       await postSearchValue(memberId);
     } catch (err) {

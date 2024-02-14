@@ -56,9 +56,7 @@ const Header = () => {
               <Image src={favorite} alt="notifications-page" />
             </button>
           </Link>
-          {/* {unreadCount > 0 &&  */}
-          <span className="bubble" />
-          {/* } */}
+          {unreadCount > 0 && <span className="bubble" />}
           <NotiBubble count={unreadCount} />
         </div>
         {isCreating ? <CreateModal uploadProgress={uploadProgress} /> : null}
@@ -100,7 +98,7 @@ const HeaderContainer = styled.div`
       height: 10px;
       border: 1.5px solid #ffffff;
       border-radius: 50%;
-      background-color:  #92a8d1;
+      background-color: #92a8d1;
     }
   }
 `;

@@ -6,7 +6,7 @@ import { SearchResultData } from "@/types/SearchTypes";
 
 interface SearchItemProps {
   result: SearchResultData;
-  onClick: (memberId: number) => void;
+  onClick: (memberId: string) => void;
 }
 
 const SearchItem: React.FC<SearchItemProps> = ({ result, onClick }) => {
