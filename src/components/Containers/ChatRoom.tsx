@@ -73,14 +73,14 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
           />
         </>
       )}
-      <WebSocketHandler
+      {/* <WebSocketHandler
         accessToken={accessToken}
         roomId={roomId}
         newMessage={newMessage}
         // onMessageReceived={(message: MessageState) =>
         //   setPreviousMessages(message)
         // }
-      />
+      /> */}
     </>
   );
 };
