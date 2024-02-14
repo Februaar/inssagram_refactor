@@ -26,7 +26,7 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   roomId,
   membersData,
 }) => {
-  const accessToken = sessionStorage.getItem("token");
+  // const accessToken = sessionStorage.getItem("token");
   const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
   const [previousMessages, setPreviousMessages] = useState<
     MessageState[] | null
