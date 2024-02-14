@@ -1,31 +1,22 @@
 import styled from "styled-components";
-import LinkCopyButton from "@/components/Buttons/LinkCopy";
 
-interface InfoModalProps {
-  post: any;
-  infoClick: () => void;
+interface DeleteModalProps {
+  onDelete: () => void;
   handleClose: () => void;
 }
 
-const InfoModal: React.FC<InfoModalProps> = ({
-  post,
-  infoClick,
-  handleClose,
-}) => {
+const DeleteModal: React.FC<DeleteModalProps> = ({ onDelete, handleClose }) => {
   return (
     <Backdrop>
-      <div className="modal-container">
+      <div className="modal-container ">
         <div className="item-area">
           <div className="item">
-            <LinkCopyButton
-              linkCopy={`https://inssagram-two.vercel.app/post/${post.postId}`}
-            />
+            <button onClick={onDelete} className="delete">
+              삭제하기
+            </button>
           </div>
-          <div className="item" onClick={infoClick}>
-            이 계정 정보
-          </div>
-          <div className="item" onClick={handleClose}>
-            취소
+          <div className="item">
+            <button onClick={handleClose}>취소</button>
           </div>
         </div>
       </div>
@@ -33,9 +24,9 @@ const InfoModal: React.FC<InfoModalProps> = ({
   );
 };
 
-export default InfoModal;
+export default DeleteModal;
 
-const Backdrop = styled.div`
+export const Backdrop = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -44,7 +35,7 @@ const Backdrop = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 20;
 
   .modal-container {
@@ -55,7 +46,7 @@ const Backdrop = styled.div`
 
     .item-area {
       display: grid;
-      grid-template-rows: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
       align-items: center;
 
       .item {
@@ -69,6 +60,10 @@ const Backdrop = styled.div`
 
         &:last-child {
           border-bottom: none;
+        }
+
+        .delete {
+          color: #ff0000;
         }
       }
     }

@@ -46,25 +46,23 @@ const CommentContainer: React.FC<CommentContainerProps> = ({ postId }) => {
   }, [postId]);
 
   return (
-    <>
-      <Container>
-        <div className="content-area">
-          <div>
-            {original && <OriginalItem original={original} />}
-            <div className="comment-area">
-              {comments ? (
-                comments.map((comment, index) => (
-                  <CommentItem key={index} comment={comment} />
-                ))
-              ) : (
-                <div>아직 댓글이 없습니다.</div>
-              )}
-            </div>
+    <Container>
+      <div className="content-area">
+        <div>
+          {original && <OriginalItem original={original} />}
+          <div className="comment-area">
+            {comments ? (
+              comments.map((comment, index) => (
+                <CommentItem key={index} comment={comment} />
+              ))
+            ) : (
+              <div>아직 댓글이 없습니다.</div>
+            )}
           </div>
-          {original && <CommentInput postId={original.postId} />}
         </div>
-      </Container>
-    </>
+        {original && <CommentInput postId={original.postId} />}
+      </div>
+    </Container>
   );
 };
 

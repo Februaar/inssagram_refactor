@@ -6,9 +6,9 @@ import AlarmItem from "@/components/Items/Alarm";
 
 const NotificationsPage: React.FC<NotificationData> = () => {
   const pageTitle = "알림";
-  const [notifications, setNotifications] = useState<
-    NotificationData[] | undefined
-  >();
+  const [notifications, setNotifications] = useState<NotificationData[] | null>(
+    null
+  );
 
   useEffect(() => {
     fetchNotiAllData();

@@ -1,14 +1,18 @@
 import axiosInstance from "../axiosInstance";
 
-const getUserDetail = (id: any): Promise<any> => {
+const postUserFollow = (followId: string): Promise<any> => {
+  const followData = {
+    followId,
+  };
   return axiosInstance({
     method: "post",
-    url: `/member/detail/${id}`,
+    url: `/member/follow`,
     headers: {
       "Content-Type": "application/json",
       charset: "utf-8",
     },
+    data: followData,
   });
 };
 
-export default getUserDetail;
+export default postUserFollow;

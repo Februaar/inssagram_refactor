@@ -1,9 +1,9 @@
 import axiosInstance from "../axiosInstance";
 
-const getUserDetail = (id: any): Promise<any> => {
+const deleteNoti = (id: string): Promise<any> => {
   return axiosInstance({
-    method: "post",
-    url: `/member/detail/${id}`,
+    method: "delete",
+    url: `/notification/${id}`,
     headers: {
       "Content-Type": "application/json",
       charset: "utf-8",
@@ -11,4 +11,4 @@ const getUserDetail = (id: any): Promise<any> => {
   });
 };
 
-export default getUserDetail;
+export default deleteNoti;

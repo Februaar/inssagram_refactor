@@ -94,7 +94,7 @@ const Backdrop = styled.div`
         width: 100%;
         height: 44px;
         cursor: pointer;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #cccccc;
 
         &:last-child {
           border-bottom: none;

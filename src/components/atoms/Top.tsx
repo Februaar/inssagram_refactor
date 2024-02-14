@@ -60,6 +60,15 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
                 />
               </div>
               <div className="id">{writer.nickName}</div>
+              {isCurrentUser ? null : (
+                <button
+                  style={{
+                    color: writer.followed ? "#222222" : "#92a8d1",
+                  }}
+                >
+                  {writer.followed ? "팔로잉" : "팔로우"}
+                </button>
+              )}
             </header>
           </Link>
           <button className="more" onClick={handleInfoModal}>
@@ -117,6 +126,10 @@ const PostTopContainer = styled.div`
 
     .id {
       margin-left: 12px;
+    }
+
+    button {
+      margin-left: 8px;
     }
   }
 
