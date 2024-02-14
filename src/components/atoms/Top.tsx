@@ -63,10 +63,10 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
               {isCurrentUser ? null : (
                 <button
                   style={{
-                    color: writer.followed ? "#222222" : "#92a8d1",
+                    color: writer.followed ? "" : "#92a8d1",
                   }}
                 >
-                  {writer.followed ? "팔로잉" : "팔로우"}
+                  {writer.followed ? "" : "팔로우"}
                 </button>
               )}
             </header>
