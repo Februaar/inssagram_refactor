@@ -30,7 +30,7 @@ const FollowersPage = () => {
   };
 
   return (
-    <>
+    <section>
       <PageHeader title={pageTitle} />
       {followers && followers.length > 0 ? (
         followers.map((member) => (
@@ -39,7 +39,7 @@ const FollowersPage = () => {
       ) : (
         <Error message="아직 연결된 동료가 없습니다" />
       )}
-    </>
+    </section>
   );
 };
 

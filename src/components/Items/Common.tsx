@@ -41,7 +41,9 @@ const CommonItem: React.FC<CommonItemProps> = ({ member, customContent }) => {
                     <span className="nickname">{member.nickname}</span>
                   </Link>
                   {/* <span className="dot">·</span>
-                    <span className="status">{member.status ? "팔로우" : "팔로잉"}</span> */}
+                  <span className="status">
+                    {member.status ? "팔로우" : "팔로잉"}
+                  </span> */}
                 </div>
                 <div className="desc">
                   <span>{member.description}</span>
@@ -118,7 +120,7 @@ const InfosArea = styled.div`
   flex-grow: 1;
   flex-wrap: wrap;
   flex-basis: auto;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   flex-direction: row;
   min-width: 0;

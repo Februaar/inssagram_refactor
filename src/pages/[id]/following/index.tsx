@@ -30,7 +30,7 @@ const FollowingPage = () => {
   };
 
   return (
-    <>
+    <section>
       <PageHeader title={pageTitle} />
       <>
         {following && following.length > 0 ? (
@@ -41,7 +41,7 @@ const FollowingPage = () => {
           <Error message="새로운 동료를 팔로우 해보세요" />
         )}
       </>
-    </>
+    </section>
   );
 };
 
