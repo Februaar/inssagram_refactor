@@ -47,7 +47,7 @@ const SigninInput = () => {
   return (
     <FormContainer>
       <SocialLogin />
-      <span>또는</span>
+      <span className="or">또는</span>
       <div className="input-container">
         <div className="input-item">
           <Input
@@ -70,13 +70,15 @@ const SigninInput = () => {
           />
         </div>
         <div className="login-button">
-          <button onClick={handleLogin}>로그인</button>
+          <button className="login" onClick={handleLogin}>
+            로그인
+          </button>
         </div>
       </div>
       <div className="signup-container">
-        <span>계정이 없으신가요?</span>
+        <span className="desc">계정이 없으신가요?</span>
         <Link href="/accounts/signup/email">
-          <button>가입하기</button>
+          <span className="signup-button">가입하기</span>
         </Link>
       </div>
     </FormContainer>
@@ -91,7 +93,7 @@ const FormContainer = styled.form`
   align-items: center;
   width: 270px;
 
-  span {
+  .or {
     padding-top: 10px;
     color: #737373;
   }
@@ -119,7 +121,7 @@ const FormContainer = styled.form`
       border-radius: 8px;
       background-color: #92a8d1;
 
-      button {
+      .login {
         color: #ffffff;
       }
     }
@@ -133,11 +135,11 @@ const FormContainer = styled.form`
     height: 35px;
     margin-top: 10px;
 
-    span {
+    .desc {
       color: #737373;
     }
 
-    button {
+    .signup-button {
       margin-left: 5px;
       color: #92a8d1;
     }
