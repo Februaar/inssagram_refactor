@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
-import * as SC from "@/styles/styled/inputs_detail";
+import styled from "styled-components";
 import { validatePassword } from "@/utils/authValidation";
 
 const DetailInput = () => {
@@ -76,8 +76,6 @@ const DetailInput = () => {
 };
 
 export default DetailInput;
-
-import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;

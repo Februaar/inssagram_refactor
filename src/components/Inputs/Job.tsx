@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
-import * as SC from "@/styles/styled/inputs_job";
+import styled from "styled-components";
 
 const JobInput = () => {
   const router = useRouter();
@@ -57,8 +57,6 @@ const JobInput = () => {
 };
 
 export default JobInput;
-
-import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
