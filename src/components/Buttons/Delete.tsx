@@ -7,7 +7,7 @@ interface FollowingItemProps {
 const DeleteButton: React.FC<FollowingItemProps> = ({ onClick }) => {
   return (
     <Button onClick={onClick}>
-      <Title>삭제</Title>
+      <button>삭제</button>
     </Button>
   );
 };
@@ -24,24 +24,24 @@ const Button = styled.div`
   margin-left: 12px;
   overflow-y: visible;
   overflow-x: visible;
-`;
 
-const Title = styled.button`
-  position: relative;
-  display: flex;
-  flex-basis: auto;
-  flex-shrink: 0;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 8px;
-  width: auto;
-  min-width: 0;
-  height: 32px;
-  min-height: 0;
-  text-overflow: ellipsis;
-  padding: 0 16px;
-  background-color: #efefef;
-  font-size: 0.875rem;
+  button {
+    position: relative;
+    display: flex;
+    flex-basis: auto;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    width: auto;
+    min-width: 0;
+    height: 32px;
+    min-height: 0;
+    text-overflow: ellipsis;
+    padding: 0 16px;
+    background-color: #efefef;
+    font-size: 0.875rem;
+  }
 `;

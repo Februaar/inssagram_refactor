@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { directNew } from "@/images";
 import styled from "styled-components";
+import { directNew } from "@/images";
 
 export const SearchAccount = () => {
   return (

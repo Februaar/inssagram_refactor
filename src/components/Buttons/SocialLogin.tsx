@@ -4,18 +4,16 @@ import { kakaoTalk } from "@/images";
 
 const SocialLogin = () => {
   return (
-    <>
-      <Container>
-        <Image
-          src={kakaoTalk}
-          alt="kakako-login"
-          width={24}
-          height={24}
-          style={{ borderRadius: "100%" }}
-        />
-        <LoginButton>카카오톡으로 로그인</LoginButton>
-      </Container>
-    </>
+    <Container>
+      <Image
+        src={kakaoTalk}
+        alt="kakako-login"
+        width={24}
+        height={24}
+        style={{ borderRadius: "100%" }}
+      />
+      <span>카카오톡으로 로그인</span>
+    </Container>
   );
 };
 
@@ -30,9 +28,11 @@ const Container = styled.div`
   border-radius: 8px;
   background-color: #f7e600;
   margin: 22px 40px 8px;
-`;
 
-const LoginButton = styled.button`
-  color: #3a1d1d;
-  padding: 7px 16px;
+  span {
+    padding: 7px 16px;
+    cursor: pointer;
+    color: #3a1d1d;
+    background: transparent;
+  }
 `;

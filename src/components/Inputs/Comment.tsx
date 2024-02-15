@@ -2,10 +2,10 @@ import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { UserState } from "@/types/UserTypes";
 import { addComment } from "@/redux/commentSlice";
-import { noProfile } from "@/images";
+import { UserState } from "@/types/UserTypes";
 import styled from "styled-components";
+import { noProfile } from "@/images";
 import postNewComment from "@/services/postInfo/postNewComment";
 
 interface CommentInputProps {

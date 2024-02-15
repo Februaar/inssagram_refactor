@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { favorite, favoriteFull } from "@/images";
 import styled from "styled-components";
+import { favorite, favoriteFull } from "@/images";
 
 interface FavoriteIconProps {
   onClick: () => void;

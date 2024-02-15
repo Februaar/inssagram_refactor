@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { PostContentData } from "@/types/PostTypes";
-import getUserPostAll from "@/services/postInfo/getUserPostAll";
 import PostView from "../atoms/PostView";
-import PostItem from "../Items/Post";
 import Error from "../atoms/Error";
+import PostItem from "../Items/Post";
+import getUserPostAll from "@/services/postInfo/getUserPostAll";
 import getBookmarkedPostAll from "@/services/postInfo/getBookmarkedPostAll";
 import getTaggedPostAll from "@/services/postInfo/getTaggedPostAll";
 

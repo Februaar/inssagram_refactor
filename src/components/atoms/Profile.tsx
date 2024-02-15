@@ -1,7 +1,7 @@
 import { UserPageData } from "@/types/UserTypes";
 import Image from "next/image";
-import { noProfile } from "@/images";
 import styled from "styled-components";
+import { noProfile } from "@/images";
 import ProfileEditButton from "../Buttons/ProfileEdit";
 import MainFollowButton from "../Buttons/Follow";
 import postUserFollow from "@/services/userInfo/postUserFollow";

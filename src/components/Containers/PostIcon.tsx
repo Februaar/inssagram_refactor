@@ -2,13 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { PostContentData } from "@/types/PostTypes";
-import postLikePost from "@/services/postInfo/postLikePost";
-import postSavePost from "@/services/postInfo/postSavePost";
-import Swal from "sweetalert2";
 import styled from "styled-components";
 import { comment, direct } from "@/images";
 import FavoriteIcon from "../Icons/Favorite";
 import SaveIcon from "../Icons/Save";
+import postLikePost from "@/services/postInfo/postLikePost";
+import postSavePost from "@/services/postInfo/postSavePost";
 
 interface PostIconProps {
   post: PostContentData;

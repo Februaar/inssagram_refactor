@@ -1,8 +1,8 @@
-import { UserPageData } from "@/types/UserTypes";
 import Link from "next/link";
 import Image from "next/image";
-import { setting, accountAdd } from "@/images";
+import { UserPageData } from "@/types/UserTypes";
 import styled from "styled-components";
+import { setting, accountAdd } from "@/images";
 import { PageHeader } from "@/components/atoms/Header";
 
 interface UserHeaderProps {

@@ -1,7 +1,7 @@
 import { PostContentData } from "@/types/PostTypes";
 import Image from "next/image";
-import { brokenImage } from "@/images";
 import styled from "styled-components";
+import { brokenImage } from "@/images";
 
 interface PostItemProps {
   image: PostContentData[] | undefined;

@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { UserState } from "@/types/ChatRoomTypes";
-import { noProfile, arrowBack } from "@/images";
 import styled from "styled-components";
+import { noProfile, arrowBack } from "@/images";
 
 interface ChatRoomHeaderProps {
   receiver: UserState;

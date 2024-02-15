@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setImageURL, setFileName } from "@/redux/imageSlice";
-import { UserState } from "@/types/UserTypes";
 import { storage } from "../../../firebase-config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import * as SC from "@/styles/styled/modals_create";
+import { UserState } from "@/types/UserTypes";
+import styled from "styled-components";
 import { createPost, createStory } from "@/images";
 
 interface CreateModalProps {
@@ -63,8 +63,8 @@ const CreateModal: React.FC<CreateModalProps> = ({ uploadProgress }) => {
   };
 
   return (
-    <SC.Modal>
-      <SC.CreateIcon>
+    <ModalContainer>
+      <div className="create-icon">
         게시물
         <label
           htmlFor="post-upload"
@@ -78,13 +78,35 @@ const CreateModal: React.FC<CreateModalProps> = ({ uploadProgress }) => {
           style={{ display: "none" }}
           onChange={onImageChange}
         />
-      </SC.CreateIcon>
-      <SC.CreateIcon>
+      </div>
+      <div className="create-icon">
         스토리
         <Image src={createStory} alt="create-story" width={16} height={16} />
-      </SC.CreateIcon>
-    </SC.Modal>
+      </div>
+    </ModalContainer>
   );
 };
 
 export default CreateModal;
+
+const ModalContainer = styled.div`
+  position: absolute;
+  right: 5%;
+  top: 45px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 3px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  .create-icon {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 100px;
+    height: 37px;
+    padding: 8px 16px;
+  }
+`;

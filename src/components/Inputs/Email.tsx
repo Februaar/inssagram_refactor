@@ -1,8 +1,8 @@
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignUp } from "@/context/SignUp";
-import * as SC from "@/styles/styled/inputs_email";
+import styled from "styled-components";
 import AddressButton from "@/components/Buttons/Address";
 import { validateEmail } from "@/utils/authValidation";
 
@@ -56,41 +56,84 @@ const EmailInput = () => {
   };
 
   return (
-    <>
-      <SC.Container>
-        <SC.Title>이메일</SC.Title>
-        <SC.EmailInfo>
-          <SC.Email
-            alt="email"
-            placeholder="이메일 주소를 정확히 입력해주세요."
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+    <Container>
+      <div className="title">이메일</div>
+      <div className="input-area">
+        <Email
+          alt="email"
+          placeholder="이메일 주소를 정확히 입력해주세요."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div className="address-type">
+          <AddressButton address="@gmail.com" onSelect={handleAddressSelect} />
+          <AddressButton address="@naver.com" onSelect={handleAddressSelect} />
+          <AddressButton address="@kakao.com" onSelect={handleAddressSelect} />
+          <AddressButton
+            address="@outlook.com"
+            onSelect={handleAddressSelect}
           />
-          <SC.AddressType>
-            <AddressButton
-              address="@gmail.com"
-              onSelect={handleAddressSelect}
-            />
-            <AddressButton
-              address="@naver.com"
-              onSelect={handleAddressSelect}
-            />
-            <AddressButton
-              address="@kakao.com"
-              onSelect={handleAddressSelect}
-            />
-            <AddressButton
-              address="@outlook.com"
-              onSelect={handleAddressSelect}
-            />
-          </SC.AddressType>
-        </SC.EmailInfo>
-        <SC.SubmitButton>
-          <SC.Btn onClick={handleSubmit}>다음</SC.Btn>
-        </SC.SubmitButton>
-      </SC.Container>
-    </>
+        </div>
+      </div>
+      <div className="submit-area">
+        <button onClick={handleSubmit}>다음</button>
+      </div>
+    </Container>
   );
 };
 
 export default EmailInput;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  height: 240px;
+  padding-top: 35px;
+  margin: 0 auto;
+
+  .title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 5px 10px;
+  }
+
+  .input-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+    height: 120px;
+
+    .address-type {
+      display: flex;
+      overflow-y: hidden;
+    }
+  }
+
+  .submit-area {
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    height: 40px;
+    margin: 16px 0;
+    border-radius: 8px;
+    background-color: #92a8d1;
+
+    button {
+      color: #ffffff;
+    }
+  }
+`;
+
+const Email = styled.input`
+  width: 100%;
+  height: 37px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+`;

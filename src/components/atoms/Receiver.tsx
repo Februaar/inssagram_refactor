@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { UserState } from "@/types/ChatRoomTypes";
-import { noProfile } from "@/images";
 import styled from "styled-components";
+import { noProfile } from "@/images";
 
 interface ReceiverProfileProps {
   receiver: UserState;

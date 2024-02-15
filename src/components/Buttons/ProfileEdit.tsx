@@ -6,7 +6,7 @@ const ProfileEditButton = () => {
     <>
       <Link href="/accounts/edit">
         <Container>
-          <Button>프로필편집</Button>
+          <button>프로필편집</button>
         </Container>
       </Link>
     </>
@@ -22,9 +22,9 @@ export const Container = styled.div`
   height: 32px;
   border-radius: 8px;
   background-color: #efefef;
-`;
 
-const Button = styled.button`
-  padding: 0 16px;
-  font-size: 14px;
+  button {
+    padding: 0 16px;
+    font-size: 14px;
+  }
 `;
