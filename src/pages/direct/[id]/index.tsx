@@ -51,11 +51,7 @@ const ChatRoomPage = () => {
 
   return (
     <PageContainer>
-      <ChatRoomContainer
-        user={user}
-        roomId={id}
-        membersData={membersData}
-      />
+      <ChatRoomContainer user={user} roomId={id} membersData={membersData} />
     </PageContainer>
   );
 };

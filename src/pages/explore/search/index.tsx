@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { SearchResultData, SearchHistoryData } from "@/types/SearchTypes";
+import { RecommendationsData } from "@/types/UserTypes";
 import postSearchValue from "@/services/searchInfo/postSearchValue";
 import deleteSearchHistory from "@/services/searchInfo/deleteSearchHistory";
 import getSearchResultList from "@/services/searchInfo/getSearchResultList";
 import getSearchHistoryList from "@/services/searchInfo/getSearchHistoryList";
-import * as SC from "@/styles/styled/search";
+import getRecommendations from "@/services/userInfo/getRecommendations";
+import styled from "styled-components";
 import SearchInput from "@/components/Inputs/Search";
 import SearchItem from "@/components/Items/Search";
+import RecommendItem from "@/components/Items/Recommend";
 import HistoryItem from "@/components/Items/History";
 import Footer from "@/components/Footer";
 
@@ -16,6 +19,7 @@ const SearchPage = () => {
   const [searchHistories, setSearchHistories] = useState<SearchHistoryData[]>(
     []
   );
+  const [recommends, setRecommends] = useState<RecommendationsData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +29,7 @@ const SearchPage = () => {
         setSearchResults([]);
       }
       await fetchSearchHistoryList();
+      await fetchRecommendationsList(0, 5);
     };
 
     fetchData();
@@ -34,6 +39,18 @@ const SearchPage = () => {
     try {
       const res = await getSearchResultList(searchValue);
       setSearchResults(res);
+    } catch (err) {
+      console.error("error fetching search results:", err);
+    }
+  };
+
+  const fetchRecommendationsList = async (
+    pageNumber: number,
+    pageSize: number
+  ) => {
+    try {
+      const res = await getRecommendations(pageNumber, pageSize);
+      setRecommends(res.data.content);
     } catch (err) {
       console.error("error fetching search results:", err);
     }
@@ -89,10 +106,10 @@ const SearchPage = () => {
       {!searchResults.length && !searchHistories.length
         ? ""
         : searchResults.length === 0 && (
-            <SC.HeadTitle>
-              <SC.SubTitle>최근 검색어</SC.SubTitle>
-              <SC.DeleteAll>모두 지우기</SC.DeleteAll>
-            </SC.HeadTitle>
+            <TabTitle>
+              <div>최근 검색어</div>
+              <button>모두 지우기</button>
+            </TabTitle>
           )}
 
       {/* 최근 검색 기록 */}
@@ -106,9 +123,36 @@ const SearchPage = () => {
           />
         ))}
 
+      {/* 추천 계정 리스트 */}
+      <TabTitle>
+        <div>최근에 가입했어요</div>
+      </TabTitle>
+      {recommends.length > 0 &&
+        recommends.map((recommend) => (
+          <RecommendItem key={recommend.member_id} account={recommend} />
+        ))}
       <Footer />
     </section>
   );
 };
 
 export default SearchPage;
+
+const TabTitle = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-around;
+  padding: 14px 16px 12px;
+  border-top: 1px solid #dbdbdb;
+
+  div {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  button {
+    display: flex;
+    justify-content: flex-end;
+    color: #92a8d1;
+  }
+`;

@@ -47,7 +47,6 @@ const AccountsEditPage = () => {
       }
     }
 
-    // selectedImage가 없을 경우에 대한 처리
     return "";
   };
 

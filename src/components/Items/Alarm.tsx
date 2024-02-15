@@ -1,11 +1,12 @@
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { setAlarms, removeAlarm } from "@/redux//alarmSlice";
+import { UserState } from "@/types/UserTypes";
 import { NotificationData } from "@/types/NotificationTypes";
 import styled from "styled-components";
 import { noProfile, brokenImage, moreHoriz } from "@/images";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { UserState } from "@/types/UserTypes";
 import Error from "../atoms/Error";
 import FollowButton from "../Buttons/Follow";
 import DeleteModal from "@/components/Modals/Delete";
@@ -13,12 +14,16 @@ import postUserFollow from "@/services/userInfo/postUserFollow";
 import deleteNoti from "@/services/notificationInfo/deleteNoti";
 
 interface AlarmItemProps {
-  noti: NotificationData;
+  alarm: NotificationData;
 }
 
-const AlarmItem: React.FC<AlarmItemProps> = ({ noti }) => {
+const AlarmItem: React.FC<AlarmItemProps> = ({ alarm }) => {
   const user: UserState = useSelector((state: RootState) => state.user);
-  const isCurrentUser = user.member_id === noti.sender_id;
+  // const alarms = useSelector((state: RootState) => state.alarm.alarms);
+  // console.log(alarm);
+  const isCurrentUser = user.member_id === alarm.sender_id;
+
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFollowClick = async (memberId: string) => {
@@ -34,9 +39,10 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ noti }) => {
     }
   };
 
-  const handleDeleteNoti = async (id: string) => {
+  const handleDeleteNoti = async (id: any) => {
     try {
       await deleteNoti(id);
+      dispatch(setAlarms(id));
       setIsModalOpen(false);
     } catch (err) {
       console.error("error deleting comment");
@@ -53,28 +59,28 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ noti }) => {
 
   return (
     <>
-      {noti ? (
+      {alarm ? (
         <ItemContainer>
           <div className="item-container">
             <div className="profile">
               <Image
-                src={noti.sender_image ? noti.sender_image : noProfile}
+                src={alarm.sender_image ? alarm.sender_image : noProfile}
                 alt="profile"
                 width={44}
                 height={44}
                 style={{ borderRadius: "100%" }}
               />
             </div>
-            <span className="message">{noti.message}</span>
-            {noti.post_id === undefined ? (
+            <span className="message">{alarm.message}</span>
+            {alarm.post_id === undefined ? (
               <FollowButton
-                onClick={() => handleFollowClick(noti.sender_id)}
-                status={noti.friend_status}
+                onClick={() => handleFollowClick(alarm.sender_id)}
+                status={alarm.friend_status}
               />
             ) : (
               <div className="post">
                 <Image
-                  src={noti.post_image ? noti.post_image : brokenImage}
+                  src={alarm.post_image ? alarm.post_image : brokenImage}
                   alt="post-image"
                   width={44}
                   height={44}
@@ -91,14 +97,14 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ noti }) => {
             </div>
             {isModalOpen ? (
               <DeleteModal
-                onDelete={() => handleDeleteNoti(noti.id)}
+                onDelete={() => handleDeleteNoti(alarm.id)}
                 handleClose={handleCloseModal}
               />
             ) : null}
           </div>
         </ItemContainer>
       ) : (
-        <Error message="조회하실 알림이 없습니다" />
+        <Error message="조회할 알림이 없습니다" />
       )}
     </>
   );

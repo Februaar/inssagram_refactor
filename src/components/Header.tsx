@@ -73,6 +73,7 @@ const HeaderContainer = styled.div`
 
   .header {
     position: fixed;
+    top: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -82,6 +83,10 @@ const HeaderContainer = styled.div`
     height: 44px;
     padding: 0 16px;
     z-index: 5;
+
+    @media (min-width: 360px) and (max-width: 768px) {
+      top: 40px;
+    }
   }
 
   .icons {

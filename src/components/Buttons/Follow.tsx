@@ -47,7 +47,7 @@ const Button = styled.div`
   display: flex;
   align-self: auto;
   justify-content: flex-start;
-  margin-left: 12px;
+  // margin-left: 12px;
   overflow-y: visible;
   overflow-x: visible;
 

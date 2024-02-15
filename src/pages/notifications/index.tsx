@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { setAlarms } from "@/redux//alarmSlice";
 import { NotificationData } from "@/types/NotificationTypes";
-import getNotiAll from "@/services/notificationInfo/getNotiAll";
 import { PageHeader } from "@/components/atoms/Header";
 import AlarmItem from "@/components/Items/Alarm";
+import getNotiAll from "@/services/notificationInfo/getNotiAll";
 
 const NotificationsPage: React.FC<NotificationData> = () => {
   const pageTitle = "알림";
-  const [notifications, setNotifications] = useState<NotificationData[] | null>(
-    null
-  );
+  const dispatch = useDispatch();
+  const alarms = useSelector((state: RootState) => state.alarm.alarms);
 
   useEffect(() => {
     fetchNotiAllData();
@@ -17,7 +19,7 @@ const NotificationsPage: React.FC<NotificationData> = () => {
   const fetchNotiAllData = async () => {
     try {
       const res = await getNotiAll();
-      setNotifications(res.data);
+      dispatch(setAlarms(res.data));
     } catch (err) {
       console.error("error fetching alarm:", err);
     }
@@ -27,10 +29,8 @@ const NotificationsPage: React.FC<NotificationData> = () => {
     <section>
       <PageHeader title={pageTitle} />
       <div>
-        {notifications &&
-          notifications.map((notification) => (
-            <AlarmItem key={notification.id} noti={notification} />
-          ))}
+        {alarms &&
+          alarms.map((alarm) => <AlarmItem key={alarm.id} alarm={alarm} />)}
       </div>
     </section>
   );

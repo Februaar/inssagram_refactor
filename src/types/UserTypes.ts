@@ -35,3 +35,11 @@ export interface LikedPostMemberData {
   memberProfile: string;
   followedState: boolean;
 }
+
+export interface RecommendationsData {
+  member_id: string;
+  email: string;
+  nickname: string;
+  job: string;
+  image: string;
+}

@@ -1,54 +1,37 @@
-import { useEffect, useRef, useState } from "react";
-import Logo from "../img/Logo.svg";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-// import ChangeWording from "../shared/utils/ChangeWording";
-// import theme from "../styles/theme";
 
 const LaptopBackground = () => {
-  const intervalRef = useRef(null);
-  const changeWordingRef = useRef(null);
-  const [ct, setCt] = useState(null);
+  const [textIndex, setTextIndex] = useState(0);
+  const texts = ["개발자", "기획자", "디자이너"];
 
-  // useEffect(() => {
-  //   if (changeWordingRef.current) {
-  //     const _ct = new ChangeWording(changeWordingRef.current);
-  //     setCt(_ct);
-  //   }
-  //   return () => {
-  //     setCt(null);
-  //   };
-  // }, []);
+  const changeText = () => {
+    setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+  };
 
-  // useEffect(() => {
-  //   if (ct) {
-  //     const texts = ["즐거움", "약속", "위치", "사람"];
-  //     let count = 0;
-  //     intervalRef.current = setInterval(() => {
-  //       if (ct) {
-  //         ct.changeText(texts[++count % texts.length]);
-  //       }
-  //     }, 2000);
-  //   }
-  //   return () => {
-  //     if (intervalRef.current) {
-  //       clearInterval(intervalRef.current);
-  //     }
-  //   };
-  // }, [ct]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      changeText();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Container>
       <TitleContainer>
-        <span>온 세상 [</span>
-        <div ref={changeWordingRef} className="changing-wording">
-          <h1>사람</h1>
+        <div className="title-container">
+          <span>IT 분야의[</span>
+          <div className="changing-wording">
+            <h1>{texts[textIndex]}</h1>
+          </div>
+          <span>]와 소통하다</span>
         </div>
-        <span>] 을 잇다</span>
       </TitleContainer>
-
       <TextContainer>
-        <p>직장인들을 위한 소셜 플랫폼</p>
-        {/* <img alt="logo" src={Logo} /> */}
+        <div>
+          <p>다양한 분야의 동료들을 만날 수 있는 소셜 플랫폼</p>
+        </div>
       </TextContainer>
     </Container>
   );
@@ -62,88 +45,70 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-right: 200px;
-  padding-bottom: 200px;
-  padding-left: 100px;
+  height: 100vh;
 `;
 
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 50px;
-  width: 80%;
-
-  span:first-of-type {
-    font-weight: normal;
-    margin-right: 10px;
-  }
+  height: 20%;
 
   span {
-    line-height: 45px;
     font-size: 45px;
-    font-weight: normal;
-    margin-right: 10px;
-  }
-
-  span:last-of-type {
-    font-weight: normal;
-  }
-
-  @keyframes letter-in {
-    0% {
-      bottom: 1.2em;
-    }
-    100% {
-      bottom: 0;
-    }
-  }
-  @keyframes letter-out {
-    0% {
-      bottom: 0;
-    }
-    100% {
-      bottom: -1.2em;
-    }
+    line-height: 45px;
   }
 
   .changing-wording {
     font-size: 45px;
-    height: 45px;
-    width: 150px;
-    position: relative;
-    overflow-y: hidden;
     transform: translate3d(0, 0, 0);
 
     h1 {
       font-size: 1em;
-      position: absolute;
+      font-weight: 600;
       text-align: center;
-      font-weight: bold;
-      width: 150px;
-      left: 0;
-      top: 0;
-      margin: 0;
+      color: #f7cac9;
 
       .letter {
         position: relative;
         bottom: 1.2em;
+      }
+    }
+  }
 
-        &.in {
-          animation-name: letter-in;
-          animation-duration: 0.3s;
-          animation-timing-function: ease-out;
-          animation-fill-mode: forwards;
-        }
+  @media screen and (max-width: 768px) {
+    .title-container {
+      display: none;
+    }
+  }
 
-        &.out {
-          bottom: 0;
-          animation-name: letter-out;
-          animation-duration: 0.3s;
-          animation-timing-function: ease-in;
-          animation-fill-mode: forwards;
-        }
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    .title-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .changing-wording {
+      h1 {
+        font-size: 35px;
+        padding: 12px 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1201px) {
+    .title-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .changing-wording {
+      font-size: 40px;
+      height: 40px;
+
+      h1 {
+        width: 200px;
       }
     }
   }
@@ -152,15 +117,9 @@ const TitleContainer = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 80%;
-  justify-content: center;
+  padding: 20px 0;
 
   p {
     font-size: 24px;
-    margin-right: 30px;
-  }
-
-  img {
-    width: 30%;
   }
 `;

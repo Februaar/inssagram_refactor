@@ -1,12 +1,10 @@
 import axios from "axios";
-import { UserState } from "@/types/UserTypes";
-import { RootState } from "@/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "@/redux/userSlice";
+import { useState } from "react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import * as SC from "@/styles/styled/inputs_signin";
+import { useDispatch } from "react-redux";
+import { loginUser } from "@/redux/userSlice";
+import styled from "styled-components";
 import SocialLogin from "@/components/Buttons/SocialLogin";
 
 const SigninInput = () => {
@@ -42,17 +40,17 @@ const SigninInput = () => {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      e.preventDefault(); //엔터 키에 대한 기본 동작
+      e.preventDefault();
     }
   };
 
   return (
-    <SC.FormContainer>
+    <FormContainer>
       <SocialLogin />
-      <SC.Or>또는</SC.Or>
-      <SC.SigninArea>
-        <SC.InputItem>
-          <SC.Input
+      <span>또는</span>
+      <div className="input-container">
+        <div className="input-item">
+          <Input
             type="text"
             alt="email"
             placeholder="이메일을 입력하세요"
@@ -60,9 +58,9 @@ const SigninInput = () => {
             onChange={(e) => setEmail(e.target.value)}
             onKeyPress={handleKeyPress}
           />
-        </SC.InputItem>
-        <SC.InputItem>
-          <SC.Password
+        </div>
+        <div className="input-item">
+          <Password
             type="password"
             alt="password"
             placeholder="비밀번호를 입력하세요"
@@ -70,19 +68,95 @@ const SigninInput = () => {
             onChange={(e) => setPassword(e.target.value)}
             onKeyPress={handleKeyPress}
           />
-        </SC.InputItem>
-        <SC.SigninBtn>
-          <SC.Btn onClick={handleLogin}>로그인</SC.Btn>
-        </SC.SigninBtn>
-      </SC.SigninArea>
-      <SC.SignupArea>
-        <SC.Explan>계정이 없으신가요?</SC.Explan>
+        </div>
+        <div className="login-button">
+          <button onClick={handleLogin}>로그인</button>
+        </div>
+      </div>
+      <div className="signup-container">
+        <span>계정이 없으신가요?</span>
         <Link href="/accounts/signup/email">
-          <SC.SignupBtn>가입하기</SC.SignupBtn>
+          <button>가입하기</button>
         </Link>
-      </SC.SignupArea>
-    </SC.FormContainer>
+      </div>
+    </FormContainer>
   );
 };
 
 export default SigninInput;
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 270px;
+
+  span {
+    padding-top: 10px;
+    color: #737373;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    width: 100%;
+    margin-top: 20px;
+
+    .input-item {
+      width: 100%;
+      margin: 0 40px 6px;
+    }
+
+    .login-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 40px 8px;
+      width: 100%;
+      height: 35px;
+      border-radius: 8px;
+      background-color: #92a8d1;
+
+      button {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .signup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+
+    span {
+      color: #737373;
+    }
+
+    button {
+      margin-left: 5px;
+      color: #92a8d1;
+    }
+  }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  height: 37px;
+  padding: 9px 0 7px 8px;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+`;
+
+const Password = styled(Input)`
+  font-family: Arial, Helvetica, sans-serif;
+
+  &:: placeholder {
+    font-family: JejuGothic;
+  }
+`;

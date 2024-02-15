@@ -6,6 +6,7 @@ import profileReducer from "./profileSlice";
 import imageReducer from "./imageSlice";
 import postReducer from "./postSlice";
 import commentReducer from "./commentSlice";
+import alarmReducer from "./alarmSlice";
 
 const persistConfig = {
   key: "root",
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   image: imageReducer,
   post: postReducer,
   comment: commentReducer,
+  alarm: alarmReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

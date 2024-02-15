@@ -14,7 +14,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <SignUpProvider>
         <Container>
           <LaptopContainer>
-            <LeftWrap>{/* <LaptopBackground /> */}</LeftWrap>
+            <LeftWrap>
+              <LaptopBackground />
+            </LeftWrap>
             <RightWrap>
               <Image src={Phone} className="phone-img" alt="phone" />
               <PhoneFrame>
@@ -38,6 +40,7 @@ const Container = styled.div`
 
 const LaptopContainer = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: center;
   width: 100%;
 `;
@@ -55,6 +58,7 @@ const LeftWrap = styled.div`
     transform: scale(0.9);
     flex: unset;
   }
+
   @media (max-width: 1400px) {
     transform: scale(0.8);
   }
@@ -79,6 +83,10 @@ const RightWrap = styled.div`
       display: none;
     }
   }
+
+  @media (max-width: 1400px) {
+    transform: scale(0.9);
+  }
 `;
 
 const PhoneFrame = styled.div`
@@ -87,7 +95,9 @@ const PhoneFrame = styled.div`
   height: 812px;
 
   @media (min-width: 360px) and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 856px;
   }
 `;

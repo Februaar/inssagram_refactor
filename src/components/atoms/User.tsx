@@ -19,7 +19,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ user, isLoggined }) => {
             <Image src={setting} alt="profile" width={24} height={24} />
           </Link>
           <h2>{user.nickname}</h2>
-          <Link href="/explore/people">
+          <Link href="/explore/search">
             <Image src={accountAdd} alt="profile" width={24} height={24} />
           </Link>
         </HeaderContainer>

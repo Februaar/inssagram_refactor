@@ -6,8 +6,8 @@ const SignupPage = () => {
 
   return (
     <>
-        <PageHeader title={pageTitle} />
-        <EmailInput />
+      <PageHeader title={pageTitle} />
+      <EmailInput />
     </>
   );
 };

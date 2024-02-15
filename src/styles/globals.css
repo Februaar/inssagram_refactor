@@ -60,7 +60,7 @@ section {
   display: flex;
   flex-direction: column;
   width: 375px;
-  height: 812px;
+  height: 800px;
   overflow-y: hidden;
   overflow-x: hidden;
   transition: overflow-y 0.3s;
