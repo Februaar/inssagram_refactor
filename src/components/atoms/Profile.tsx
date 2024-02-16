@@ -1,5 +1,6 @@
-import { UserPageData } from "@/types/UserTypes";
+import { useState } from "react";
 import Image from "next/image";
+import { UserPageData } from "@/types/UserTypes";
 import styled from "styled-components";
 import { noProfile } from "@/images";
 import ProfileEditButton from "../Buttons/ProfileEdit";
@@ -13,10 +14,12 @@ interface ProfileCardProps {
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ id, user, isLoggined }) => {
-  console.log(user);
+  const [isFriend, setIsFriend] = useState<boolean>(user?.friendStatus === true);
+
   const handleFollowClick = async (memberId: string) => {
     try {
       await postUserFollow(memberId);
+      setIsFriend(!isFriend);
     } catch (err) {
       console.error("error following member:", err);
     }
@@ -61,7 +64,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ id, user, isLoggined }) => {
               <div className="follow">
                 <MainFollowButton
                   onClick={() => handleFollowClick(id)}
-                  status={user.friendStatus}
+                  status={isFriend}
                 />
                 <div>
                   <button>메세지 보내기</button>

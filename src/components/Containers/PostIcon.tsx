@@ -14,24 +14,13 @@ interface PostIconProps {
 }
 
 const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
-  const [isLiked, setIsLiked] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
+  const [isLiked, setIsLiked] = useState<boolean>(post?.postLike === true);
+  const [isSaved, setIsSaved] = useState(post?.bookmarked === true);
 
   const handleLikePostClick = async (postId: number) => {
     try {
       await postLikePost(postId);
       setIsLiked(!isLiked);
-
-      // const title = isLiked ? "좋아요 취소 💔" : "좋아요 완료 ❤";
-
-      // Swal.fire({
-      //   position: "center",
-      //   icon: "success",
-      //   title: title,
-      //   width: 200,
-      //   showConfirmButton: false,
-      //   timer: 1500,
-      // });
     } catch (err) {
       console.error("like post:", err);
     }
@@ -41,16 +30,6 @@ const PostIconContainer: React.FC<PostIconProps> = ({ post }) => {
     try {
       await postSavePost(postId);
       setIsSaved(!isSaved);
-
-      // const title = isSaved ? "게시글 저장 취소" : "게시글 저장 완료";
-
-      // Swal.fire({
-      //   position: "center",
-      //   icon: "success",
-      //   title: title,
-      //   showConfirmButton: false,
-      //   timer: 1500,
-      // });
     } catch (err: any) {
       if (err.response.status === 400) {
         const message = "이미 저장된 게시글 입니다";

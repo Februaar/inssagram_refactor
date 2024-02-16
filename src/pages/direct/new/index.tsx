@@ -70,7 +70,7 @@ const DirectNewPage = () => {
   };
 
   return (
-    <>
+    <section>
       <DirectNewPageHeader title={pageTitle} onClick={handleCreateNewRoom} />
       <DirectSearchInput
         onSearch={handleSearchAccount}
@@ -84,7 +84,7 @@ const DirectNewPage = () => {
       ) : (
         <Error message="검색 결과가 없습니다" />
       )}
-    </>
+    </section>
   );
 };
 

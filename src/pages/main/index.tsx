@@ -15,7 +15,6 @@ import styled from "styled-components";
 const MainPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const user = useSelector((state: RootState) => state.user);
   const posts = useSelector((state: RootState) => state.post.posts);
 
   const fetchPostAllData = useCallback(async () => {
@@ -42,7 +41,7 @@ const MainPage = () => {
   return (
     <section>
       <Header />
-      <MainContainer>
+      <MainContainer className="scroll-container">
         <StoryItem />
         {posts.length > 0 ? (
           posts &&
@@ -66,8 +65,7 @@ const MainPage = () => {
 export default MainPage;
 
 const MainContainer = styled.div`
-  padding-top: 50px;
-  margin-bottom: 20px;
+  margin-top: 40px;
 
   .error-area {
     display: flex;

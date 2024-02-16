@@ -15,11 +15,17 @@ const StoryItem = () => {
   };
 
   return (
-    <ItemContainer onClick={handleRouterClick}>
+    <ItemContainer>
       <div className="story-item">
-        <div>
+        <div onClick={handleRouterClick}>
           <Image
-            src={user.image ? user.image : noProfile}
+            src={
+              user.image
+                ? user.image
+                : user.profilePic
+                ? user.profilePic
+                : noProfile
+            }
             alt="profile"
             width={56}
             height={56}

@@ -7,6 +7,7 @@ const initialState: UserState = {
   nickname: "",
   job: "",
   image: "",
+  description: "",
 };
 
 const userSlice = createSlice({
@@ -17,7 +18,7 @@ const userSlice = createSlice({
       // 사용자 로그인 시 상태 업데이트
       return { ...state, ...action.payload };
     },
-    logoutUser: (state) => {
+    logoutUser: () => {
       // 사용자 로그아웃 시 상태 초기화
       return initialState;
     },

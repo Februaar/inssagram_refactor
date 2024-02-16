@@ -91,13 +91,4 @@ const RightWrap = styled.div`
 
 const PhoneFrame = styled.div`
   position: relative;
-  width: 375px;
-  height: 812px;
-
-  @media (min-width: 360px) and (max-width: 768px) {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 856px;
-  }
 `;

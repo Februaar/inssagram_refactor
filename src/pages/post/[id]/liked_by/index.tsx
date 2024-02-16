@@ -31,13 +31,13 @@ const LikedPostPage = () => {
   };
 
   return (
-    <>
+    <section>
       <ClosePageHeader title={pageTitle} />
       {likeMembers &&
         likeMembers.map((member) => (
           <StatusItem key={member.memberId} member={member} />
         ))}
-    </>
+    </section>
   );
 };
 

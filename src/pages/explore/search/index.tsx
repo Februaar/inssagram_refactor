@@ -29,11 +29,14 @@ const SearchPage = () => {
         setSearchResults([]);
       }
       await fetchSearchHistoryList();
-      await fetchRecommendationsList(0, 5);
     };
 
     fetchData();
   }, [searchValue]);
+
+  useEffect(() => {
+    fetchRecommendationsList(0, 5);
+  }, []);
 
   const fetchSearchResultList = async (searchValue: string) => {
     try {
@@ -108,7 +111,7 @@ const SearchPage = () => {
         : searchResults.length === 0 && (
             <TabTitle>
               <div>최근 검색어</div>
-              <button>모두 지우기</button>
+              {/* <button>모두 지우기</button> */}
             </TabTitle>
           )}
 
@@ -127,10 +130,12 @@ const SearchPage = () => {
       <TabTitle>
         <div>최근에 가입했어요</div>
       </TabTitle>
-      {recommends.length > 0 &&
-        recommends.map((recommend) => (
-          <RecommendItem key={recommend.member_id} account={recommend} />
-        ))}
+      <div className="scroll-container">
+        {recommends.length > 0 &&
+          recommends.map((recommend) => (
+            <RecommendItem key={recommend.member_id} account={recommend} />
+          ))}
+      </div>
       <Footer />
     </section>
   );

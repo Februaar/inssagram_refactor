@@ -32,10 +32,10 @@ const ExplorePage = () => {
 
   return (
     <section>
-      <>
+      <div className="scroll-container">
         <SearchInput onSearch={handleSearch} />
         {loading ? <Loading /> : <PostView posts={posts} />}
-      </>
+      </div>
       <Footer />
     </section>
   );

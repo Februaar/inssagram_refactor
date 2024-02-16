@@ -6,20 +6,27 @@ interface ProgressBarProps {
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ percent }) => {
   return (
-    <div style={{ width: "375px" }}>
-      <StyledProgressBar className="bar-container" percent={percent}>
+    <BarContainer percent={percent}>
+      <div className="bar-container">
         <ColoredProgressBar percent={percent} />
-      </StyledProgressBar>
-    </div>
+      </div>
+    </BarContainer>
   );
 };
 
-const StyledProgressBar = styled.div<{ percent: number }>`
-  position: fixed;
-  width: ${(props) => props.percent}%;
-  height: 3px;
-  background-color: #ffffff;
-  z-index: 15;
+export default ProgressBar;
+
+const BarContainer = styled.div<{ percent: number }>`
+  position: relative;
+  width: 100%;
+
+  .bar-container {
+    position: absolute;
+    width: ${(props) => props.percent}%;
+    height: 3px;
+    background-color: #ffffff;
+    z-index: 15;
+  }
 `;
 
 const colorChange = keyframes`
@@ -45,5 +52,3 @@ const ColoredProgressBar = styled.div<{ percent: number }>`
   background-size: 500% 100%;
   animation: ${colorChange} 2s linear infinite;
 `;
-
-export default ProgressBar;

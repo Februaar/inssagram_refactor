@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
@@ -13,7 +13,6 @@ import { createEventSource } from "@/handlers/SSEHandlers";
 
 const Header = () => {
   const user: UserState = useSelector((state: RootState) => state.user);
-
   const [isCreating, setIsCreating] = useState(false);
   const [progressPercent, setProgressPercent] = useState<number>(0);
   const [unreadCount, setUnreadCount] = useState<number>(0);
@@ -68,25 +67,22 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.div`
-  position: relative;
-  width: 100%;
+  position: fixed;
+  top: 62px;
+  width: 380px;
+  height: 44px;
+  border-bottom: 1.5px solid #dbdbdb;
+  z-index: 5;
 
   .header {
-    position: fixed;
-    top: 60px;
+    position: absolute;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    border-bottom: 1.5px solid #dbdbdb;
-    width: 375px;
-    height: 44px;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
     padding: 0 16px;
-    z-index: 5;
-
-    @media (min-width: 360px) and (max-width: 768px) {
-      top: 40px;
-    }
   }
 
   .icons {

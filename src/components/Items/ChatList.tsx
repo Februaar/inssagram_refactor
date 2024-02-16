@@ -26,26 +26,25 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ list, onClick }) => {
             />
           </div>
           <div className="content-area">
-            <div
-              className="sender"
-              style={{ fontWeight: list.read_status ? "500" : "600" }}
-            >
+            <div style={{ fontWeight: list.read_status ? "500" : "600" }}>
               {list.sender_name}
             </div>
-            <div className="message-area">
-              <div
-                className="message"
-                style={{
-                  color: list.read_status ? "#737373" : "#222222",
-                  fontWeight: list.read_status ? "500" : "600",
-                }}
-              >
-                {list.message}
+            <div className="message-container">
+              <div className="message-area">
+                <div
+                  className="message"
+                  style={{
+                    color: list.read_status ? "#737373" : "#222222",
+                    fontWeight: list.read_status ? "500" : "600",
+                  }}
+                >
+                  {list.message}
+                </div>
+                <p className="created-at">· {formattedCreatedAt}</p>
               </div>
-              <p className="created-at">· {formattedCreatedAt}</p>
+              {list.read_status ? null : <div className="unread"></div>}
             </div>
           </div>
-          {list.read_status ? <p className="mark" /> : null}
         </ItemContainer>
       )}
     </>
@@ -73,39 +72,39 @@ const ItemContainer = styled.li`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
-    height: 100%;
+    height: 70%;
 
-    .sender {
-      padding-bottom: 3px;
-    }
-
-    .message-area {
+    .message-container {
       display: flex;
+      justify-content: space-between;
       flex-direction: row;
-      color: #737373;
+      width: 100%;
 
-      .message {
-        max-width: 265px;
-        height: 18px;
-        padding-right: 12px;
+      .message-area {
+        display: flex;
+        flex-direction: row;
+        color: #737373;
+
+        .message {
+          max-width: 265px;
+          height: 18px;
+          padding-right: 12px;
+        }
+
+        .created-at {
+          max-width: 100px;
+          overflow: hidden;
+        }
       }
 
-      .created-at {
-        // max-width: 22px;
-        overflow: hidden;
+      .unread {
+        width: 10px;
+        height: 10px;
+        background-color: #92a8d1;
+        border-radius: 100%;
       }
     }
-  }
-
-  .mark {
-    position: absolute;
-    top: 50%;
-    right: 25px;
-    width: 10px;
-    height: 10px;
-    background-color: #0095f6;
-    border-radius: 100%;
   }
 `;

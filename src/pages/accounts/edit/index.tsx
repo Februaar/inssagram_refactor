@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { UserState } from "@/types/UserTypes";
@@ -14,6 +14,12 @@ const AccountsEditPage = () => {
   const pageTitle = "프로필 편집";
   const user: UserState = useSelector((state: RootState) => state.user);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  // useEffect(() => {
+  //   if (user.image) {
+  //     setSelectedImage(null);
+  //   }
+  // }, [user.image]);
 
   const onImageChange = (image: File) => {
     setSelectedImage(image);
@@ -54,7 +60,7 @@ const AccountsEditPage = () => {
     <section>
       <PageHeader title={pageTitle} />
       <AccountEditContainer>
-        <div className="edit-area">
+        <div className="edit-container">
           <div className="edit-item">
             <ProfileEditItem user={user} onImageChange={onImageChange} />
             <EditInput user={user} onImageUpload={handleImageUpload} />
@@ -74,7 +80,7 @@ const AccountEditContainer = styled.div`
   flex-direction: column;
   width: 100%;
 
-  .edit-area {
+  .edit-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

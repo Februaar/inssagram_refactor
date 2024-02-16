@@ -80,6 +80,9 @@ const HistoryArea = styled.div`
   }
 
   .delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 8px;
   }
 `;

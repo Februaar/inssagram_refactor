@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { loginUser } from "@/redux/userSlice";
 import { UserPageData } from "@/types/UserTypes";
 import postUserDetail from "@/services/userInfo/postUserDetail";
 import UserHeader from "@/components/atoms/User";
@@ -14,6 +15,7 @@ import Footer from "@/components/Footer";
 
 const UserPage = () => {
   const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
   const isCurrentUser = id === user.member_id.toString();
@@ -22,21 +24,27 @@ const UserPage = () => {
   const [postCount, setPostCount] = useState<number>();
   const [iconName, setIconName] = useState<string>("");
 
+  const fetchUserDetailData = useCallback(
+    async (id: any) => {
+      try {
+        const res = await postUserDetail(id);
+        setUserInfo(res.data);
+        setPostCount(res.data.posts);
+        if (isCurrentUser) {
+          dispatch(loginUser(res.data));
+        }
+      } catch (err) {
+        console.error("error fetching member detail:", err);
+      }
+    },
+    [dispatch, isCurrentUser]
+  );
+
   useEffect(() => {
     if (id) {
       fetchUserDetailData(id);
     }
-  }, [id]);
-
-  const fetchUserDetailData = async (id: any) => {
-    try {
-      const res = await postUserDetail(id);
-      setUserInfo(res.data);
-      setPostCount(res.data.posts);
-    } catch (err) {
-      console.error("error fetching member detail:", err);
-    }
-  };
+  }, [fetchUserDetailData, id]);
 
   const handleIconClick = (iconName: string) => {
     setIconName(iconName);
@@ -56,7 +64,9 @@ const UserPage = () => {
         isLoggined={isCurrentUser}
         onIconClick={handleIconClick}
       />
-      <PostContainer user_id={id} iconName={iconName} />
+      <div className="scroll-container">
+        <PostContainer user_id={id} iconName={iconName} />
+      </div>
       <Footer />
     </section>
   );

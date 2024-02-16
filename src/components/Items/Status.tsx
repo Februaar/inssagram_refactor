@@ -1,8 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { UserState } from "@/types/UserTypes";
 import { LikedPostMemberData } from "@/types/UserTypes";
-import { noProfile } from "@/images";
 import styled from "styled-components";
+import { noProfile } from "@/images";
 import FollowButton from "@/components/Buttons/Follow";
 import postUserFollow from "@/services/userInfo/postUserFollow";
 
@@ -11,10 +15,16 @@ interface StatusItemProps {
 }
 
 const StatusItem: React.FC<StatusItemProps> = ({ member }) => {
-  console.log(member);
+  const user: UserState = useSelector((state: RootState) => state.user);
+  const isCurrentUser = user.member_id === member.memberId;
+  const [isFriend, setIsFriend] = useState<boolean>(
+    member.followedState === true
+  );
+
   const handleFollowClick = async (memberId: string) => {
     try {
       await postUserFollow(memberId);
+      setIsFriend(!isFriend);
     } catch (err) {
       console.error("error following member:", err);
     }
@@ -37,10 +47,12 @@ const StatusItem: React.FC<StatusItemProps> = ({ member }) => {
             <span>{member.memberNickname}</span>
           </div>
         </div>
-        <FollowButton
-          onClick={() => handleFollowClick(member.memberId)}
-          status={member.followedState}
-        />
+        {isCurrentUser ? null : (
+          <FollowButton
+            onClick={() => handleFollowClick(member.memberId)}
+            status={isFriend}
+          />
+        )}
       </ItemContainer>
     </>
   );

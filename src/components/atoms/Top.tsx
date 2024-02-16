@@ -92,7 +92,9 @@ const PostTop: React.FC<PostItemProps> = ({ writer }) => {
               handleClose={handleModalClose}
             />
           )}
-      {isPostEditModalOpen && <PostEditModal handleClose={handleModalClose} />}
+      {isPostEditModalOpen && (
+        <PostEditModal post={writer} handleClose={handleModalClose} />
+      )}
       {isAccountModalOpen && (
         <AccountInfoModal writer={writer} handleClose={handleModalClose} />
       )}

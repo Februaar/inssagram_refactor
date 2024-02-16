@@ -5,7 +5,11 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["images.vivino.com", "firebasestorage.googleapis.com"],
+    domains: [
+      "images.vivino.com",
+      "firebasestorage.googleapis.com",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAmI7bCUIyXr_90OBQI-XamKhnow40pgieA&usqp=CAU",
+    ],
   },
   env: {
     SERVER_URL: process.env.SERVER_URL,

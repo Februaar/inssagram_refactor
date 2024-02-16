@@ -7,6 +7,7 @@ import styled from "styled-components";
 import OriginalItem from "@/components/Items/Original";
 import CommentItem from "@/components/Items/Comment";
 import CommentInput from "@/components/Inputs/Comment";
+import Error from "@/components/atoms/Error";
 import getCommentAll from "@/services/postInfo/getCommentAll";
 import getPostDetail from "@/services/postInfo/getPostDetail";
 
@@ -56,7 +57,7 @@ const CommentContainer: React.FC<CommentContainerProps> = ({ postId }) => {
                 <CommentItem key={index} comment={comment} />
               ))
             ) : (
-              <div>아직 댓글이 없습니다.</div>
+              <Error message="첫 댓글을 남겨보세요" />
             )}
           </div>
         </div>

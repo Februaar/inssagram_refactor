@@ -12,7 +12,7 @@ export interface PostContentData {
   taggedMemberIds: number;
   hashTags: string[];
   createdAt: string;
-  postLike: false;
+  postLike: boolean;
   bookmarked: boolean;
   followed: boolean;
 }
@@ -49,7 +49,7 @@ export interface CommentData {
   createdAt: string;
   likeCount: number;
   commentId: number;
-  commentLike: number;
+  commentLike: boolean;
   commentCount: number;
   mentionList: string[];
   replyFlag: boolean;

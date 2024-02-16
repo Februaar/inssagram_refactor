@@ -65,11 +65,11 @@ const PostContainer: React.FC<PostContainerProps> = ({ user_id, iconName }) => {
       return (
         <>
           {posts && posts.length > 0 ? (
-            <main style={{ marginBottom: "55px" }}>
+            <div>
               {posts.map((post) => (
                 <PostItem key={post.postId} post={post} />
               ))}
-            </main>
+            </div>
           ) : (
             <Error message="작성한 게시글이 없습니다" />
           )}

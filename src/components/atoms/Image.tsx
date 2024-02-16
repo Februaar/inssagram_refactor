@@ -9,16 +9,14 @@ interface PostItemProps {
 
 const PostImage: React.FC<PostItemProps> = ({ image }) => {
   return (
-    <>
-      <PostImgContainer>
-        <Image
-          src={image ? image[0] : brokenImage}
-          alt="broken-image"
-          width={375}
-          height={375}
-        />
-      </PostImgContainer>
-    </>
+    <PostImgContainer>
+      <Image
+        src={image ? image[0] : brokenImage}
+        alt="broken-image"
+        width={375}
+        height={375}
+      />
+    </PostImgContainer>
   );
 };
 

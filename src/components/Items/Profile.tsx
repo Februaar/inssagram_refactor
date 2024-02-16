@@ -32,12 +32,18 @@ const ProfileEditItem: React.FC<ProfileEditItemProps> = ({
   return (
     <ItemContainer>
       <div className="item-container">
-        <div className="edit-item">
+        <div className="item">
           <span className="profile-area">
             <div className="profile-image">
               <label htmlFor="image-upload">
                 <Image
-                  src={previewImage || user.image || noProfile}
+                  src={
+                    previewImage || user.image
+                      ? user.image
+                      : user.profilePic
+                      ? user.profilePic
+                      : noProfile
+                  }
                   alt="profile-image"
                   width={56}
                   height={56}
@@ -98,7 +104,7 @@ export const ItemContainer = styled.div`
     overflow-y: visible;
     overflow-x: visible;
 
-    .edit-item {
+    .item {
       position: static;
       display: flex;
       flex-grow: 1;

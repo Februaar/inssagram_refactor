@@ -11,9 +11,11 @@ const DirectInboxPage = () => {
 
   return (
     <section>
-      <DirectPageHeader title={pageTitle} />
-      <PageTitle>메시지</PageTitle>
-      <ChatListContainer />
+      <div className="scroll-container">
+        <DirectPageHeader title={pageTitle} />
+        <PageTitle>메시지</PageTitle>
+        <ChatListContainer />
+      </div>
     </section>
   );
 };

@@ -19,11 +19,12 @@ interface AlarmItemProps {
 
 const AlarmItem: React.FC<AlarmItemProps> = ({ alarm }) => {
   const user: UserState = useSelector((state: RootState) => state.user);
-  // const alarms = useSelector((state: RootState) => state.alarm.alarms);
-  // console.log(alarm);
   const isCurrentUser = user.member_id === alarm.sender_id;
 
   const dispatch = useDispatch();
+  const [isFriend, setIsFriend] = useState<boolean>(
+    alarm.friend_status === true
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFollowClick = async (memberId: string) => {
@@ -31,9 +32,9 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ alarm }) => {
       alert("자신을 팔로우할 수 없습니다");
       return;
     }
-
     try {
       await postUserFollow(memberId);
+      setIsFriend(!isFriend);
     } catch (err) {
       console.error("error following member:", err);
     }
@@ -42,7 +43,7 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ alarm }) => {
   const handleDeleteNoti = async (id: any) => {
     try {
       await deleteNoti(id);
-      dispatch(setAlarms(id));
+      dispatch(removeAlarm(id));
       setIsModalOpen(false);
     } catch (err) {
       console.error("error deleting comment");
@@ -75,7 +76,7 @@ const AlarmItem: React.FC<AlarmItemProps> = ({ alarm }) => {
             {alarm.post_id === undefined ? (
               <FollowButton
                 onClick={() => handleFollowClick(alarm.sender_id)}
-                status={alarm.friend_status}
+                status={isFriend}
               />
             ) : (
               <div className="post">

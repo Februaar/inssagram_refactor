@@ -59,23 +59,11 @@ section {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 375px;
+  width: 380px;
   height: 800px;
   overflow-y: hidden;
   overflow-x: hidden;
   transition: overflow-y 0.3s;
-}
-
-section:hover {
-  overflow-y: auto;
-}
-
-section::-webkit-scrollbar {
-  width: 4px;
-}
-
-section::-webkit-scrollbar-thumb {
-  background-color: #92a8d1;
 }
 
 main {
@@ -85,6 +73,24 @@ main {
 textarea {
   outline-style: none;
   border-style: none;
+}
+
+.scroll-container {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  transition: overflow-y 0.3s;
+}
+
+.scroll-container:hover {
+  overflow-y: auto;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #92a8d1;
 }
 
 /* :root {

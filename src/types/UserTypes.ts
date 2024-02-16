@@ -4,6 +4,8 @@ export interface UserState {
   nickname: string;
   job: string;
   image: string;
+  profilePic: string;
+  description: string;
 }
 
 export interface UserPageData {

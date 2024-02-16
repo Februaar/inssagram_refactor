@@ -72,7 +72,7 @@ const Backdrop = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 20;
 

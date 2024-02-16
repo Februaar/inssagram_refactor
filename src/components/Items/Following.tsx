@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CommonItem from "@/components/Items/Common";
 import FollowButton from "@/components/Buttons/Follow";
 import postUserFollow from "@/services/userInfo/postUserFollow";
@@ -7,11 +8,14 @@ interface FollowingItemProps {
 }
 
 const FollowingItem: React.FC<FollowingItemProps> = ({ member }) => {
-  const isFriend = member.friend_Status === true;
+  const [isFriend, setIsFriend] = useState<boolean>(
+    member.friend_Status === true
+  );
 
   const handleFollowClick = async (memberId: string) => {
     try {
       await postUserFollow(memberId);
+      setIsFriend(!isFriend);
     } catch (err) {
       console.error("error following member:", err);
     }

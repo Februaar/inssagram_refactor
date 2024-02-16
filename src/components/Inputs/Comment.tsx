@@ -35,7 +35,13 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
       <div className="container">
         <div className="profile">
           <Image
-            src={user.image ? user.image : noProfile}
+            src={
+              user.image
+                ? user.image
+                : user.profilePic
+                ? user.profilePic
+                : noProfile
+            }
             alt="profile-image"
             width={32}
             height={32}

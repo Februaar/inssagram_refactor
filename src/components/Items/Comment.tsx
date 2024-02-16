@@ -8,7 +8,9 @@ import { CommentData } from "@/types/PostTypes";
 import { formatData } from "@/utils/date";
 import styled from "styled-components";
 import { noProfile, favorite, moreHoriz } from "@/images";
+import FavoriteIcon from "../Icons/Favorite";
 import DeleteModal from "@/components/Modals/Delete";
+import postLikeComment from "@/services/postInfo/postLikeComment";
 import deleteComment from "@/services/postInfo/deleteComment";
 
 interface CommentItemProps {
@@ -18,11 +20,22 @@ interface CommentItemProps {
 const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
   const user = useSelector((state: RootState) => state.user);
   const isCurrentUser = user.member_id === comment.memberId;
-
   const dispatch = useDispatch();
+  const [isLiked, setIsLiked] = useState<boolean>(
+    comment?.commentLike === true
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const formattedCreatedAt = formatData(new Date(comment.createdAt));
+
+  const handleLikeCommentClick = async (commentId: number) => {
+    try {
+      await postLikeComment(commentId);
+      setIsLiked(!isLiked);
+    } catch (err) {
+      console.error("like post:", err);
+    }
+  };
 
   const handleDeleteComment = async (commentId: number) => {
     try {
@@ -62,14 +75,14 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
                   />
                 </div>
               </Link>
-              <div className="comment-area">
+              <CommentArea>
                 <div className="comment-details">
                   <Link
                     href={`/${comment.memberId}`}
                     style={{ display: "inline", margin: "0" }}
                   >
-                    <div className="nickname">
-                      <div>
+                    <div className="writer-area">
+                      <div className="writer">
                         <span>{comment.nickname}</span>
                       </div>
                     </div>
@@ -100,11 +113,13 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
                     />
                   ) : null}
                 </div>
-              </div>
+              </CommentArea>
+
               <div className="like-button">
-                <span style={{ paddingBottom: "8px" }}>
-                  <Image src={favorite} alt="favorite" width={12} height={12} />
-                </span>
+                <FavoriteIcon
+                  onClick={() => handleLikeCommentClick(comment.commentId)}
+                  isLiked={isLiked}
+                />
               </div>
             </div>
             {comment.commentCount !== 0 && (
@@ -120,7 +135,6 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
 };
 
 export default CommentItem;
-
 
 const CommentContainer = styled.div`
   position: static;
@@ -148,98 +162,12 @@ const CommentContainer = styled.div`
       padding: 12px 0;
 
       .profile {
-        cursor: pointer;
         margin-right: 8px;
-      }
-
-      .comment-area {
-        position: static;
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        align-self: auto;
-        min-width: 0;
-        min-height: 0;
-
-        .comment-details {
-          position: relative;
-          display: block;
-          flex-shrink: 0;
-          align-items: stretch;
-          vertical-align: baseline;
-          overflow-y: visible;
-          overflow-x: visible;
-          min-width: 0;
-          min-height: 0;
-
-          .nickname {
-            position: static;
-            display: inline-block;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            overflow-y: visible;
-            overflow-x: visible;
-
-            div {
-              position: relative;
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              justify-content: flex-start;
-
-              span {
-                display: inline;
-                margin: 0;
-                text-align: inherit;
-                font-weight: 600;
-              }
-            }
-          }
-
-          .divide {
-            display: inline;
-            margin: 0 !important;
-            font-weight: 400;
-          }
-
-          .comment {
-            display: inline !important;
-            margin: 0 !important;
-            font-weight: 400;
-          }
-        }
-
-        .other-details {
-          position: static;
-          display: flex;
-          flex-shrink: 0;
-          flex-grow: 0;
-          flex-direction: row;
-          align-items: center;
-          justify-content: flex-start;
-          align-self: auto;
-          height: 16px;
-          margin-top: 4px;
-          gap: 8px;
-
-          .modal-button {
-            display: none;
-          }
-        }
-
-        .other-details:hover .modal-button {
-          display: inline;
-        }
       }
 
       .like-button {
         position: static;
         display: flex;
-        flex-grow: 0;
-        flex-shrink: 0;
         align-items: center;
         justify-content: center;
         padding: 0 16px;
@@ -256,5 +184,88 @@ const CommentContainer = styled.div`
       align-self: auto;
       margin-left: 40px;
     }
+  }
+`;
+
+const CommentArea = styled.div`
+  position: static;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-self: auto;
+  min-width: 0;
+  min-height: 0;
+
+  .comment-details {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    align-items: stretch;
+    vertical-align: baseline;
+    overflow-y: visible;
+    overflow-x: visible;
+    min-width: 0;
+    min-height: 0;
+
+    .writer-area {
+      position: static;
+      display: inline-block;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: visible;
+      overflow-x: visible;
+
+      .writer {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        span {
+          display: inline;
+          margin: 0;
+          text-align: inherit;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .divide {
+      display: inline;
+      margin: 0 !important;
+      font-weight: 400;
+    }
+
+    .comment {
+      display: inline !important;
+      margin: 0 !important;
+      font-weight: 400;
+    }
+  }
+
+  .other-details {
+    position: static;
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: auto;
+    height: 16px;
+    margin-top: 4px;
+    gap: 8px;
+
+    .modal-button {
+      display: none;
+    }
+  }
+
+  .other-details:hover .modal-button {
+    display: inline;
   }
 `;
