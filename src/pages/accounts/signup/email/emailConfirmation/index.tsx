@@ -5,10 +5,10 @@ const EmailConfirmationPage = () => {
   const pageTitle = "등록";
 
   return (
-    <>
+    <section>
       <PageHeader title={pageTitle} />
       <CodeInput />
-    </>
+    </section>
   );
 };
 

@@ -5,10 +5,10 @@ const JobPage = () => {
   const pageTitle = "등록";
 
   return (
-    <>
+    <section>
       <PageHeader title={pageTitle} />
       <JobInput />
-    </>
+    </section>
   );
 };
 

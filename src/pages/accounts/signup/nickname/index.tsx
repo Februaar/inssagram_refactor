@@ -5,10 +5,10 @@ const NicknamePage = () => {
   const pageTitle = "등록";
 
   return (
-    <>
+    <section>
       <PageHeader title={pageTitle} />
       <DetailInput />
-    </>
+    </section>
   );
 };
 

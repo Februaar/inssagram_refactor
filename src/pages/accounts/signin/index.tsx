@@ -3,13 +3,15 @@ import SigninInput from "@/components/Inputs/Signin";
 
 const SigninPage = () => {
   return (
-    <Container>
-      <span className="logo">💼</span>
-      <div className="logo-title">Inssagram</div>
-      <PageContent>
-        <SigninInput />
-      </PageContent>
-    </Container>
+    <section>
+      <Container>
+        <span className="logo">💼</span>
+        <div className="logo-title">Inssagram</div>
+        <PageContent>
+          <SigninInput />
+        </PageContent>
+      </Container>
+    </section>
   );
 };
 
