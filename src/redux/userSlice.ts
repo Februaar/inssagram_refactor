@@ -8,6 +8,7 @@ const initialState: UserState = {
   job: "",
   image: "",
   description: "",
+  profilePic: "",
 };
 
 const userSlice = createSlice({
