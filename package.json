@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "@stomp/stompjs": "^7.0.0",

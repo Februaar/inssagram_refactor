@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { MessageState, PostMessageState } from "@/types/ChatRoomTypes";
 
 interface MyMessageProps {
-  message: MessageState | PostMessageState;
+  message: PostMessageState | MessageState;
 }
 
 export const MyMessage: React.FC<MyMessageProps> = ({ message }) => {
@@ -89,6 +89,7 @@ const Message = styled.div`
         font-size: 15px;
         color: #ffffff;
         background-color: #ffffff;
+        max-width: 70%;
         word-break: break-word;
         overflow-wrap: break-word;
         overflow-y: hidden;

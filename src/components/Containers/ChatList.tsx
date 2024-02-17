@@ -24,7 +24,7 @@ const ChatListContainer = () => {
     }
   }, [chatList]);
 
-  const handleChatListClick = (id: number) => {
+  const handleChatListClick = (id: string) => {
     router.push(`/direct/${id}`);
   };
 

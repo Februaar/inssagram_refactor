@@ -50,9 +50,11 @@ const ChatRoomPage = () => {
   }, [fetchChatRoomMembersData, id]);
 
   return (
-    <PageContainer>
-      <ChatRoomContainer user={user} roomId={id} membersData={membersData} />
-    </PageContainer>
+    <section>
+      <PageContainer>
+        <ChatRoomContainer user={user} roomId={id} membersData={membersData} />
+      </PageContainer>
+    </section>
   );
 };
 

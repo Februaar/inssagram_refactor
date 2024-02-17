@@ -169,8 +169,8 @@ const FooterContainer = styled.div`
 
       .bubble {
         position: absolute;
-        top: 10px;
-        right: 13px;
+        top: 0;
+        right: 0;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -8,21 +8,21 @@ export interface UserState {
 }
 
 export interface ChatRoomState {
-  sender_id: number;
+  sender_id: string;
   sender_image: string;
   sender_name: string;
-  chatroom_id: number;
+  chatroom_id: string;
   created_at: string;
   friend_status: boolean;
-  list_id: number;
+  list_id: string;
   message: string;
   read_status: boolean;
 }
 
 export interface MessageState {
   type: string;
-  chatMessageId: number;
-  chatRoomId: number;
+  chatMessageId: string;
+  chatRoomId: string;
   createdAt: string;
   image: string;
   memberIdInShareObject: number;
@@ -30,7 +30,7 @@ export interface MessageState {
   memberProfileInShareObject: string | null;
   message: string;
   receiverNickname: string;
-  senderMemberId: number;
+  senderMemberId: string;
   senderNickname: string;
   senderProfile: string | null;
   shareObjectContents: string;

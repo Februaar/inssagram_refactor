@@ -7,12 +7,13 @@ const nextConfig = {
   images: {
     domains: [
       "images.vivino.com",
-      "firebasestorage.googleapis.com",
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAmI7bCUIyXr_90OBQI-XamKhnow40pgieA&usqp=CAU",
+      "firebasestorage.googleapis.com",
     ],
   },
   env: {
     SERVER_URL: process.env.SERVER_URL,
+    WEBSOCKET_URL: process.env.WEBSOCKET_URL,
     NEXT_FIREBASE_API_KEY: process.env.NEXT_FIREBASE_API_KEY,
     NEXT_FIREBASE_AUTH_DOMAIN: process.env.NEXT_FIREBASE_AUTH_DOMAIN,
     NEXT_FIREBASE_PROJECT_ID: process.env.NEXT_FIREBASE_PROJECT_ID,

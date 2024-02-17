@@ -35,6 +35,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         <div className="input-area">
           <div role="textbox" className="input">
             <input
+              type="text"
               value={messageValue}
               aria-label="메시지 입력..."
               placeholder="메시지 입력..."

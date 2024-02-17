@@ -4,7 +4,7 @@ import { MyMessage, YourMessage } from "@/components/Items/Message";
 interface ChatContentsProps {
   user: any;
   messages: MessageState[] | null;
-  newMessage: PostMessageState | null;
+  newMessage: PostMessageState[];
 }
 
 const ChatContentsContainer: React.FC<ChatContentsProps> = ({
@@ -12,6 +12,7 @@ const ChatContentsContainer: React.FC<ChatContentsProps> = ({
   messages,
   newMessage,
 }) => {
+  console.log(newMessage);
   return (
     <>
       {messages &&
@@ -22,7 +23,10 @@ const ChatContentsContainer: React.FC<ChatContentsProps> = ({
             <YourMessage key={message.chatMessageId} message={message} />
           )
         )}
-      {newMessage ? <MyMessage message={newMessage} /> : null}
+      {newMessage &&
+        newMessage.map((message, index) => {
+          <MyMessage key={index} message={message} />;
+        })}
     </>
   );
 };

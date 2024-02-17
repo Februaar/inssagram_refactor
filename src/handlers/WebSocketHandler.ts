@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from "react";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
+import { useEffect, useRef } from "react";
 import { PostMessageState } from "@/types/ChatRoomTypes";
 
 interface WebSocketHandlerProps {
   accessToken: string | null;
   roomId: string;
-  newMessage: PostMessageState | null;
+  newMessage: PostMessageState[] | null;
   onMessageReceived: (messages: any) => void;
 }
 
@@ -17,6 +17,7 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
   onMessageReceived,
 }) => {
   const stompClientRef = useRef<Stomp.Client | null>(null);
+  const connectedRef = useRef<boolean>(false);
 
   useEffect(() => {
     const socket = new SockJS("https://api.inssagram.shop/ws-stomp");
@@ -24,6 +25,7 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
 
     const connectCallback = () => {
       console.log("WebSocket connected!");
+      connectedRef.current = true;
 
       // 구독 설정
       stompClient.subscribe(
@@ -38,35 +40,31 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
           }
         }
       );
+
+      // 새로운 메시지 전송
+      if (newMessage) {
+        stompClient.send(
+          `/pub/chat.message.${roomId}`,
+          { token: accessToken },
+          JSON.stringify(newMessage)
+        );
+      }
     };
 
-    // WebSocket 연결
-    if (accessToken) {
+    if (roomId !== -1 && accessToken) {
       stompClient.connect({ token: accessToken }, connectCallback);
-
       stompClientRef.current = stompClient;
     }
 
-    // 컴포넌트 언마운트 시 연결 해제
     return () => {
-      if (stompClient.connected) {
-        stompClient.disconnect(() => {
+      if (stompClientRef.current && connectedRef.current) {
+        stompClientRef.current.disconnect(() => {
           console.log("Stomp client disconnected!");
+          connectedRef.current = false; // 연결 종료 상태로 설정
         });
       }
     };
-  }, [accessToken, roomId, onMessageReceived]);
-
-  // 새로운 메시지 전송
-  useEffect(() => {
-    if (newMessage && stompClientRef.current) {
-      stompClientRef.current.send(
-        `/pub/chat.message.${roomId}`,
-        { token: accessToken },
-        JSON.stringify(newMessage)
-      );
-    }
-  }, [newMessage, accessToken, roomId]);
+  }, [accessToken, roomId, newMessage, onMessageReceived]);
 
   return null;
 };

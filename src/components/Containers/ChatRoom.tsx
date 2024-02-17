@@ -26,16 +26,9 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   roomId,
   membersData,
 }) => {
-  // const accessToken = sessionStorage.getItem("token");
-  const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
-  const [previousMessages, setPreviousMessages] = useState<
-    MessageState[] | null
-  >(null);
-
-  // 새로운 메세지
-  const handleSendClick = (MessageData: PostMessageState) => {
-    setNewMessage(MessageData);
-  };
+  const accessToken = sessionStorage.getItem("token");
+  const [previousMessages, setPreviousMessages] = useState<MessageState[]>([]);
+  const [newMessage, setNewMessage] = useState<PostMessageState[]>([]);
 
   // 과거 채팅 내용
   const fetchChatHistory = async (roomId: string) => {
@@ -50,6 +43,15 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   useEffect(() => {
     fetchChatHistory(roomId);
   }, [roomId]);
+
+  const handleNewMessageReceived = (message: any) => {
+    console.log("새로운 메세지!!! New message received:", message);
+  };
+
+  // 새로운 메세지
+  const handleSendClick = (MessageData: PostMessageState) => {
+    setNewMessage((prevMessage) => [...prevMessage, MessageData]); // 새로운 메시지를 채팅 내용에 추가
+  };
 
   return (
     <>
@@ -71,16 +73,14 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
             receiver={membersData.receiver}
             onClick={handleSendClick}
           />
+          <WebSocketHandler
+            accessToken={accessToken}
+            roomId={roomId}
+            newMessage={newMessage}
+            onMessageReceived={handleNewMessageReceived}
+          />
         </>
       )}
-      {/* <WebSocketHandler
-        accessToken={accessToken}
-        roomId={roomId}
-        newMessage={newMessage}
-        // onMessageReceived={(message: MessageState) =>
-        //   setPreviousMessages(message)
-        // }
-      /> */}
     </>
   );
 };

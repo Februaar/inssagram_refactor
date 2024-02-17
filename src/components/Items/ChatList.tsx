@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { formatData } from "@/utils/date";
 import { ChatRoomState } from "@/types/ChatRoomTypes";
-import { noProfile } from "@/images";
 import styled from "styled-components";
+import { noProfile } from "@/images";
 
 interface ChatListItemProps {
   list: ChatRoomState;
-  onClick: (id: number) => void;
+  onClick: (id: string) => void;
 }
 
 const ChatListItem: React.FC<ChatListItemProps> = ({ list, onClick }) => {
