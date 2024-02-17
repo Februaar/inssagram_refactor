@@ -51,7 +51,7 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
       }
     };
 
-    if (roomId !== -1 && accessToken) {
+    if (accessToken) {
       stompClient.connect({ token: accessToken }, connectCallback);
       stompClientRef.current = stompClient;
     }
