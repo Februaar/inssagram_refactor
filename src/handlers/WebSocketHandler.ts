@@ -4,14 +4,12 @@ import { useEffect, useRef } from "react";
 import { PostMessageState } from "@/types/ChatRoomTypes";
 
 interface WebSocketHandlerProps {
-  accessToken: string | null;
   roomId: string;
   newMessage: PostMessageState[] | null;
   onMessageReceived: (messages: any) => void;
 }
 
 const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
-  accessToken,
   roomId,
   newMessage,
   onMessageReceived,
@@ -20,6 +18,7 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
   const connectedRef = useRef<boolean>(false);
 
   useEffect(() => {
+    const token = sessionStorage.getItem("token");
     const socket = new SockJS("https://api.inssagram.shop/ws-stomp");
     const stompClient = Stomp.over(socket);
 
@@ -45,14 +44,14 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
       if (newMessage) {
         stompClient.send(
           `/pub/chat.message.${roomId}`,
-          { token: accessToken },
+          { token: token },
           JSON.stringify(newMessage)
         );
       }
     };
 
-    if (accessToken) {
-      stompClient.connect({ token: accessToken }, connectCallback);
+    if (token) {
+      stompClient.connect({ token: token }, connectCallback);
       stompClientRef.current = stompClient;
     }
 
@@ -64,7 +63,7 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
         });
       }
     };
-  }, [accessToken, roomId, newMessage, onMessageReceived]);
+  }, [roomId, newMessage, onMessageReceived]);
 
   return null;
 };
