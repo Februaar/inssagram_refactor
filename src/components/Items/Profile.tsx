@@ -38,11 +38,7 @@ const ProfileEditItem: React.FC<ProfileEditItemProps> = ({
               <label htmlFor="image-upload">
                 <Image
                   src={
-                    previewImage || user.image
-                      ? user.image
-                      : user.profilePic
-                      ? user.profilePic
-                      : noProfile
+                    previewImage || user.image || user.profilePic || noProfile
                   }
                   alt="profile-image"
                   width={56}

@@ -68,7 +68,6 @@ export default Header;
 
 const HeaderContainer = styled.div`
   position: fixed;
-  top: 62px;
   width: 380px;
   height: 44px;
   border-bottom: 1.5px solid #dbdbdb;
