@@ -5,6 +5,7 @@ import SearchInput from "@/components/Inputs/Search";
 import PostView from "@/components/atoms/PostView";
 import Loading from "@/components/Icons/Loading";
 import Footer from "@/components/Footer";
+import { randomArray } from "@/utils/randomArray";
 
 const ExplorePage = () => {
   const [posts, setPosts] = useState<PostContentData[] | undefined>([]);
@@ -17,8 +18,8 @@ const ExplorePage = () => {
   const fetchPostAllData = async () => {
     try {
       const res = await getPostAll();
-      const randomOrder = res.data.sort(() => Math.random() - 0.5);
-      setPosts(randomOrder);
+      const randomPosts = randomArray(res.data);
+      setPosts(randomPosts);
       setLoading(false);
     } catch (err) {
       setLoading(true);

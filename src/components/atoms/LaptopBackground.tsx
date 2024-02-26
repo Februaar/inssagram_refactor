@@ -53,7 +53,7 @@ const TitleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 20%;
+  height: 15%;
 
   span {
     font-size: 45px;
@@ -68,7 +68,7 @@ const TitleContainer = styled.div`
       font-size: 1em;
       font-weight: 600;
       text-align: center;
-      color: #f7cac9;
+      color: #92a8d1;
 
       .letter {
         position: relative;

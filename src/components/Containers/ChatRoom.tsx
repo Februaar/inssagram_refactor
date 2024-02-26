@@ -27,7 +27,7 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   membersData,
 }) => {
   const [previousMessages, setPreviousMessages] = useState<MessageState[]>([]);
-  const [newMessage, setNewMessage] = useState<PostMessageState[]>([]);
+  const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
 
   // 과거 채팅 내용
   const fetchChatHistory = async (roomId: string) => {
@@ -49,7 +49,8 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
 
   // 새로운 메세지
   const handleSendClick = (MessageData: PostMessageState) => {
-    setNewMessage((prevMessage) => [...prevMessage, MessageData]);
+    setNewMessage(MessageData);
+    // setNewMessage((prevMessage) => [...prevMessage, MessageData]);
   };
 
   return (

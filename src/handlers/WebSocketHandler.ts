@@ -5,7 +5,7 @@ import { PostMessageState } from "@/types/ChatRoomTypes";
 
 interface WebSocketHandlerProps {
   roomId: string;
-  newMessage: PostMessageState[] | null;
+  newMessage: PostMessageState | null;
   onMessageReceived: (messages: any) => void;
 }
 

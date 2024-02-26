@@ -48,7 +48,7 @@ const DetailInput = () => {
     <Container>
       <div className="big-title">닉네임 및 비밀번호 입력</div>
       <div className="title">
-        친구들이 회원님을 찾을 수 있도록 닉네임을 추가하세요.
+        동료들이 회원님을 찾을 수 있도록 닉네임을 추가하세요.
       </div>
       <DetailInfo>
         <div className="detail-area">
