@@ -1,4 +1,6 @@
-<img src="./public/main.jpg" width="800">
+<div align="center">
+  <img src="./public/main.jpg" width="1000">
+</div>
 
 # Inssagram(인싸그램)
 
@@ -21,18 +23,7 @@ Inssagram은 다양한 분야의 동료들을 만날 수 있는 소셜 플랫폼
 ![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-%23323330.svg?style=for-the-badge&logo=javaScript&logoColor=%23F7DF1E)<br />
 <img src="https://img.shields.io/badge/Redux--toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white"/> <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=ffffff"/>
 <img src="https://img.shields.io/badge/VERCEL-000000?style=for-the-badge&logo=Vercel&logoColor=ffffff"/><br />
-![Styled Components](https://img.shields.io/badge/styled--components-%DB7093?style=for-the-badge&logo=styled-components&logoColor=white)<br />
-
-<img src="https://img.shields.io/badge/NEXT-000000?style=flat&logo=Next.js&logoColor=000000"/>
-<img src="https://img.shields.io/badge/REACT-000000?style=flat&logo=React&logoColor=61DAFB"/>
-<img src="https://img.shields.io/badge/TYPESCRIPT-000000?style=flat&logo=TypeScript&logoColor=3178C6"/>
-<img src="https://img.shields.io/badge/JAVASCRIPT-000000?style=flat&logo=JavaScript&logoColor=F7DF1E"/>
-<img src="https://img.shields.io/badge/REDUX-TOOLKIT-000000?style=flat&logo=Redux&logoColor=764ABC"/>
-<img src="https://img.shields.io/badge/FIREBASE-000000?style=flat&logo=Firebase&logoColor=FFCA28"/>
-<img src="https://img.shields.io/badge/STYLED-COMPONENTS-000000?style=flat&logo=Styled-components&logoColor=DB7093"/>
-<img src="https://img.shields.io/badge/VERCEL-000000?style=flat&logo=Vercel&logoColor=000000"/>
-
-#### 백엔드
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)<br />
 
 <br>
 
