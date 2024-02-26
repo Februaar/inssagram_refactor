@@ -17,12 +17,11 @@ Inssagram은 다양한 분야의 동료들을 만날 수 있는 소셜 플랫폼
 ## ⌨️ Tech Stack
 
 #### 프론트엔드
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=Next.js&logoColor=white) ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=React&logoColor=%2361DAFB)<br />
-![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=Typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-%23323330.svg?style=for-the-badge&logo=JavaScript&logoColor=%23F7DF1E)<br />
-![Redux]<img src="https://img.shields.io/badge/REDUX-TOOLKIT-%764ABC?style=for-the-badge&logo=Redux&logoColor=white"/> ![Firebase]<img src="https://img.shields.io/badge/FIREBASE-%FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"/>
- ![Vercel]<img src="https://img.shields.io/badge/VERCEL-black?style=for-the-badge&logo=Vercel&logoColor=white"/><br />
-![Styled Components](https://img.shields.io/badge/styled-components-%DB7093?style=for-the-badge&logo=Styled-Components&logoColor=white)
-
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)<br />
+![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-%23323330.svg?style=for-the-badge&logo=javaScript&logoColor=%23F7DF1E)<br />
+<img src="https://img.shields.io/badge/Redux--toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white"/> <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=ffffff"/>
+<img src="https://img.shields.io/badge/VERCEL-000000?style=for-the-badge&logo=Vercel&logoColor=ffffff"/><br />
+![Styled Components](https://img.shields.io/badge/styled--components-%DB7093?style=for-the-badge&logo=styled-components&logoColor=white)<br />
 
 <img src="https://img.shields.io/badge/NEXT-000000?style=flat&logo=Next.js&logoColor=000000"/>
 <img src="https://img.shields.io/badge/REACT-000000?style=flat&logo=React&logoColor=61DAFB"/>
