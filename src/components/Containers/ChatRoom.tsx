@@ -44,13 +44,14 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   }, [roomId]);
 
   const handleNewMessageReceived = (message: any) => {
+    // setNewMessage((prevMessage) => [...prevMessage, message]);
     console.log("새로운 메세지!!! New message received:", message);
   };
 
   // 새로운 메세지
   const handleSendClick = (MessageData: PostMessageState) => {
     setNewMessage(MessageData);
-    // setNewMessage((prevMessage) => [...prevMessage, MessageData]);
+    // setPreviousMessages((prevMessages) => [...prevMessages, MessageData]);
   };
 
   return (

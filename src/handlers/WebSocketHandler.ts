@@ -19,6 +19,8 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
+    // SockJS를 이용해서 WebSocket 핸드셰이크를 수행(WebSocket을 직접 생성하는 대신)
+    // 이 단계에서는 HTTP 헤더를 추가할 수 없음(SockJS가 헤더 설정을 지원하지 않음)
     const socket = new SockJS("https://api.inssagram.shop/ws-stomp");
     const stompClient = Stomp.over(socket);
 
@@ -51,7 +53,7 @@ const WebSocketHandler: React.FC<WebSocketHandlerProps> = ({
     };
 
     if (token) {
-      stompClient.connect({ token: token }, connectCallback);
+      stompClient.connect({ token: token }, connectCallback); // STOMP 프로토콜을 통해 토큰 전달
       stompClientRef.current = stompClient;
     }
 
