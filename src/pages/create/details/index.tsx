@@ -24,25 +24,42 @@ const DetailsPage = () => {
   const [contents, setContents] = useState<string | null>("");
 
   useEffect(() => {
-    // 이미지 URL이 변경될 때마다 파이어베이스에서 이미지 다운로드
-    if (imageURL && imageURL.length > 0) {
-      const downloadURLs: string[] = [];
-      imageURL.forEach((url) => {
-        const storageRef = ref(storage, url);
-        getDownloadURL(storageRef)
-          .then((downloadURL) => {
-            downloadURLs.push(downloadURL);
-            // 모든 이미지가 다운로드 되었는지 확인
-            if (downloadURLs.length === imageURL.length) {
-              setDownloadedImg(downloadURLs);
-            }
+    if (!imageURL || imageURL.length === 0) return;
+
+    const fetchDownloadURLs = async () => {
+      try {
+        const urls = await Promise.all(
+          imageURL.map(async (url) => {
+            const storageRef = ref(storage, url);
+            return await getDownloadURL(storageRef);
           })
-          .catch((error) => {
-            console.error("Error fetching image:", error);
-            setDownloadedImg(null);
-          });
-      });
-    }
+        );
+        setDownloadedImg(urls);
+      } catch (error) {
+        console.error("Error fetching image:", error);
+        setDownloadedImg(null);
+      }
+    };
+    fetchDownloadURLs();
+    // // 이미지 URL이 변경될 때마다 파이어베이스에서 이미지 다운로드
+    // if (imageURL && imageURL.length > 0) {
+    //   const downloadURLs: string[] = [];
+    //   imageURL.forEach((url) => {
+    //     const storageRef = ref(storage, url);
+    //     getDownloadURL(storageRef)
+    //       .then((downloadURL) => {
+    //         downloadURLs.push(downloadURL);
+    //         // 모든 이미지가 다운로드 되었는지 확인
+    //         if (downloadURLs.length === imageURL.length) {
+    //           setDownloadedImg(downloadURLs);
+    //         }
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error fetching image:", error);
+    //         setDownloadedImg(null);
+    //       });
+    //   });
+    // }
   }, [imageURL]);
 
   const handleCreateBoard = async (
