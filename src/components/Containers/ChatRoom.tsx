@@ -43,15 +43,15 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
     fetchChatHistory(roomId);
   }, [roomId]);
 
-  const handleNewMessageReceived = (message: any) => {
-    // setNewMessage((prevMessage) => [...prevMessage, message]);
-    console.log("새로운 메세지!!! New message received:", message);
+  const handleNewMessageReceived = (message: MessageState) => {
+    setPreviousMessages((prevMessages) => [...prevMessages, message]); // 상태 업데이트 추가
+    console.log("새로운 메세지!! New message received:", message);
   };
 
   // 새로운 메세지
-  const handleSendClick = (MessageData: PostMessageState) => {
+  const handleSendClick = (MessageData: any) => {
     setNewMessage(MessageData);
-    // setPreviousMessages((prevMessages) => [...prevMessages, MessageData]);
+    setPreviousMessages((prevMessages) => [...prevMessages, MessageData]); // 상태 업데이트 추가
   };
 
   return (
