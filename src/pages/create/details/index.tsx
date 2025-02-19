@@ -1,107 +1,81 @@
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
 import { RootState } from "@/redux/store";
-import { selectImageURL, selectFileName } from "@/redux/imageSlice";
-import { storage } from "../../../../firebase-config";
-import { ref, getDownloadURL } from "firebase/storage";
+import { selectFiles, setImageURL } from "@/redux/imageSlice";
 import { UserState } from "@/types/UserTypes";
 import postCreatePost from "@/services/postInfo/postCreatePost";
-import styled from "styled-components";
-import { chevronLeft } from "@/images";
+
 import { PageHeader } from "@/components/atoms/Header";
-import BoardContent from "@/components/atoms/Board";
+import BoardContent from "@/components/atoms/BoardContent";
+import Image from "next/image";
+import { chevronLeft } from "@/images";
+import styled from "styled-components";
 
 const DetailsPage = () => {
-  const user: UserState = useSelector((state: RootState) => state.user);
-  const imageURL = useSelector(selectImageURL);
-  const fileName = useSelector(selectFileName);
-
-  const pageTitle = "새 게시물";
+  const dispatch = useDispatch();
   const router = useRouter();
-  const [downloadedImg, setDownloadedImg] = useState<string[] | null>(null);
+  const user: UserState = useSelector((state: RootState) => state.user);
+  const imageFiles = useSelector(selectFiles);
   const [contents, setContents] = useState<string | null>("");
 
-  useEffect(() => {
-    if (!imageURL || imageURL.length === 0) return;
-
-    const fetchDownloadURLs = async () => {
-      try {
-        const urls = await Promise.all(
-          imageURL.map(async (url) => {
-            const storageRef = ref(storage, url);
-            return await getDownloadURL(storageRef);
-          })
-        );
-        setDownloadedImg(urls);
-      } catch (error) {
-        console.error("Error fetching image:", error);
-        setDownloadedImg(null);
-      }
-    };
-    fetchDownloadURLs();
-    // // 이미지 URL이 변경될 때마다 파이어베이스에서 이미지 다운로드
-    // if (imageURL && imageURL.length > 0) {
-    //   const downloadURLs: string[] = [];
-    //   imageURL.forEach((url) => {
-    //     const storageRef = ref(storage, url);
-    //     getDownloadURL(storageRef)
-    //       .then((downloadURL) => {
-    //         downloadURLs.push(downloadURL);
-    //         // 모든 이미지가 다운로드 되었는지 확인
-    //         if (downloadURLs.length === imageURL.length) {
-    //           setDownloadedImg(downloadURLs);
-    //         }
-    //       })
-    //       .catch((error) => {
-    //         console.error("Error fetching image:", error);
-    //         setDownloadedImg(null);
-    //       });
-    //   });
-    // }
-  }, [imageURL]);
-
-  const handleCreateBoard = async (
-    type: "post",
-    image: string[],
-    fileName: string[],
-    contents: string | null
-  ) => {
+  const handleUploadImage = async (file: File) => {
     try {
-      await postCreatePost(type, image, fileName, contents);
-      router.push("/main");
-    } catch (err) {
-      console.error("error creating new post:", err);
+      const storage = getStorage();
+      const uniqueFileName = `${Date.now()}-${file.name}`;
+      const storageRef = ref(storage, `posts/${uniqueFileName}`);
+
+      await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(storageRef);
+
+      return { fileName: file.name, url: downloadURL };
+    } catch (error) {
+      console.error(`업로드 실패: ${file.name}`, error);
+      return null;
     }
   };
 
-  const handleContentsChange = (contents: string) => {
-    setContents(contents);
+  const handleCreateBoard = async () => {
+    if (!imageFiles || imageFiles.length === 0) {
+      alert("이미지를 업로드 해주세요!");
+      return;
+    }
+
+    try {
+      // 모든 이미지 Firebase Storage에 업로드 후 URL & 파일명명 변환
+      const uploadedImages = await Promise.all(
+        (imageFiles ?? []).map(
+          async (file: File) => await handleUploadImage(file)
+        )
+      );
+
+      const imageURLs = uploadedImages.map((img: any) => img.url);
+      const fileNames = uploadedImages.map((img: any) => img.fileName);
+
+      // Redux 상태 업데이트 (불필요한 다운로드 로직 제거)
+      dispatch(setImageURL(imageURLs));
+
+      // 서버에 게시글 정보 전송
+      await postCreatePost("post", imageURLs, fileNames, contents);
+      // 메인 페이지로 이동
+      router.push("/main");
+    } catch (error) {
+      alert("게시글 생성 중 오류 발생:");
+    }
   };
 
   return (
     <section>
       <div>
-        <PageHeader title={pageTitle} />
-        <CreateBtn
-          onClick={() =>
-            handleCreateBoard(
-              "post",
-              downloadedImg || [],
-              fileName || [],
-              contents
-            )
-          }
-        >
-          공유하기
-        </CreateBtn>
+        <PageHeader title="새 게시물" />
+        <CreateBtn onClick={handleCreateBoard}>공유하기</CreateBtn>
       </div>
       <CreatePost>
         <BoardContent
           userProfile={user.image}
-          selectedImage={downloadedImg || []}
-          onChange={handleContentsChange}
+          selectedImage={imageFiles}
+          onChange={setContents}
         />
         <div className="additional">
           <span className="title">위치 추가</span>

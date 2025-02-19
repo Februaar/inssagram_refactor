@@ -5,7 +5,7 @@ import { noProfile, brokenImage } from "@/images";
 
 interface BoardContentsProps {
   userProfile: string | null;
-  selectedImage: string[] | null;
+  selectedImage: File[] | null;
   onChange: (contents: string) => void;
 }
 
