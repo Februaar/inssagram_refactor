@@ -10,7 +10,7 @@ import RecevierProfile from "@/components/atoms/Receiver";
 import MessageInput from "@/components/Inputs/Message";
 import ChatContentsContainer from "@/components/Containers/ChatContents";
 import getPreviousMessages from "@/services/directInfo/getPreviousMessages";
-import WebSocketHandler from "@/handlers/WebSocketHandler";
+import useWebSocket from "@/hooks/useWebSocket";
 
 interface ChatRoomContainerProps {
   user: any;
@@ -26,14 +26,22 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   roomId,
   membersData,
 }) => {
-  const [previousMessages, setPreviousMessages] = useState<MessageState[]>([]);
-  const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
+  const [messages, setMessages] = useState<MessageState[]>([]);
+  // const [previousMessages, setPreviousMessages] = useState<MessageState[]>([]);
+  // const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
 
-  // 과거 채팅 내용
+  const { sendMessage } = useWebSocket({
+    roomId,
+    onMessageReceived: (message) => {
+      setMessages((prev) => [...prev, message]);
+    },
+  });
+
+  // 이전 메시지 불러오기
   const fetchChatHistory = async (roomId: string) => {
     try {
       const res = await getPreviousMessages(roomId);
-      setPreviousMessages(res.data);
+      setMessages(res.data);
     } catch (err) {
       console.error("fetching chat history", err);
     }
@@ -43,16 +51,15 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
     fetchChatHistory(roomId);
   }, [roomId]);
 
-  const handleNewMessageReceived = (message: MessageState) => {
-    setPreviousMessages((prevMessages) => [...prevMessages, message]); // 상태 업데이트 추가
-    console.log("새로운 메세지!! New message received:", message);
+  const handleSendClick = (messageData: any) => {
+    sendMessage(messageData);
+    setMessages((prevMessages) => [...prevMessages, messageData]);
   };
 
-  // 새로운 메세지
-  const handleSendClick = (MessageData: any) => {
-    setNewMessage(MessageData);
-    setPreviousMessages((prevMessages) => [...prevMessages, MessageData]); // 상태 업데이트 추가
-  };
+  // const handleNewMessageReceived = (message: MessageState) => {
+  //   setPreviousMessages((prevMessages) => [...prevMessages, message]); // 상태 업데이트 추가
+  //   console.log("새로운 메세지!! New message received:", message);
+  // };
 
   return (
     <>
@@ -62,22 +69,13 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
           <ChatRoom>
             <div className="chatroom-container">
               <RecevierProfile receiver={membersData.receiver} />
-              <ChatContentsContainer
-                user={user}
-                messages={previousMessages}
-                newMessage={newMessage}
-              />
+              <ChatContentsContainer user={user} messages={messages} />
             </div>
           </ChatRoom>
           <MessageInput
             roomId={roomId}
             receiver={membersData.receiver}
             onClick={handleSendClick}
-          />
-          <WebSocketHandler
-            roomId={roomId}
-            newMessage={newMessage}
-            onMessageReceived={handleNewMessageReceived}
           />
         </>
       )}
