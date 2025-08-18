@@ -3,7 +3,7 @@ import Stomp from "stompjs";
 import SockJS from "sockjs-client";
 import { PostMessageState } from "@/types/ChatRoomTypes";
 
-const useWebSocket = ({
+const useChatSocket = ({
   roomId,
   onMessageReceived,
 }: {
@@ -63,4 +63,4 @@ const useWebSocket = ({
   };
 };
 
-export default useWebSocket;
+export default useChatSocket;

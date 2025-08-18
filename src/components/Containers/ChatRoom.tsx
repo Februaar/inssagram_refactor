@@ -10,7 +10,7 @@ import RecevierProfile from "@/components/atoms/Receiver";
 import MessageInput from "@/components/Inputs/Message";
 import ChatContentsContainer from "@/components/Containers/ChatContents";
 import getPreviousMessages from "@/services/directInfo/getPreviousMessages";
-import useWebSocket from "@/hooks/useWebSocket";
+import useChatSocket from "@/hooks/useChatSocket";
 
 interface ChatRoomContainerProps {
   user: any;
@@ -30,7 +30,7 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
   // const [previousMessages, setPreviousMessages] = useState<MessageState[]>([]);
   // const [newMessage, setNewMessage] = useState<PostMessageState | null>(null);
 
-  const { sendMessage } = useWebSocket({
+  const { sendMessage } = useChatSocket({
     roomId,
     onMessageReceived: (message) => {
       setMessages((prev) => [...prev, message]);
