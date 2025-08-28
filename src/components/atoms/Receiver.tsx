@@ -5,16 +5,16 @@ import styled from "styled-components";
 import { noProfile } from "@/images";
 
 interface ReceiverProfileProps {
-  receiver: UserState;
+  other: UserState;
 }
 
-const ReceiverProfile: React.FC<ReceiverProfileProps> = ({ receiver }) => {
+const ReceiverProfile: React.FC<ReceiverProfileProps> = ({ other }) => {
   return (
     <ProfileContainer>
       <div className="profile-details">
         <div className="profile">
           <Image
-            src={receiver.memberProfile ? receiver.memberProfile : noProfile}
+            src={other.memberProfile ? other.memberProfile : noProfile}
             alt="프로필"
             width={56}
             height={56}
@@ -24,14 +24,14 @@ const ReceiverProfile: React.FC<ReceiverProfileProps> = ({ receiver }) => {
         </div>
         <div className="nickname-area">
           <div className="nickname">
-            <span>{receiver.memberNickname}</span>
+            <span>{other.memberNickname}</span>
           </div>
         </div>
         <div className="infos-area">
-          <span>{receiver.memberNickname} · Inssagram</span>
+          <span>{other.memberNickname} · Inssagram</span>
         </div>
         <div role="button" className="profile-link">
-          <Link href={`/${receiver.memberId}`}>프로필 보기</Link>
+          <Link href={`/${other.memberId}`}>프로필 보기</Link>
         </div>
       </div>
     </ProfileContainer>

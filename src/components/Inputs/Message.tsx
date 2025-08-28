@@ -4,13 +4,13 @@ import styled from "styled-components";
 
 interface MessageInputProps {
   roomId: string;
-  receiver: UserState;
+  other: UserState;
   onClick: (MessageData: PostMessageState) => void;
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({
   roomId,
-  receiver,
+  other,
   onClick,
 }) => {
   const [messageValue, setMessageValue] = useState<string>("");
@@ -22,7 +22,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
     const MessageData: PostMessageState = {
       type: "message",
       chatRoomId: roomId,
-      receiverMemberId: receiver.memberId,
+      otherMemberId: other.memberId,
       message: messageValue,
     };
     onClick(MessageData);

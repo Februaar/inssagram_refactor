@@ -6,10 +6,10 @@ import styled from "styled-components";
 import { noProfile, arrowBack } from "@/images";
 
 interface ChatRoomHeaderProps {
-  receiver: UserState;
+  other: UserState;
 }
 
-const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ receiver }) => {
+const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ other }) => {
   const router = useRouter();
 
   const goBack = () => {
@@ -25,9 +25,9 @@ const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ receiver }) => {
       </div>
       <div className="account">
         <div className="profile">
-          <Link href={`/${receiver.memberId}`}>
+          <Link href={`/${other.memberId}`}>
             <Image
-              src={receiver.memberProfile ? receiver.memberProfile : noProfile}
+              src={other.memberProfile ? other.memberProfile : noProfile}
               alt="프로필"
               width={24}
               height={24}
@@ -37,8 +37,8 @@ const ChatRoomHeader: React.FC<ChatRoomHeaderProps> = ({ receiver }) => {
           </Link>
         </div>
         <div className="details">
-          <Link href={`/${receiver.memberId}`}>
-            <span className="nickname">{receiver.memberNickname}</span>
+          <Link href={`/${other.memberId}`}>
+            <span className="nickname">{other.memberNickname}</span>
           </Link>
           {/* <span className="recent-time">1시간 전에 활동</span> */}
         </div>

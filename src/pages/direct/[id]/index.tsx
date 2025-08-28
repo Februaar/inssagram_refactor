@@ -12,8 +12,8 @@ const ChatRoomPage = () => {
   const router = useRouter();
   const { id } = router.query as { id: string };
   const [membersData, setMembersData] = useState<{
-    sender: UserState;
-    receiver: UserState;
+    me: UserState;
+    other: UserState;
   } | null>(null);
 
   // 채팅방 유저들 데이터
@@ -21,23 +21,37 @@ const ChatRoomPage = () => {
     async (id: string) => {
       try {
         const res = await getChatRoomMembersData(id);
-        const memberList = res.memberList;
         const currentMemberId = user?.member_id;
-        const otherMemberId = Object.keys(memberList).find(
-          (memberId) => Number(memberId) !== Number(currentMemberId)
-        );
+        const memberList = res.memberList;
 
-        if (currentMemberId && otherMemberId) {
-          const senderId = currentMemberId;
-          const receiverId = otherMemberId;
-          const sender = memberList[senderId];
-          const receiver = memberList[receiverId];
+        if (currentMemberId) {
+          const otherMemberId = Object.keys(memberList).find(
+            (memberId) => Number(memberId) !== Number(currentMemberId)
+          );
 
-          setMembersData({
-            sender: sender,
-            receiver: receiver,
-          });
+          if (otherMemberId) {
+            setMembersData({
+              me: memberList[currentMemberId],
+              other: memberList[otherMemberId],
+            });
+          }
         }
+
+        // const otherMemberId = Object.keys(memberList).find(
+        //   (memberId) => Number(memberId) !== Number(currentMemberId)
+        // );
+
+        // if (currentMemberId && otherMemberId) {
+        //   const senderId = currentMemberId;
+        //   const receiverId = otherMemberId;
+        //   const sender = memberList[senderId];
+        //   const receiver = memberList[receiverId];
+
+        //   setMembersData({
+        //     sender: sender,
+        //     receiver: receiver,
+        //   });
+        // }
       } catch (err) {
         console.error("fetching chat room member's data", err);
       }

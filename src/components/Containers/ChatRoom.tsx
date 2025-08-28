@@ -16,8 +16,8 @@ interface ChatRoomContainerProps {
   user: any;
   roomId: string;
   membersData: {
-    sender: UserState;
-    receiver: UserState;
+    me: UserState;
+    other: UserState;
   } | null;
 }
 
@@ -65,16 +65,16 @@ const ChatRoomContainer: React.FC<ChatRoomContainerProps> = ({
     <>
       {membersData && (
         <>
-          <ChatRoomHeader receiver={membersData.receiver} />
+          <ChatRoomHeader other={membersData.other} />
           <ChatRoom>
             <div className="chatroom-container">
-              <RecevierProfile receiver={membersData.receiver} />
+              <RecevierProfile other={membersData.other} />
               <ChatContentsContainer user={user} messages={messages} />
             </div>
           </ChatRoom>
           <MessageInput
             roomId={roomId}
-            receiver={membersData.receiver}
+            other={membersData.other}
             onClick={handleSendClick}
           />
         </>

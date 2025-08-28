@@ -115,6 +115,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
                 </div>
               </CommentArea>
 
+
               <div className="like-button">
                 <FavoriteIcon
                   onClick={() => handleLikeCommentClick(comment.commentId)}
