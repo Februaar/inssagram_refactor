@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { SearchResultData } from "@/types/SearchTypes";
+import { debound } from "lodash";
 import styled from "styled-components";
 
 interface DirectSearchInputProps {
@@ -13,11 +14,23 @@ const DirectSearchInput: React.FC<DirectSearchInputProps> = ({
 }) => {
   const [searchValue, setSearchValue] = useState("");
 
+  const debouncedSearch = useMemo(
+    () => debounce((value: string) => onSearch(value), 500),
+    [onSearch]
+  );
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value;
-    setSearchValue(searchValue);
-    onSearch(searchValue);
+    const value = e.target.value;
+    setSearchValue(value);
+    debouncedSearch(value);
   };
+
+  useEffect(() => {
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [debouncedSearch]);
+
 
   useEffect(() => {
     if (selectedAccount) {

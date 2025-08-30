@@ -12,17 +12,11 @@ const ChatContentsContainer: React.FC<ChatContentsProps> = ({
 }) => {
   return (
     <>
-      {messages.map((message) =>
+      {messages.map((message, index) =>
         message.senderMemberId === user.member_id ? (
-          <MyMessage
-            key={message.chatMessageId || Math.random()}
-            message={message}
-          />
+          <MyMessage key={message.chatMessageId ?? index} message={message} />
         ) : (
-          <YourMessage
-            key={message.chatMessageId || Math.random()}
-            message={message}
-          />
+          <YourMessage key={message.chatMessageId ?? index} message={message} />
         )
       )}
     </>

@@ -22,7 +22,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
     const MessageData: PostMessageState = {
       type: "message",
       chatRoomId: roomId,
-      otherMemberId: other.memberId,
+      receiverMemberId: other.memberId,
       message: messageValue,
     };
     onClick(MessageData);
